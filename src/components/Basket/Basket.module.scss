@@ -1,0 +1,332 @@
+.block {
+  background-color: #FFF;
+  border-radius: 0px 0px 10px 10px;
+}
+
+.body {
+  padding: 94px 18.49vw;
+}
+
+.header {
+  display: flex;
+  margin: 0px 0px 30px 0px;
+  padding: 0px 0px 30px 0px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #F4F4F4;
+}
+
+.title {
+  position: relative;
+  display: flex;
+  color: #000;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 0.32px;
+
+  img {
+    margin: 0px 17px 0px 0px;
+  }
+}
+
+.clearBasket {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #B6B6B6;
+  font-size: 16px;
+  cursor: pointer;
+
+  img {
+    margin: 0px 7px 0px 0px;
+
+  }
+
+  &:hover {
+    img {
+      animation: basket 1.5s ease;
+    }
+  }
+
+  @keyframes basket {
+    0% {
+      transform: rotate(0deg)
+    }
+
+    25% {
+      transform: rotate(20deg)
+    }
+
+    50% {
+      transform: rotate(-20deg)
+    }
+
+    100% {
+      transform: rotate(0deg)
+    }
+  }
+}
+
+.content {
+  margin: 0px 0px 40px 0px;
+}
+
+.basketItem {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0px 0px 30px 0px;
+  border-bottom: 1px solid #F4F4F4;
+  align-items: center;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.img {
+  margin: 0px 15px 0px 0px;
+
+  img {
+    max-width: 80px;
+  }
+}
+
+.text {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.title {
+  color: #000;
+  margin: 0px 0px 4px 0px;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.22px;
+}
+
+.subtitle {
+  color: #8D8D8D;
+  font-size: 18px;
+  letter-spacing: 0.18px;
+}
+
+.numberOfPizzas {
+  display: flex;
+  margin: 0px 73px 0px 0px;
+  align-items: center;
+  justify-content: center;
+
+  span {
+    display: inline-block;
+    color: #000;
+    margin: 0px 12px 0px 0px;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.22px;
+  }
+}
+
+.minus,
+.plus {
+  position: relative;
+  display: flex;
+  color: #EB5A1E;
+  border: 2px solid #EB5A1E;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+
+  font-size: 22px;
+  font-weight: 700;
+  transition: 0.2s;
+
+  &:active {
+    background-color: #EB5A1E;
+
+    &::before,
+    &::after {
+      background-color: #FFF;
+    }
+  }
+}
+
+.minus {
+  margin: 0px 12px 0px 0px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: #EB5A1E;
+    width: 10px;
+    height: 2px;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+  }
+}
+
+.plus {
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: #EB5A1E;
+    width: 10px;
+    height: 2px;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+  }
+
+  &::after {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+}
+
+.price {
+  color: #000;
+  margin: 0px 73px 0px 0px;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.22px;
+  white-space: nowrap;
+}
+
+.close {
+  position: relative;
+  border: 2px solid #D0D0D0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  transition: 0.3s ease;
+  cursor: pointer;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 2px;
+    background-color: #D0D0D0;
+    transform: translate(-50%, -50%);
+    transition: 0.3s ease;
+    border-radius: 5px;
+  }
+
+  &::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  &::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+
+  &:hover {
+    background-color: #D0D0D0;
+
+    &::before,
+    &::after {
+      background-color: #FFF;
+    }
+  }
+}
+
+.footer {}
+
+.footerItem {
+  display: flex;
+  margin: 0px 0px 40px 0px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+
+  &:last-child {
+    margin: 0px 0px 0px 0px;
+  }
+}
+
+.totalNumberOfPizzas {
+  color: #000;
+  font-size: 22px;
+  letter-spacing: 0.22px;
+
+  span {
+    font-weight: 700;
+  }
+}
+
+.totalPriceOfPizzas {
+  color: #000;
+  font-size: 22px;
+  letter-spacing: 0.22px;
+
+  span {
+    color: #FE5F1E;
+    font-weight: 700;
+  }
+}
+
+.backBtn {
+  position: relative;
+  color: #CACACA;
+  background-color: #FFF;
+  padding: 17px 28px 17px 48px;
+  border: 1px solid #D3D3D3;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 16px;
+
+  &:hover {
+
+    &::before,
+    &::after {
+      left: 11%;
+    }
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    left: 14%;
+    width: 10px;
+    height: 2px;
+    background-color: #CACACA;
+    border-radius: 10px;
+    transition: 0.4s ease;
+  }
+
+  &::before {
+    bottom: 41.9%;
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    top: 41.9%;
+    transform: rotate(-45deg);
+  }
+}
+
+.payBtn {
+  color: #FFF;
+  background-color: #FE5F1E;
+  border-radius: 30px;
+  padding: 17px 38px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
