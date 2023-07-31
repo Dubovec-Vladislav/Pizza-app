@@ -84,12 +84,20 @@
 
 .sizeType {
   color: #2C2C2C;
-  padding: 9px 24px;
+  width: 100%;
+  margin: 0px 6px 0px 0px;
+  padding: 9px 0px;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.21px;
-  border-radius: 5px;
-  cursor: pointer;
+
+  &:last-child {
+    margin: 0px 0px 0px 0px;
+  }
 }
 
 .footer {
@@ -154,10 +162,11 @@
 
 .counter {
   display: flex;
-  margin: 0px 0px 0px 6px;
   color: #FFF;
   background-color: #EB5A1E;
-  padding: 4px 7px;
+  width: 22px;
+  height: 22px;
+  margin: 0px 0px 0px 6px;
   border-radius: 50%;
   align-items: center;
   justify-content: center;

@@ -9,7 +9,7 @@ import SortMenu from '../../UI/SortMenu/SortMenu'
 
 const TypeOfPizza: FC = (props) => {
   return (
-    <div className={style.menu}>
+    <section className={style.menu}>
       <div className={style.typeMenu}>
         <TypeItem text={'Все'} active/>
         <TypeItem text={'Мясные'} />
@@ -21,7 +21,7 @@ const TypeOfPizza: FC = (props) => {
       <div className={style.sortMenu}>
         <SortMenu />
       </div>
-    </div>
+    </section>
   );
 };
 
