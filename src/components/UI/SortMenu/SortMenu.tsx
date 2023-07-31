@@ -1,30 +1,27 @@
-import React, { FC } from 'react'
-import './SortMenu.scss'
+import React, { FC, useState } from 'react'
+import style from './SortMenu.module.scss'
 
 const SortMenu: FC = () => {
+  const [activeMenu, setActiveMenu] = useState(false);
+
+  const handleClickMenuItem = () => setActiveMenu(!activeMenu);
+
   return (
-    <div className="sort">
-      <div className="sort__label">
-        <svg
-          width="10"
-          height="6"
-          viewBox="0 0 10 6"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M10 5C10 5.16927 9.93815 5.31576 9.81445 5.43945C9.69075 5.56315 9.54427 5.625 9.375 5.625H0.625C0.455729 5.625 0.309245 5.56315 0.185547 5.43945C0.061849 5.31576 0 5.16927 0 5C0 4.83073 0.061849 4.68424 0.185547 4.56055L4.56055 0.185547C4.68424 0.061849 4.83073 0 5 0C5.16927 0 5.31576 0.061849 5.43945 0.185547L9.81445 4.56055C9.93815 4.68424 10 4.83073 10 5Z"
-            fill="#2C2C2C"
-          />
-        </svg>
-        <b>Сортировка по:</b>
-        <span>популярности</span>
+    <div className={style.sort}>
+      <div className={style.label}>
+        <div className={activeMenu ? `${style.arrow} ${style.activeArrow}` : style.arrow}>
+          <img src="/img/UI/arrow-down.svg" alt="arrow-down" />
+        </div>
+        <div className={style.text}>
+          Сортировка по:
+          <span onClick={handleClickMenuItem}>популярности</span>
+        </div>
       </div>
-      <div className="sort__popup">
-        <ul>
-          <li className="active">популярности</li>
-          <li>цене</li>
-          <li>алфавиту</li>
+      <div className={activeMenu ? `${style.popup} ${style.activeMenu}` : `${style.popup}`}>
+        <ul className={style.list}>
+          <li className={`${style.item} ${style.activeItem}`}>популярности</li>
+          <li className={style.item}>цене</li>
+          <li className={style.item}>алфавиту</li>
         </ul>
       </div>
     </div>
