@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import style from './Main.module.scss'
-import TypeOfPizza from './TypeOfPizza/TypeOfPizza'
+import TypeOfPizza from './CategoryOfPizza/CategoryOfPizza'
 import PizzaField from './PizzaField/PizzaField'
 
 const Main: FC = (props) => {

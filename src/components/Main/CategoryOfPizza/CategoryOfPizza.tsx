@@ -1,22 +1,22 @@
 import React, { FC } from 'react'
-import style from './TypeOfPizza.module.scss'
+import style from './CategoryOfPizza.module.scss'
 import SortMenu from '../../UI/SortMenu/SortMenu'
 
 
 // --------------------------------------------- //
-//                    # Menu                     //
+//                 # Categories                  //
 // --------------------------------------------- //
 
 const TypeOfPizza: FC = (props) => {
   return (
     <section className={style.menu}>
       <div className={style.typeMenu}>
-        <TypeItem text={'Все'} active/>
-        <TypeItem text={'Мясные'} />
-        <TypeItem text={'Вегетарианская'} />
-        <TypeItem text={'Гриль'} />
-        <TypeItem text={'Острые'} />
-        <TypeItem text={'Закрытые'} />
+        <CategoryItem text={'Все'} active/>
+        <CategoryItem text={'Мясные'} />
+        <CategoryItem text={'Вегетарианская'} />
+        <CategoryItem text={'Гриль'} />
+        <CategoryItem text={'Острые'} />
+        <CategoryItem text={'Закрытые'} />
       </div>
       <div className={style.sortMenu}>
         <SortMenu />
@@ -26,27 +26,27 @@ const TypeOfPizza: FC = (props) => {
 };
 
 // --------------------------------------------- //
-//                    End Menu                   //
+//                 End Categories                //
 // --------------------------------------------- //
 
 
 // --------------------------------------------- //
-//                  # Type item                  //
+//                # Category item                //
 // --------------------------------------------- //
 
-interface ITypeItemProps {
+interface ICategoryItemProps {
   text: string,
   active?: boolean,
 }
 
-const TypeItem: FC<ITypeItemProps> = ({ text, active }) => {
+const CategoryItem: FC<ICategoryItemProps> = ({ text, active }) => {
   return (
-    <div className={active ? `${style.typeItem} ${style.activeTypeItem}` : `${style.typeItem}`}>{text}</div>
+    <div className={active ? `${style.categoryItem} ${style.activeCategoryItem}` : `${style.categoryItem}`}>{text}</div>
   );
 }
 
 // --------------------------------------------- //
-//                  End Type item                //
+//                  Category item                //
 // --------------------------------------------- //
 
 
