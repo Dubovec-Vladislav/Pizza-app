@@ -2,26 +2,39 @@ import React, { FC, useState } from 'react'
 import style from './SortMenu.module.scss'
 
 const SortMenu: FC = () => {
-  const [activeMenu, setActiveMenu] = useState(false);
+  const menuItems = ['популярности', 'цене', 'алфавиту'];
 
-  const handleClickMenuItem = () => setActiveMenu(!activeMenu);
+  const [active, toggleActive] = useState(false);
+  const [activeItem, setActiveItem] = useState(menuItems[0]);
+
+  const handleClickCurrentMenuItem = () => toggleActive(!active);
+  const handleClickMenuItem = (e: any) => {
+    setActiveItem(e.target.textContent);
+    toggleActive(!active);
+  };
 
   return (
     <div className={style.sort}>
       <div className={style.label}>
-        <div className={activeMenu ? `${style.arrow} ${style.activeArrow}` : style.arrow}>
+        <div className={active ? `${style.arrow} ${style.activeArrow}` : style.arrow}>
           <img src="/img/UI/arrow-down.svg" alt="arrow-down" />
         </div>
         <div className={style.text}>
           Сортировка по:
-          <span onClick={handleClickMenuItem}>популярности</span>
+          <span onClick={handleClickCurrentMenuItem}>{activeItem}</span>
         </div>
       </div>
-      <div className={activeMenu ? `${style.popup} ${style.activeMenu}` : `${style.popup}`}>
+      <div className={active ? `${style.popup} ${style.activeMenu}` : `${style.popup}`}>
         <ul className={style.list}>
-          <li className={`${style.item} ${style.activeItem}`}>популярности</li>
-          <li className={style.item}>цене</li>
-          <li className={style.item}>алфавиту</li>
+          {menuItems.map((item) => (
+            <li
+              key={item}
+              className={activeItem === item ? `${style.item} ${style.activeItem}` : `${style.item}`}
+              onClick={handleClickMenuItem}
+            >
+              {item}
+            </li>
+          ))}
         </ul>
       </div>
     </div>
