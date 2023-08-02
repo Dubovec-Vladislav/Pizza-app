@@ -26,15 +26,17 @@ const SortMenu: FC = () => {
       </div>
       <div className={active ? `${style.popup} ${style.activeMenu}` : `${style.popup}`}>
         <ul className={style.list}>
-          {menuItems.map((item) => (
-            <li
-              key={item}
-              className={activeItem === item ? `${style.item} ${style.activeItem}` : `${style.item}`}
-              onClick={handleClickMenuItem}
-            >
-              {item}
-            </li>
-          ))}
+          {
+            menuItems.map((item) => (
+              <li
+                key={item}
+                className={activeItem === item ? `${style.item} ${style.activeItem}` : `${style.item}`}
+                onClick={handleClickMenuItem}
+              >
+                {item}
+              </li>
+            ))
+          }
         </ul>
       </div>
     </div>

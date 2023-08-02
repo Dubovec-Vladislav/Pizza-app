@@ -4,7 +4,7 @@
   display: flex;
   margin: 0px -28px;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
 }
 
@@ -20,7 +20,7 @@
 
 .img {
   margin: 0px 0px 11px 0px;
-  
+
   img {
     width: 100%;
     max-width: 100%;
@@ -34,6 +34,8 @@
 }
 
 .name {
+  position: relative;
+  z-index: 2;
   color: #000;
   margin: 0px 0px 22px 0px;
   font-size: 20px;
@@ -66,6 +68,7 @@
   border-radius: 5px;
   text-align: center;
   text-transform: lowercase;
+  transition: 0.3s ease;
   cursor: pointer;
 }
 
@@ -89,6 +92,7 @@
   padding: 9px 0px;
   border-radius: 5px;
   text-align: center;
+  transition: 0.3s ease;
   cursor: pointer;
 
   font-size: 14px;

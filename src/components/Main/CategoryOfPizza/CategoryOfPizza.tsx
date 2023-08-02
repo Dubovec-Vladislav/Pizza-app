@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import style from './CategoryOfPizza.module.scss'
 import SortMenu from '../../UI/SortMenu/SortMenu'
 
@@ -8,15 +8,19 @@ import SortMenu from '../../UI/SortMenu/SortMenu'
 // --------------------------------------------- //
 
 const TypeOfPizza: FC = (props) => {
+  const categoryItems = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
+  const [activeItem, setActiveItem] = useState(categoryItems[0]);
+
   return (
     <section className={style.menu}>
       <div className={style.typeMenu}>
-        <CategoryItem text={'Все'} active/>
-        <CategoryItem text={'Мясные'} />
-        <CategoryItem text={'Вегетарианская'} />
-        <CategoryItem text={'Гриль'} />
-        <CategoryItem text={'Острые'} />
-        <CategoryItem text={'Закрытые'} />
+        {
+          categoryItems.map((item, index) => (
+            item === activeItem ?
+              <CategoryItem key={index} text={item} setActiveItem={setActiveItem} active /> :
+              <CategoryItem key={index} text={item} setActiveItem={setActiveItem} />
+          ))
+        }
       </div>
       <div className={style.sortMenu}>
         <SortMenu />
@@ -37,16 +41,19 @@ const TypeOfPizza: FC = (props) => {
 interface ICategoryItemProps {
   text: string,
   active?: boolean,
+  setActiveItem: (text: string) => void;
 }
 
-const CategoryItem: FC<ICategoryItemProps> = ({ text, active }) => {
+const CategoryItem: FC<ICategoryItemProps> = ({ text, active, setActiveItem }) => {
   return (
-    <div className={active ? `${style.categoryItem} ${style.activeCategoryItem}` : `${style.categoryItem}`}>{text}</div>
+    <div className={active ? `${style.categoryItem} ${style.activeCategoryItem}` : `${style.categoryItem}`}
+      onClick={() => setActiveItem(text)}
+    >{text}</div>
   );
 }
 
 // --------------------------------------------- //
-//                  Category item                //
+//                End Category item              //
 // --------------------------------------------- //
 
 

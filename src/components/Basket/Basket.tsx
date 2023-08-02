@@ -55,10 +55,7 @@ interface IBasketItemProps {
 
 const BasketItem: FC<IBasketItemProps> = ({ imgName, name, description, price }) => {
   const PATH = '/img/Pizzas/'
-
   const [numberOfPizzas, changeNumberOfPizzas] = useState(1);
-  const handlePlusClick = () => changeNumberOfPizzas(numberOfPizzas + 1)
-  const handleMinusClick = () => changeNumberOfPizzas(numberOfPizzas - 1)
 
   return (
     <div className={style.basketItem}>
@@ -68,9 +65,9 @@ const BasketItem: FC<IBasketItemProps> = ({ imgName, name, description, price })
         <div className={style.subtitle}>{description}</div>
       </div>
       <div className={style.numberOfPizzas}>
-        <div className={style.minus} onClick={handleMinusClick}></div>
+        <div className={style.minus} onClick={() => changeNumberOfPizzas(numberOfPizzas - 1)}></div>
         <span>{numberOfPizzas}</span>
-        <div className={style.plus} onClick={handlePlusClick}></div>
+        <div className={style.plus} onClick={() => changeNumberOfPizzas(numberOfPizzas + 1)}></div>
       </div>
       <div className={style.price}>{price} ₽</div>
       <div className={style.close}></div>
