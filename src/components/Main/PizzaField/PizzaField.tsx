@@ -3,6 +3,7 @@ import style from './PizzaField.module.scss'
 import BlockTitle from '../../UI/BlockTitle/BlockTitle'
 import pizzasData from '../../../assets/PizzasData/pizzas.json'
 import PizzaItem from './PizzaItem'
+import Skeleton from '../../UI/Skeleton/Skeleton'
 
 interface Pizza {
   id: number;
@@ -35,6 +36,7 @@ const PizzaField: FC = (props) => {
               types={pizza.types}
               sizes={pizza.sizes}
               price={pizza.price} />
+            // <Skeleton />
           ))
         }
       </div>
