@@ -8,8 +8,8 @@ const SortMenu: FC = () => {
   const [activeItem, setActiveItem] = useState(menuItems[0]);
 
   const handleClickCurrentMenuItem = () => toggleActive(!active);
-  const handleClickMenuItem = (e: any) => {
-    setActiveItem(e.target.textContent);
+  const handleClickMenuItem = (item: string) => {
+    setActiveItem(item);
     toggleActive(!active);
   };
 
@@ -31,7 +31,7 @@ const SortMenu: FC = () => {
               <li
                 key={item}
                 className={activeItem === item ? `${style.item} ${style.activeItem}` : `${style.item}`}
-                onClick={handleClickMenuItem}
+                onClick={() => handleClickMenuItem(item)}
               >
                 {item}
               </li>

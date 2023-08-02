@@ -83,12 +83,13 @@ const PizzaItem: FC<PizzaItemProps> = ({ id, imageUrl, name, types, sizes, price
                 </li>
               )) :
               <li key={0} className={`${style.doughType} ${style.activeDoughType}`}>{doughTypeList[types[0]]}</li>
-            // Если у нас только один тип, то только его активным и выводим
+            // Если у нас только один тип, то только его делаем активным и выводим
           }
         </ul>
         <ul className={style.size}>
           {
             sizes.length > 1 ?
+              // Если у нас больше чем один размер, то делаем мапинг и проверяем на активный размер
               sizes.map((size) => (
                 <li key={sizes.indexOf(size)} className={
                   size === activeSize ?
@@ -100,10 +101,8 @@ const PizzaItem: FC<PizzaItemProps> = ({ id, imageUrl, name, types, sizes, price
                 </li>
               )) :
               <li key={0} className={`${style.doughType} ${style.activeDoughType}`}>{sizes[0]} см.</li>
+            // Если у нас только один размер, то только его делаем активным и выводим
           }
-          {/* <li className={`${style.sizeType} ${style.activeSizeType}`}>26 см.</li>
-          <li className={style.sizeType}>30 см.</li>
-          <li className={style.sizeType}>40 см.</li> */}
         </ul>
       </div>
       <div className={style.footer}>
