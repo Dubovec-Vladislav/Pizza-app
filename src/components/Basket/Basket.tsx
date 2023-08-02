@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react'
 import style from './Basket.module.scss'
 import { Link } from 'react-router-dom'
-import EmptyBasket from './EmptyBasket'
+// import EmptyBasket from './EmptyBasket'
 
 
 // --------------------------------------------- //

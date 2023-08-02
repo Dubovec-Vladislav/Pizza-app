@@ -1,0 +1,18 @@
+.doughType {
+  flex: 1 0 50%;
+  color: #2C2C2C;
+  padding: 9px 0px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.21px;
+  border-radius: 5px;
+  text-align: center;
+  text-transform: lowercase;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.activeDoughType {
+  background: #FFF;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.04);
+}
