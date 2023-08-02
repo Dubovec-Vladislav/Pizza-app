@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react"
 import style from './PizzaItem.module.scss'
-import TypesItem from "./PizzaItemComponents/TypesItem";
-import SizesItem from "./PizzaItemComponents/SizesItem";
+import TypesItem from "./PizzaItemComponents/TypesItem"
+import SizesItem from "./PizzaItemComponents/SizesItem"
 
 interface PizzaItemProps {
   imageUrl: string,
@@ -11,7 +11,7 @@ interface PizzaItemProps {
   price: number,
 }
 
-const PizzaItem: FC<PizzaItemProps> = ({ imageUrl, name, types, sizes, price, }) => {
+const PizzaItem: FC<PizzaItemProps> = ({ imageUrl, name, types, sizes, price }) => {
   const doughTypeList = ['тонкое', 'традиционное'];
 
   const [numOfPizzas, setNumberOfPizzas] = useState(0);

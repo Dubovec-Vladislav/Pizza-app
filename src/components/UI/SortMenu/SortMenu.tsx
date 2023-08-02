@@ -27,9 +27,9 @@ const SortMenu: FC = () => {
       <div className={active ? `${style.popup} ${style.activeMenu}` : `${style.popup}`}>
         <ul className={style.list}>
           {
-            menuItems.map((item) => (
+            menuItems.map((item, i) => (
               <li
-                key={item}
+                key={i}
                 className={activeItem === item ? `${style.item} ${style.activeItem}` : `${style.item}`}
                 onClick={() => handleClickMenuItem(item)}
               >

@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useContext } from 'react'
 import style from './Main.module.scss'
 import TypeOfPizza from './CategoryOfPizza/CategoryOfPizza'
 import PizzaField from './PizzaField/PizzaField'
