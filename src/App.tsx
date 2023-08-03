@@ -11,9 +11,9 @@ const App: FC = () => {
     <div className={style.wrapper}>
       <Header />
       <Routes>
-        <Route path='*' element={<NotFoundPage />} />
         <Route path='/' element={<Main />} />
         <Route path='/basket' element={<Basket />} />
+        <Route path='*' element={<NotFoundPage />} />
       </Routes>
     </div>
   );

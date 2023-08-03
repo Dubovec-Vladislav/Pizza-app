@@ -7,7 +7,6 @@ const SortMenu: FC = () => {
   const [active, toggleActive] = useState(false);
   const [activeItem, setActiveItem] = useState(menuItems[0]);
 
-  const handleClickCurrentMenuItem = () => toggleActive(!active);
   const handleClickMenuItem = (item: string) => {
     setActiveItem(item);
     toggleActive(!active);
@@ -15,13 +14,13 @@ const SortMenu: FC = () => {
 
   return (
     <div className={style.sort}>
-      <div className={style.label}>
+      <div className={style.label} onClick={() => toggleActive(!active)}>
         <div className={active ? `${style.arrow} ${style.activeArrow}` : style.arrow}>
           <img src="/img/UI/arrow-down.svg" alt="arrow-down" />
         </div>
         <div className={style.text}>
           Сортировка по:
-          <span onClick={handleClickCurrentMenuItem}>{activeItem}</span>
+          <span>{activeItem}</span>
         </div>
       </div>
       <div className={active ? `${style.popup} ${style.activeMenu}` : `${style.popup}`}>

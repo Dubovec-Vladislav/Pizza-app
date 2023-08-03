@@ -4,5 +4,9 @@
 }
 
 .body {
-  padding: 40px 67px;
+  padding: 2.78vw 4.65vw;
+
+  @media (max-width: 376px) {
+    padding: 20px;
+  }
 }
