@@ -1,12 +1,15 @@
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react'
 import style from './CategoryOfPizza.module.scss'
 import SortMenu from '../../UI/SortMenu/SortMenu'
-import CategoryItem from './CategoryItem';
+import CategoryItem from './CategoryItem'
 
-const TypeOfPizza: FC = (props) => {
-  const categoryItems = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
-  const [activeItem, setActiveItem] = useState(categoryItems[0]);
+interface CategoryOfPizzaProps {
+  categoryItems: string[];
+  activeItem: string;
+  setActiveItem: (newActiveItem: string) => void;
+}
 
+const CategoryOfPizza: FC<CategoryOfPizzaProps> = ({ categoryItems, activeItem, setActiveItem }) => {
   return (
     <section className={style.menu}>
       <div className={style.typeMenu}>
@@ -25,4 +28,4 @@ const TypeOfPizza: FC = (props) => {
   );
 };
 
-export default TypeOfPizza;
+export default CategoryOfPizza;

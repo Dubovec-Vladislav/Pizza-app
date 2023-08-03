@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect } from 'react'
 import style from './PizzaField.module.scss'
 import BlockTitle from '../../UI/BlockTitle/BlockTitle'
 // import pizzasData from '../../../assets/PizzasData/pizzas.json'
@@ -14,18 +14,23 @@ interface Pizza {
   price: number;
 }
 
-const PizzaField: FC = (props) => {
-  let [items, setItems] = useState<Pizza[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+interface PizzaFieldProps {
+  items: Pizza[],
+  setItems: (items: Pizza[]) => void,
+  isLoading: boolean,
+  setIsLoading: (isLoading: boolean) => void,
+}
 
+const PizzaField: FC<PizzaFieldProps> = ({ items, setItems, isLoading, setIsLoading }) => {
   useEffect(() => {
+    window.scrollTo(0, 0);
     fetch('https://64ca3494b2980cec85c315c6.mockapi.io/items')
       .then((res) => res.json())
       .then((arr) => {
         setItems(arr)
         setIsLoading(false);
       })
-  }, []);
+  }, [setItems, setIsLoading]);
 
   return (
     <section className={style.block}>
