@@ -8,17 +8,17 @@ interface CategoryOfPizzaProps {
   activeCategoryItem: string,
   setActiveCategoryItem: (newActiveCategoryItem: string) => void,
 
-  sortItems: string[],
-  activeSort: boolean,
-  toggleActiveSort: (activeSort: boolean) => void,
-  activeSortItem: string,
-  setActiveSortItem: (item: string) => void,
+  // ---------- SortMenu ---------- // 
+  sortTypes: string[],
+  activeSortType: string,
+  setActiveSortType: (item: string) => void,
 }
 
 const CategoryOfPizza: FC<CategoryOfPizzaProps> = ({
   categoryItems, activeCategoryItem, setActiveCategoryItem,
-  sortItems, activeSort, toggleActiveSort, activeSortItem, setActiveSortItem
+  sortTypes, activeSortType, setActiveSortType
 }) => {
+
   return (
     <section className={style.menu}>
       <div className={style.typeMenu}>
@@ -32,11 +32,9 @@ const CategoryOfPizza: FC<CategoryOfPizzaProps> = ({
       </div>
       <div className={style.sortMenu}>
         <SortMenu
-          sortItems={sortItems}
-          activeSort={activeSort}
-          toggleActiveSort={toggleActiveSort}
-          activeSortItem={activeSortItem}
-          setActiveSortItem={setActiveSortItem}
+          sortTypes={sortTypes}
+          activeSortType={activeSortType}
+          setActiveSortType={setActiveSortType}
         />
       </div>
     </section>

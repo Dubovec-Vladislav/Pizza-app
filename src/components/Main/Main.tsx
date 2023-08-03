@@ -6,14 +6,18 @@ import PizzaField from './PizzaField/PizzaField'
 const Main: FC = (props) => {
 
   // ------------ Category Of Pizza ------------ //
-  const categoryItems = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
+  const categoryItems = useMemo(() => ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'], []);
   const [activeCategoryItem, setActiveCategoryItem] = useState(categoryItems[0]);
 
 
   // ------------ Sort Menu ------------ //
-  const sortItems = ['популярности', 'цене', 'алфавиту'];
-  const [activeSort, toggleActiveSort] = useState(false);
-  const [activeSortItem, setActiveSortItem] = useState(sortItems[0]);
+  const sortTypes = useMemo(() => ['популярности', 'цене', 'алфавиту'], []);
+  const sortTypesProperty = useMemo(() => [
+    { name: 'популярности', sortProperty: 'rating' },
+    { name: 'цене', sortProperty: 'price' },
+    { name: 'алфавиту', sortProperty: 'title' }
+  ], []);
+  const [activeSortType, setActiveSortType] = useState(sortTypes[0]);
 
 
   // --------------- Pizza Field --------------- //
@@ -24,15 +28,19 @@ const Main: FC = (props) => {
     types: number[];
     sizes: number[];
     price: number;
-  }
-  let [items, setItems] = useState<Pizza[]>([]);
+  };
+  const [items, setItems] = useState<Pizza[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+
 
   // -------------- Data Request --------------- //
   useEffect(() => {
     setIsLoading(true);
-    fetch(`https://64ca3494b2980cec85c315c6.mockapi.io/items?category=${categoryItems.indexOf(activeCategoryItem)}`)
-      // fetch('https://64ca3494b2980cec85c315c6.mockapi.io/items')
+
+    const categoryId = categoryItems.indexOf(activeCategoryItem);
+    const foundSortType = sortTypesProperty.find(sortType => sortType.name === activeSortType) || undefined;
+
+    fetch(`https://64ca3494b2980cec85c315c6.mockapi.io/items?${categoryId > 0 ? `category=${categoryId}` : ''}&sortBy=${foundSortType?.sortProperty}&order=desc`)
       .then((res) => res.json())
       .then((arr) => {
         setItems(arr)
@@ -40,8 +48,7 @@ const Main: FC = (props) => {
       })
 
     window.scrollTo(0, 0);
-  }, [activeCategoryItem]);
-
+  }, [categoryItems, activeCategoryItem, sortTypesProperty, activeSortType]);
 
   return (
     <main className={style.block}>
@@ -51,11 +58,9 @@ const Main: FC = (props) => {
           activeCategoryItem={activeCategoryItem}
           setActiveCategoryItem={setActiveCategoryItem}
 
-          sortItems={sortItems}
-          activeSort={activeSort}
-          toggleActiveSort={toggleActiveSort}
-          activeSortItem={activeSortItem}
-          setActiveSortItem={setActiveSortItem}
+          sortTypes={sortTypes}
+          activeSortType={activeSortType}
+          setActiveSortType={setActiveSortType}
         />
         <PizzaField items={items} isLoading={isLoading} />
       </div>

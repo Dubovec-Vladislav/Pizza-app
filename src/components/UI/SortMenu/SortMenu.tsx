@@ -2,16 +2,16 @@ import React, { FC, useState } from 'react'
 import style from './SortMenu.module.scss'
 
 interface SortMenuProps {
-  sortItems: string[],
-  activeSort: boolean,
-  toggleActiveSort: (activeSort: boolean) => void,
-  activeSortItem: string,
-  setActiveSortItem: (item: string) => void,
+  sortTypes: string[],
+  activeSortType: string,
+  setActiveSortType: (item: string) => void,
 }
 
-const SortMenu: FC<SortMenuProps> = ({ sortItems, activeSort, toggleActiveSort, activeSortItem, setActiveSortItem }) => {
+const SortMenu: FC<SortMenuProps> = ({ sortTypes, activeSortType, setActiveSortType }) => {
+  const [activeSort, toggleActiveSort] = useState(false);
+
   const handleClickMenuItem = (item: string) => {
-    setActiveSortItem(item);
+    setActiveSortType(item);
     toggleActiveSort(!activeSort);
   };
 
@@ -23,16 +23,16 @@ const SortMenu: FC<SortMenuProps> = ({ sortItems, activeSort, toggleActiveSort, 
         </div>
         <div className={style.text}>
           Сортировка по:
-          <span>{activeSortItem}</span>
+          <span>{activeSortType}</span>
         </div>
       </div>
       <div className={activeSort ? `${style.popup} ${style.activeMenu}` : `${style.popup}`}>
         <ul className={style.list}>
           {
-            sortItems.map((item, i) => (
+            sortTypes.map((item, i) => (
               <li
                 key={i}
-                className={activeSortItem === item ? `${style.item} ${style.activeItem}` : `${style.item}`}
+                className={activeSortType === item ? `${style.item} ${style.activeItem}` : `${style.item}`}
                 onClick={() => handleClickMenuItem(item)}
               >
                 {item}
