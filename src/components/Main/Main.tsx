@@ -11,11 +11,16 @@ const Main: FC = (props) => {
 
 
   // ------------ Sort Menu ------------ //
-  const sortTypes = useMemo(() => ['популярности', 'цене', 'алфавиту'], []);
+  const sortTypes = useMemo(() => [
+    'возрастанию популярности', 'убыванию популярности',
+    'дешевые', 'дорогие', 'алфавиту'
+  ], []);
   const sortTypesProperty = useMemo(() => [
-    { name: 'популярности', sortProperty: 'rating' },
-    { name: 'цене', sortProperty: 'price' },
-    { name: 'алфавиту', sortProperty: 'title' }
+    { name: 'возрастанию популярности', sortProperty: 'rating', order: 'asc' },
+    { name: 'убыванию популярности', sortProperty: 'rating', order: 'desc' },
+    { name: 'дешевые', sortProperty: 'price', order: 'asc' },
+    { name: 'дорогие', sortProperty: 'price', order: 'desc' },
+    { name: 'алфавиту', sortProperty: 'title', order: 'desc' }
   ], []);
   const [activeSortType, setActiveSortType] = useState(sortTypes[0]);
 
@@ -40,7 +45,7 @@ const Main: FC = (props) => {
     const categoryId = categoryItems.indexOf(activeCategoryItem);
     const foundSortType = sortTypesProperty.find(sortType => sortType.name === activeSortType) || undefined;
 
-    fetch(`https://64ca3494b2980cec85c315c6.mockapi.io/items?${categoryId > 0 ? `category=${categoryId}` : ''}&sortBy=${foundSortType?.sortProperty}&order=desc`)
+    fetch(`https://64ca3494b2980cec85c315c6.mockapi.io/items?${categoryId > 0 ? `category=${categoryId}` : ''}&sortBy=${foundSortType?.sortProperty}&order=${foundSortType?.order}`)
       .then((res) => res.json())
       .then((arr) => {
         setItems(arr)
