@@ -14,7 +14,7 @@
         40
       ],
       "price": 803,
-      "category": 0,
+      "category": 1,
       "rating": 4
     },
     {
@@ -29,7 +29,7 @@
         40
       ],
       "price": 245,
-      "category": 1,
+      "category": 3,
       "rating": 6
     },
     {
@@ -161,6 +161,23 @@
       ],
       "price": 285,
       "category": 5,
+      "rating": 7
+    },
+    {
+      "id": 10,
+      "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/52dbe108268645729540c44a60f21b8a_366x366.webp",
+      "name": "Мясной Микс",
+      "types": [
+        0,
+        1
+      ],
+      "sizes": [
+        26,
+        30,
+        40
+      ],
+      "price": 285,
+      "category": 1,
       "rating": 7
     }
   ]
