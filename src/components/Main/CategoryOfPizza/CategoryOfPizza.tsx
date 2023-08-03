@@ -4,25 +4,40 @@ import SortMenu from '../../UI/SortMenu/SortMenu'
 import CategoryItem from './CategoryItem'
 
 interface CategoryOfPizzaProps {
-  categoryItems: string[];
-  activeItem: string;
-  setActiveItem: (newActiveItem: string) => void;
+  categoryItems: string[],
+  activeCategoryItem: string,
+  setActiveCategoryItem: (newActiveCategoryItem: string) => void,
+
+  sortItems: string[],
+  activeSort: boolean,
+  toggleActiveSort: (activeSort: boolean) => void,
+  activeSortItem: string,
+  setActiveSortItem: (item: string) => void,
 }
 
-const CategoryOfPizza: FC<CategoryOfPizzaProps> = ({ categoryItems, activeItem, setActiveItem }) => {
+const CategoryOfPizza: FC<CategoryOfPizzaProps> = ({
+  categoryItems, activeCategoryItem, setActiveCategoryItem,
+  sortItems, activeSort, toggleActiveSort, activeSortItem, setActiveSortItem
+}) => {
   return (
     <section className={style.menu}>
       <div className={style.typeMenu}>
         {
           categoryItems.map((item, index) => (
-            item === activeItem
-              ? <CategoryItem key={index} text={item} setActiveItem={setActiveItem} active />
-              : <CategoryItem key={index} text={item} setActiveItem={setActiveItem} />
+            item === activeCategoryItem
+              ? <CategoryItem key={index} text={item} setActiveCategoryItem={setActiveCategoryItem} active />
+              : <CategoryItem key={index} text={item} setActiveCategoryItem={setActiveCategoryItem} />
           ))
         }
       </div>
       <div className={style.sortMenu}>
-        <SortMenu />
+        <SortMenu
+          sortItems={sortItems}
+          activeSort={activeSort}
+          toggleActiveSort={toggleActiveSort}
+          activeSortItem={activeSortItem}
+          setActiveSortItem={setActiveSortItem}
+        />
       </div>
     </section>
   );

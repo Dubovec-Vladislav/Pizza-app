@@ -1,35 +1,38 @@
 import React, { FC, useState } from 'react'
 import style from './SortMenu.module.scss'
 
-const SortMenu: FC = () => {
-  const menuItems = ['популярности', 'цене', 'алфавиту'];
+interface SortMenuProps {
+  sortItems: string[],
+  activeSort: boolean,
+  toggleActiveSort: (activeSort: boolean) => void,
+  activeSortItem: string,
+  setActiveSortItem: (item: string) => void,
+}
 
-  const [active, toggleActive] = useState(false);
-  const [activeItem, setActiveItem] = useState(menuItems[0]);
-
+const SortMenu: FC<SortMenuProps> = ({ sortItems, activeSort, toggleActiveSort, activeSortItem, setActiveSortItem }) => {
   const handleClickMenuItem = (item: string) => {
-    setActiveItem(item);
-    toggleActive(!active);
+    setActiveSortItem(item);
+    toggleActiveSort(!activeSort);
   };
 
   return (
     <div className={style.sort}>
-      <div className={style.label} onClick={() => toggleActive(!active)}>
-        <div className={active ? `${style.arrow} ${style.activeArrow}` : style.arrow}>
+      <div className={style.label} onClick={() => toggleActiveSort(!activeSort)}>
+        <div className={activeSort ? `${style.arrow} ${style.activeArrow}` : style.arrow}>
           <img src="/img/UI/arrow-down.svg" alt="arrow-down" />
         </div>
         <div className={style.text}>
           Сортировка по:
-          <span>{activeItem}</span>
+          <span>{activeSortItem}</span>
         </div>
       </div>
-      <div className={active ? `${style.popup} ${style.activeMenu}` : `${style.popup}`}>
+      <div className={activeSort ? `${style.popup} ${style.activeMenu}` : `${style.popup}`}>
         <ul className={style.list}>
           {
-            menuItems.map((item, i) => (
+            sortItems.map((item, i) => (
               <li
                 key={i}
-                className={activeItem === item ? `${style.item} ${style.activeItem}` : `${style.item}`}
+                className={activeSortItem === item ? `${style.item} ${style.activeItem}` : `${style.item}`}
                 onClick={() => handleClickMenuItem(item)}
               >
                 {item}

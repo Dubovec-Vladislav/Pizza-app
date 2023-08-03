@@ -4,13 +4,13 @@ import style from './CategoryItem.module.scss'
 interface ICategoryItemProps {
   text: string,
   active?: boolean,
-  setActiveItem: (text: string) => void;
+  setActiveCategoryItem: (text: string) => void;
 }
 
-const CategoryItem: FC<ICategoryItemProps> = ({ text, active, setActiveItem }) => {
+const CategoryItem: FC<ICategoryItemProps> = ({ text, active, setActiveCategoryItem }) => {
   return (
     <div className={active ? `${style.categoryItem} ${style.activeCategoryItem}` : `${style.categoryItem}`}
-      onClick={() => setActiveItem(text)}
+      onClick={() => setActiveCategoryItem(text)}
     >{text}</div>
   );
 };

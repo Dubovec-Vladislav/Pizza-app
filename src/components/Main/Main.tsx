@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect, useMemo, useState } from 'react'
 import style from './Main.module.scss'
 import CategoryOfPizza from './CategoryOfPizza/CategoryOfPizza'
 import PizzaField from './PizzaField/PizzaField'
@@ -7,7 +7,14 @@ const Main: FC = (props) => {
 
   // ------------ Category Of Pizza ------------ //
   const categoryItems = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
-  const [activeItem, setActiveItem] = useState(categoryItems[0]);
+  const [activeCategoryItem, setActiveCategoryItem] = useState(categoryItems[0]);
+
+
+  // ------------ Sort Menu ------------ //
+  const sortItems = ['популярности', 'цене', 'алфавиту'];
+  const [activeSort, toggleActiveSort] = useState(false);
+  const [activeSortItem, setActiveSortItem] = useState(sortItems[0]);
+
 
   // --------------- Pizza Field --------------- //
   interface Pizza {
@@ -24,7 +31,7 @@ const Main: FC = (props) => {
   // -------------- Data Request --------------- //
   useEffect(() => {
     setIsLoading(true);
-    fetch(`https://64ca3494b2980cec85c315c6.mockapi.io/items?category=${categoryItems.indexOf(activeItem)}`)
+    fetch(`https://64ca3494b2980cec85c315c6.mockapi.io/items?category=${categoryItems.indexOf(activeCategoryItem)}`)
       // fetch('https://64ca3494b2980cec85c315c6.mockapi.io/items')
       .then((res) => res.json())
       .then((arr) => {
@@ -33,13 +40,23 @@ const Main: FC = (props) => {
       })
 
     window.scrollTo(0, 0);
-  }, [activeItem]);
+  }, [activeCategoryItem]);
 
 
   return (
     <main className={style.block}>
       <div className={style.body}>
-        <CategoryOfPizza categoryItems={categoryItems} activeItem={activeItem} setActiveItem={setActiveItem} />
+        <CategoryOfPizza
+          categoryItems={categoryItems}
+          activeCategoryItem={activeCategoryItem}
+          setActiveCategoryItem={setActiveCategoryItem}
+
+          sortItems={sortItems}
+          activeSort={activeSort}
+          toggleActiveSort={toggleActiveSort}
+          activeSortItem={activeSortItem}
+          setActiveSortItem={setActiveSortItem}
+        />
         <PizzaField items={items} isLoading={isLoading} />
       </div>
     </main>
