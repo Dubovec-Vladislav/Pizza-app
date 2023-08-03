@@ -1,0 +1,31 @@
+.block {
+  background-color: #FFF;
+  height: 100vh;
+  padding: 60px 0px 0px 0px;
+  border-radius: 0px 0px 10px 10px;
+}
+
+.body {
+  text-align: center;
+  padding: 0px 20px;
+}
+
+.title {
+  margin: 0px 0px 25px 0px;
+  font-size: calc(24px + 8 * (100vw / 1440));
+  font-weight: 500;
+  line-height: 125%;
+
+  @media (max-width: 769px) {
+    font-size: calc(24px + 8 * ((100vw - 320px) / 1440));
+  }
+}
+
+.subTitle {
+  font-size: calc(12px + 6 * (100vw / 1440));
+  line-height: 110%;
+
+  @media (max-width: 769px) {
+    font-size: calc(12px + 6 * ((100vw - 320px) / 1440));
+  }
+}
