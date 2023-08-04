@@ -1,9 +1,21 @@
 import React, { FC } from 'react'
 import style from './Search.module.scss'
 
-const Search: FC = (props) => {
+interface SearchProps {
+  searchValue: string,
+  setSearchValue: (searchValue: string) => void
+}
+
+const Search: FC<SearchProps> = ({ searchValue, setSearchValue }) => {
   return (
-    <input className={style.search} placeholder='Поиск...'></input>
+    <div className={style.body}>
+      <input className={style.search}
+        value={searchValue}
+        placeholder='Поиск пиццы...'
+        onChange={(e) => setSearchValue(e.target.value)}
+      ></input>
+      {searchValue ? <span className={style.cross} onClick={() => setSearchValue('')}></span> : ''}
+    </div>
   );
 };
 

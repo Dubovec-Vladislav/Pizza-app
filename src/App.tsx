@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import style from './App.module.scss'
 import Header from './components/Header/Header'
 import Main from './components/Main/Main'
@@ -7,9 +7,11 @@ import Basket from './components/Basket/Basket'
 import NotFoundPage from './components/UI/NotFoundPage/NotFoundPage'
 
 const App: FC = () => {
+  const [searchValue, setSearchValue] = useState('');
+
   return (
     <div className={style.wrapper}>
-      <Header />
+      <Header searchValue={searchValue} setSearchValue={setSearchValue} />
       <Routes>
         <Route path='/' element={<Main />} />
         <Route path='/basket' element={<Basket />} />

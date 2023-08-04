@@ -1,4 +1,9 @@
+.body {
+  position: relative;
+}
+
 .search {
+  max-height: 40px;
   margin: 0px 20px 0px 0px;
   padding: 12px 20px;
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -6,5 +11,50 @@
 
   @media (max-width: 425px) {
     width: 100%;
+  }
+}
+
+.cross {
+  position: absolute;
+  width: 30px;
+  height: 100%;
+  top: 50%;
+  right: 10%;
+  transform: translate(0px, -50%);
+  cursor: pointer;
+
+  &:hover {
+
+    &::before,
+    &::after {
+      background-color: #646464;
+    }
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: #b1b1b1;
+    width: 16px;
+    height: 1.9px;
+    border-radius: 5px;
+    transition: 0.3s ease;
+
+  }
+
+  &::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  &::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+
+  @media (max-width: 426px) {
+    width: 40px;
+    right: 0;
   }
 }
