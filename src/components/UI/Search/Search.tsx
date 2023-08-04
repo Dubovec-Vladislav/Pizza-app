@@ -3,7 +3,7 @@ import style from './Search.module.scss'
 
 interface SearchProps {
   searchValue: string,
-  setSearchValue: (searchValue: string) => void
+  setSearchValue: (searchValue: string) => void,
 }
 
 const Search: FC<SearchProps> = ({ searchValue, setSearchValue }) => {

@@ -3,7 +3,11 @@ import style from './Main.module.scss'
 import CategoryOfPizza from './CategoryOfPizza/CategoryOfPizza'
 import PizzaField from './PizzaField/PizzaField'
 
-const Main: FC = (props) => {
+interface MainProps {
+  searchValue: string,
+}
+
+const Main: FC<MainProps> = ({ searchValue }) => {
 
   // ------------ Category Of Pizza ------------ //
   const categoryItems = useMemo(() => ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'], []);
@@ -39,13 +43,20 @@ const Main: FC = (props) => {
 
 
   // -------------- Data Request --------------- //
+  const END_POINT_URL = 'https://64ca3494b2980cec85c315c6.mockapi.io/items';
   useEffect(() => {
     setIsLoading(true);
 
     const categoryId = categoryItems.indexOf(activeCategoryItem);
     const foundSortType = sortTypesProperty.find(sortType => sortType.name === activeSortType) || undefined;
 
-    fetch(`https://64ca3494b2980cec85c315c6.mockapi.io/items?${categoryId > 0 ? `category=${categoryId}` : ''}&sortBy=${foundSortType?.sortProperty}&order=${foundSortType?.order}`)
+    const category = categoryId > 0 ? `category=${categoryId}` : '';
+    const sortBy = foundSortType?.sortProperty && `&sortBy=${foundSortType.sortProperty}`;
+    const order = foundSortType?.order && `&order=${foundSortType.order}`;
+    const search = searchValue && `&search=${searchValue}`;
+
+    fetch(`${END_POINT_URL}?${category}${sortBy}${order}`)
+      // fetch(`${END_POINT_URL}?${category}${sortBy}${order}${search}`)
       .then((res) => res.json())
       .then((arr) => {
         setItems(arr)
@@ -53,7 +64,7 @@ const Main: FC = (props) => {
       })
 
     window.scrollTo(0, 0);
-  }, [categoryItems, activeCategoryItem, sortTypesProperty, activeSortType]);
+  }, [categoryItems, activeCategoryItem, sortTypesProperty, activeSortType, searchValue]);
 
   return (
     <main className={style.block}>
@@ -67,7 +78,7 @@ const Main: FC = (props) => {
           activeSortType={activeSortType}
           setActiveSortType={setActiveSortType}
         />
-        <PizzaField items={items} isLoading={isLoading} />
+        <PizzaField items={items} isLoading={isLoading} searchValue={searchValue} />
       </div>
     </main>
   );

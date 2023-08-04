@@ -5,7 +5,7 @@ import Search from '../UI/Search/Search'
 
 interface HeaderProps {
   searchValue: string,
-  setSearchValue: (searchValue: string) => void
+  setSearchValue: (searchValue: string) => void,
 }
 
 const Header: FC<HeaderProps> = ({ searchValue, setSearchValue }) => {

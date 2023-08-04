@@ -13,7 +13,7 @@ const App: FC = () => {
     <div className={style.wrapper}>
       <Header searchValue={searchValue} setSearchValue={setSearchValue} />
       <Routes>
-        <Route path='/' element={<Main />} />
+        <Route path='/' element={<Main searchValue={searchValue} />} />
         <Route path='/basket' element={<Basket />} />
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
