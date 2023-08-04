@@ -1,13 +1,15 @@
 .body {
   position: relative;
+  margin: 0px 20px 0px 0px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .search {
+  width: 90%;
   max-height: 40px;
-  margin: 0px 20px 0px 0px;
   padding: 12px 20px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
 
   @media (max-width: 425px) {
     width: 100%;
@@ -16,10 +18,10 @@
 
 .cross {
   position: absolute;
-  width: 30px;
+  width: 20%;
   height: 100%;
   top: 50%;
-  right: 10%;
+  right: 0;
   transform: translate(0px, -50%);
   cursor: pointer;
 
@@ -41,8 +43,6 @@
     width: 16px;
     height: 1.9px;
     border-radius: 5px;
-    transition: 0.3s ease;
-
   }
 
   &::before {
