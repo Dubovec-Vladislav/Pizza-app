@@ -2,14 +2,14 @@ import React, { FC, useContext, useEffect, useMemo, useState } from 'react'
 import style from './Main.module.scss'
 import CategoryOfPizza from './CategoryOfPizza/CategoryOfPizza'
 import PizzaField from './PizzaField/PizzaField'
-import { SearchContext } from '../../App';
+import { SearchContext } from '../../App'
+import { useAppSelector } from '../../assets/ts/hooks'
 
 const Main: FC = () => {
 
   // ------------ Category Of Pizza ------------ //
   const categoryItems = useMemo(() => ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'], []);
-  const [activeCategoryItem, setActiveCategoryItem] = useState(categoryItems[0]);
-
+  const activeCategoryItem = useAppSelector((state) => state.filter.activeCategoryItem);
 
   // ------------ Sort Menu ------------ //
   const sortTypes = useMemo(() => [
@@ -69,8 +69,6 @@ const Main: FC = () => {
       <div className={style.body}>
         <CategoryOfPizza
           categoryItems={categoryItems}
-          activeCategoryItem={activeCategoryItem}
-          setActiveCategoryItem={setActiveCategoryItem}
 
           sortTypes={sortTypes}
           activeSortType={activeSortType}
