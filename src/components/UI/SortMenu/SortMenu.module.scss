@@ -41,6 +41,10 @@
     border-bottom: 1px dashed #FE5F1E;
     cursor: pointer;
   }
+
+  @media (max-width: 376px) {
+    font-size: 11px;
+  }
 }
 
 .popup {
