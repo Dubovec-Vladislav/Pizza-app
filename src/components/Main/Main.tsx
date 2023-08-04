@@ -1,13 +1,10 @@
-import React, { FC, useEffect, useMemo, useState } from 'react'
+import React, { FC, useContext, useEffect, useMemo, useState } from 'react'
 import style from './Main.module.scss'
 import CategoryOfPizza from './CategoryOfPizza/CategoryOfPizza'
 import PizzaField from './PizzaField/PizzaField'
+import { SearchContext } from '../../App';
 
-interface MainProps {
-  searchValue: string,
-}
-
-const Main: FC<MainProps> = ({ searchValue }) => {
+const Main: FC = () => {
 
   // ------------ Category Of Pizza ------------ //
   const categoryItems = useMemo(() => ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'], []);
@@ -44,6 +41,7 @@ const Main: FC<MainProps> = ({ searchValue }) => {
 
   // -------------- Data Request --------------- //
   const END_POINT_URL = 'https://64ca3494b2980cec85c315c6.mockapi.io/items';
+  const { searchValue } = useContext(SearchContext)!;
   useEffect(() => {
     setIsLoading(true);
 
@@ -53,7 +51,7 @@ const Main: FC<MainProps> = ({ searchValue }) => {
     const category = categoryId > 0 ? `category=${categoryId}` : '';
     const sortBy = foundSortType?.sortProperty && `&sortBy=${foundSortType.sortProperty}`;
     const order = foundSortType?.order && `&order=${foundSortType.order}`;
-    const search = searchValue && `&search=${searchValue}`;
+    // const search = searchValue && `&search=${searchValue}`;
 
     fetch(`${END_POINT_URL}?${category}${sortBy}${order}`)
       // fetch(`${END_POINT_URL}?${category}${sortBy}${order}${search}`)

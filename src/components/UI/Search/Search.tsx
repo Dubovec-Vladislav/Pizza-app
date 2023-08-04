@@ -1,12 +1,10 @@
-import React, { FC } from 'react'
+import React, { FC, useContext } from 'react'
 import style from './Search.module.scss'
+import { SearchContext } from '../../../App'
 
-interface SearchProps {
-  searchValue: string,
-  setSearchValue: (searchValue: string) => void,
-}
+const Search: FC = () => {
+  const { searchValue, setSearchValue } = useContext(SearchContext)!;
 
-const Search: FC<SearchProps> = ({ searchValue, setSearchValue }) => {
   return (
     <div className={style.body}>
       <input className={style.search}

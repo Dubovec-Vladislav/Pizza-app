@@ -3,12 +3,7 @@ import style from './Header.module.scss'
 import { Link } from 'react-router-dom'
 import Search from '../UI/Search/Search'
 
-interface HeaderProps {
-  searchValue: string,
-  setSearchValue: (searchValue: string) => void,
-}
-
-const Header: FC<HeaderProps> = ({ searchValue, setSearchValue }) => {
+const Header: FC = () => {
   return (
     <header className={style.block}>
       <div className={style.body}>
@@ -20,7 +15,7 @@ const Header: FC<HeaderProps> = ({ searchValue, setSearchValue }) => {
         </div>
 
         <div className={style.searchOnBigDisplay}>
-          <Search searchValue={searchValue} setSearchValue={setSearchValue} />
+          <Search />
         </div>
 
         <div className={style.counter}>
@@ -31,7 +26,7 @@ const Header: FC<HeaderProps> = ({ searchValue, setSearchValue }) => {
         </div>
 
         <div className={style.searchOnSmallDisplay}>
-          <Search searchValue={searchValue} setSearchValue={setSearchValue} />
+          <Search />
         </div>
       </div>
     </header>
