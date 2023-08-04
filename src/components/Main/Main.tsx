@@ -76,7 +76,7 @@ const Main: FC = () => {
           activeSortType={activeSortType}
           setActiveSortType={setActiveSortType}
         />
-        <PizzaField items={items} isLoading={isLoading} searchValue={searchValue} />
+        <PizzaField items={items} isLoading={isLoading} />
       </div>
     </main>
   );

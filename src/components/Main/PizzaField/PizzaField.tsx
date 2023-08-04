@@ -1,9 +1,10 @@
-import React, { FC } from 'react'
+import React, { FC, useContext } from 'react'
 import style from './PizzaField.module.scss'
 import BlockTitle from '../../UI/BlockTitle/BlockTitle'
 // import pizzasData from '../../../assets/PizzasData/pizzas.json'
 import PizzaItem from './PizzaItem'
 import Skeleton from '../../UI/Skeleton/Skeleton'
+import { SearchContext } from '../../../App'
 
 interface Pizza {
   id: number;
@@ -17,10 +18,11 @@ interface Pizza {
 interface PizzaFieldProps {
   items: Pizza[],
   isLoading: boolean,
-  searchValue: string,
 }
 
-const PizzaField: FC<PizzaFieldProps> = ({ items, isLoading, searchValue }) => {
+const PizzaField: FC<PizzaFieldProps> = ({ items, isLoading }) => {
+  const { searchValue } = useContext(SearchContext)!;
+
   return (
     <section className={style.block}>
       <div className={style.title}><BlockTitle text={'Все пиццы'} /></div>
