@@ -4,7 +4,7 @@ import FilterMenu from './FilterMenu/FilterMenu'
 import PizzaField from './PizzaField/PizzaField'
 import { SearchContext } from '../../App'
 import { useAppSelector } from '../../assets/ts/hooks'
-import { selectActiveCategoryItemID } from '../../assets/redux/slices/filterSlice'
+import { selectActiveCategoryID } from '../../assets/redux/slices/filterSlice'
 import { selectActiveSortType, selectSortTypesProperty } from '../../assets/redux/slices/sortSlice'
 import { setPizzas, setIsLoading } from '../../assets/redux/slices/pizzasSlice'
 import { useDispatch } from 'react-redux'
@@ -12,7 +12,7 @@ import { useDispatch } from 'react-redux'
 const Main: FC = () => {
 
   // ------------ Category Of Pizza ------------ //
-  const categoryId = useAppSelector(selectActiveCategoryItemID);
+  const categoryId = useAppSelector(selectActiveCategoryID);
 
 
   // ------------ Sort Menu ------------ //

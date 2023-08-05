@@ -3,18 +3,18 @@ import style from './FilterMenu.module.scss'
 import SortMenu from '../../UI/SortMenu/SortMenu'
 import CategoryItem from './CategoryItem'
 import { useAppSelector } from '../../../assets/ts/hooks'
-import { selectActiveCategoryItem, selectCategoryItems } from '../../../assets/redux/slices/filterSlice'
+import { selectActiveCategory, selectCategoryItems } from '../../../assets/redux/slices/filterSlice'
 
 const FilterMenu: FC = (props) => {
   const categoryItems = useAppSelector(selectCategoryItems);
-  const activeCategoryItem = useAppSelector(selectActiveCategoryItem);
+  const activeCategory = useAppSelector(selectActiveCategory);
 
   return (
     <section className={style.menu}>
       <div className={style.typeMenu}>
         {
           categoryItems.map((item, index) => (
-            item === activeCategoryItem
+            item === activeCategory
               ? <CategoryItem key={index} text={item} active />
               : <CategoryItem key={index} text={item} />
           ))
