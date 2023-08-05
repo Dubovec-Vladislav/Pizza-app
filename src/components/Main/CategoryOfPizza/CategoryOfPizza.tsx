@@ -2,20 +2,12 @@ import React, { FC } from 'react'
 import style from './CategoryOfPizza.module.scss'
 import SortMenu from '../../UI/SortMenu/SortMenu'
 import CategoryItem from './CategoryItem'
-import { useAppSelector } from '../../../assets/ts/hooks';
+import { useAppSelector } from '../../../assets/ts/hooks'
+import { selectActiveCategoryItem, selectCategoryItems } from '../../../assets/redux/slices/filterSlice'
 
-interface CategoryOfPizzaProps {
-  // ---------- SortMenu ---------- // 
-  sortTypes: string[],
-  activeSortType: string,
-  setActiveSortType: (item: string) => void,
-}
-
-const CategoryOfPizza: FC<CategoryOfPizzaProps> = ({ sortTypes,
-  activeSortType, setActiveSortType
-}) => {
-  const categoryItems = useAppSelector((state) => state.filter.categoryItems);
-  const activeCategoryItem = useAppSelector((state) => state.filter.activeCategoryItem);
+const CategoryOfPizza: FC = (props) => {
+  const categoryItems = useAppSelector(selectCategoryItems);
+  const activeCategoryItem = useAppSelector(selectActiveCategoryItem);
 
   return (
     <section className={style.menu}>
@@ -29,11 +21,7 @@ const CategoryOfPizza: FC<CategoryOfPizzaProps> = ({ sortTypes,
         }
       </div>
       <div className={style.sortMenu}>
-        <SortMenu
-          sortTypes={sortTypes}
-          activeSortType={activeSortType}
-          setActiveSortType={setActiveSortType}
-        />
+        <SortMenu />
       </div>
     </section>
   );

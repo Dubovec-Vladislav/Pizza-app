@@ -1,28 +1,21 @@
-import React, { FC, useContext, useEffect, useMemo, useState } from 'react'
+import React, { FC, useContext, useEffect, useState } from 'react'
 import style from './Main.module.scss'
 import CategoryOfPizza from './CategoryOfPizza/CategoryOfPizza'
 import PizzaField from './PizzaField/PizzaField'
 import { SearchContext } from '../../App'
 import { useAppSelector } from '../../assets/ts/hooks'
+import { selectActiveCategoryItemID } from '../../assets/redux/slices/filterSlice'
+import { selectActiveSortType, selectSortTypesProperty } from '../../assets/redux/slices/sortSlice'
 
 const Main: FC = () => {
 
   // ------------ Category Of Pizza ------------ //
-  const categoryId = useAppSelector((state) => state.filter.activeCategoryItemID);
+  const categoryId = useAppSelector(selectActiveCategoryItemID);
+
 
   // ------------ Sort Menu ------------ //
-  const sortTypes = useMemo(() => [
-    'возрастанию популярности', 'убыванию популярности',
-    'дешевые', 'дорогие', 'алфавиту'
-  ], []);
-  const sortTypesProperty = useMemo(() => [
-    { name: 'возрастанию популярности', sortProperty: 'rating', order: 'asc' },
-    { name: 'убыванию популярности', sortProperty: 'rating', order: 'desc' },
-    { name: 'дешевые', sortProperty: 'price', order: 'asc' },
-    { name: 'дорогие', sortProperty: 'price', order: 'desc' },
-    { name: 'алфавиту', sortProperty: 'title', order: 'desc' }
-  ], []);
-  const [activeSortType, setActiveSortType] = useState(sortTypes[0]);
+  const sortTypesProperty = useAppSelector(selectSortTypesProperty);
+  const activeSortType = useAppSelector(selectActiveSortType);
 
 
   // --------------- Pizza Field --------------- //
@@ -66,11 +59,7 @@ const Main: FC = () => {
   return (
     <main className={style.block}>
       <div className={style.body}>
-        <CategoryOfPizza
-          sortTypes={sortTypes}
-          activeSortType={activeSortType}
-          setActiveSortType={setActiveSortType}
-        />
+        <CategoryOfPizza />
         <PizzaField items={items} isLoading={isLoading} />
       </div>
     </main>

@@ -1,17 +1,17 @@
 import React, { FC, useState } from 'react'
 import style from './SortMenu.module.scss'
+import { useAppDispatch, useAppSelector } from '../../../assets/ts/hooks'
+import { selectActiveSortType, selectSortTypes, setActiveSortType } from '../../../assets/redux/slices/sortSlice'
 
-interface SortMenuProps {
-  sortTypes: string[],
-  activeSortType: string,
-  setActiveSortType: (item: string) => void,
-}
-
-const SortMenu: FC<SortMenuProps> = ({ sortTypes, activeSortType, setActiveSortType }) => {
+const SortMenu: FC = (props) => {
   const [activeSort, toggleActiveSort] = useState(false);
 
+  const dispatch = useAppDispatch();
+  const sortTypes = useAppSelector(selectSortTypes);
+  const activeSortType = useAppSelector(selectActiveSortType);
+
   const handleClickMenuItem = (item: string) => {
-    setActiveSortType(item);
+    dispatch(setActiveSortType(item));
     toggleActiveSort(!activeSort);
   };
 
