@@ -15,10 +15,7 @@ interface SortState {
 };
 
 const initialState: SortState = {
-  sortTypes: [
-    'возрастанию популярности', 'убыванию популярности',
-    'дешевые', 'дорогие', 'алфавиту'
-  ],
+  sortTypes: ['возрастанию популярности', 'убыванию популярности', 'дешевые', 'дорогие', 'алфавиту'],
   sortTypesProperty: [
     { name: 'возрастанию популярности', sortProperty: 'rating', order: 'asc' },
     { name: 'убыванию популярности', sortProperty: 'rating', order: 'desc' },

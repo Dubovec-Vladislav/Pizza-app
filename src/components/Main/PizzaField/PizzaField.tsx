@@ -5,23 +5,14 @@ import BlockTitle from '../../UI/BlockTitle/BlockTitle'
 import PizzaItem from './PizzaItem'
 import Skeleton from '../../UI/Skeleton/Skeleton'
 import { SearchContext } from '../../../App'
+import { useAppSelector } from '../../../assets/ts/hooks'
+import { selectIsLoading, selectPizzas } from '../../../assets/redux/slices/pizzasSlice'
 
-interface Pizza {
-  id: number;
-  imageUrl: string;
-  name: string;
-  types: number[];
-  sizes: number[];
-  price: number;
-}
-
-interface PizzaFieldProps {
-  items: Pizza[],
-  isLoading: boolean,
-}
-
-const PizzaField: FC<PizzaFieldProps> = ({ items, isLoading }) => {
+const PizzaField: FC = (props) => {
   const { searchValue } = useContext(SearchContext)!;
+
+  const pizzas = useAppSelector(selectPizzas);
+  const isLoading = useAppSelector(selectIsLoading);
 
   return (
     <section className={style.block}>
@@ -30,7 +21,7 @@ const PizzaField: FC<PizzaFieldProps> = ({ items, isLoading }) => {
         {
           isLoading
             ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
-            : items
+            : pizzas
               .filter((pizza) => {
                 return pizza.name.toLowerCase().includes(searchValue.toLowerCase()); // True if includes, false if not
               }) // for static data

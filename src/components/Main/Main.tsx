@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect, useState } from 'react'
+import React, { FC, useContext, useEffect } from 'react'
 import style from './Main.module.scss'
 import CategoryOfPizza from './CategoryOfPizza/CategoryOfPizza'
 import PizzaField from './PizzaField/PizzaField'
@@ -6,6 +6,8 @@ import { SearchContext } from '../../App'
 import { useAppSelector } from '../../assets/ts/hooks'
 import { selectActiveCategoryItemID } from '../../assets/redux/slices/filterSlice'
 import { selectActiveSortType, selectSortTypesProperty } from '../../assets/redux/slices/sortSlice'
+import { setPizzas, setIsLoading } from '../../assets/redux/slices/pizzasSlice'
+import { useDispatch } from 'react-redux'
 
 const Main: FC = () => {
 
@@ -19,16 +21,7 @@ const Main: FC = () => {
 
 
   // --------------- Pizza Field --------------- //
-  interface Pizza {
-    id: number;
-    imageUrl: string;
-    name: string;
-    types: number[];
-    sizes: number[];
-    price: number;
-  };
-  const [items, setItems] = useState<Pizza[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const dispatch = useDispatch();
 
 
   // -------------- Data Request --------------- //
@@ -36,7 +29,7 @@ const Main: FC = () => {
   const { searchValue } = useContext(SearchContext)!;
 
   useEffect(() => {
-    setIsLoading(true);
+    dispatch(setIsLoading(true));
 
     const foundSortType = sortTypesProperty.find(sortType => sortType.name === activeSortType) || undefined;
 
@@ -49,18 +42,18 @@ const Main: FC = () => {
       // fetch(`${END_POINT_URL}?${category}${sortBy}${order}${search}`)
       .then((res) => res.json())
       .then((arr) => {
-        setItems(arr)
-        setIsLoading(false);
+        dispatch(setPizzas(arr));
+        dispatch(setIsLoading(false));
       })
 
     window.scrollTo(0, 0);
-  }, [categoryId, sortTypesProperty, activeSortType, searchValue]);
+  }, [sortTypesProperty, activeSortType, categoryId, searchValue, dispatch]);
 
   return (
     <main className={style.block}>
       <div className={style.body}>
         <CategoryOfPizza />
-        <PizzaField items={items} isLoading={isLoading} />
+        <PizzaField />
       </div>
     </main>
   );
