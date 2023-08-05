@@ -8,7 +8,6 @@ export interface FilterState {
   activeCategoryItemID: number,
 }
 
-
 const initialState: FilterState = {
   categoryItems: ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'],
   activeCategoryItem: 'Все',
@@ -21,6 +20,7 @@ export const filterSlice = createSlice({
   reducers: {
     setActiveCategoryItem: (state, action: PayloadAction<string>) => {
       state.activeCategoryItem = action.payload;
+      state.activeCategoryItemID = state.categoryItems.indexOf(action.payload);
     },
   },
 })

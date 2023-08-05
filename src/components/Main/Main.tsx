@@ -8,9 +8,8 @@ import { useAppSelector } from '../../assets/ts/hooks'
 const Main: FC = () => {
 
   // ------------ Category Of Pizza ------------ //
-  const categoryItems = useAppSelector((state) => state.filter.categoryItems);
   const categoryId = useAppSelector((state) => state.filter.activeCategoryItemID);
-  
+
   // ------------ Sort Menu ------------ //
   const sortTypes = useMemo(() => [
     'возрастанию популярности', 'убыванию популярности',
@@ -62,7 +61,7 @@ const Main: FC = () => {
       })
 
     window.scrollTo(0, 0);
-  }, [categoryItems, sortTypesProperty, activeSortType, searchValue, categoryId]);
+  }, [categoryId, sortTypesProperty, activeSortType, searchValue]);
 
   return (
     <main className={style.block}>
