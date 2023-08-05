@@ -8,6 +8,7 @@ import { selectActiveCategoryID } from '../../assets/redux/slices/categorySlice'
 import { selectActiveSortType, selectSortTypesProperty } from '../../assets/redux/slices/sortSlice'
 import { setPizzas, setIsLoading } from '../../assets/redux/slices/pizzasSlice'
 import { useDispatch } from 'react-redux'
+import axios from 'axios'
 
 const Main: FC = () => {
 
@@ -38,13 +39,12 @@ const Main: FC = () => {
     const order = foundSortType?.order && `&order=${foundSortType.order}`;
     // const search = searchValue && `&search=${searchValue}`;
 
-    fetch(`${END_POINT_URL}?${category}${sortBy}${order}`)
-      // fetch(`${END_POINT_URL}?${category}${sortBy}${order}${search}`)
-      .then((res) => res.json())
-      .then((arr) => {
-        dispatch(setPizzas(arr));
+    axios.get(`${END_POINT_URL}?${category}${sortBy}${order}`)
+      // axios.get(`${END_POINT_URL}?${category}${sortBy}${order}${search}`)
+      .then((res) => {
+        dispatch(setPizzas(res.data));
         dispatch(setIsLoading(false));
-      })
+      });
 
     window.scrollTo(0, 0);
   }, [sortTypesProperty, activeSortType, categoryId, searchValue, dispatch]);
