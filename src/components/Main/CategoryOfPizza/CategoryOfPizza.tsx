@@ -5,19 +5,16 @@ import CategoryItem from './CategoryItem'
 import { useAppSelector } from '../../../assets/ts/hooks';
 
 interface CategoryOfPizzaProps {
-  categoryItems: string[],
-
   // ---------- SortMenu ---------- // 
   sortTypes: string[],
   activeSortType: string,
   setActiveSortType: (item: string) => void,
 }
 
-const CategoryOfPizza: FC<CategoryOfPizzaProps> = ({
-  categoryItems, sortTypes,
+const CategoryOfPizza: FC<CategoryOfPizzaProps> = ({ sortTypes,
   activeSortType, setActiveSortType
 }) => {
-
+  const categoryItems = useAppSelector((state) => state.filter.categoryItems);
   const activeCategoryItem = useAppSelector((state) => state.filter.activeCategoryItem);
 
   return (

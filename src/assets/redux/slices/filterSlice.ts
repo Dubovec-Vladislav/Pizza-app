@@ -3,11 +3,16 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../store'
 
 export interface FilterState {
+  categoryItems: string[],
   activeCategoryItem: string,
+  activeCategoryItemID: number,
 }
 
+
 const initialState: FilterState = {
+  categoryItems: ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'],
   activeCategoryItem: 'Все',
+  activeCategoryItemID: 0,
 }
 
 export const filterSlice = createSlice({

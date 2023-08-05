@@ -8,9 +8,9 @@ import { useAppSelector } from '../../assets/ts/hooks'
 const Main: FC = () => {
 
   // ------------ Category Of Pizza ------------ //
-  const categoryItems = useMemo(() => ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'], []);
-  const activeCategoryItem = useAppSelector((state) => state.filter.activeCategoryItem);
-
+  const categoryItems = useAppSelector((state) => state.filter.categoryItems);
+  const categoryId = useAppSelector((state) => state.filter.activeCategoryItemID);
+  
   // ------------ Sort Menu ------------ //
   const sortTypes = useMemo(() => [
     'возрастанию популярности', 'убыванию популярности',
@@ -42,10 +42,10 @@ const Main: FC = () => {
   // -------------- Data Request --------------- //
   const END_POINT_URL = 'https://64ca3494b2980cec85c315c6.mockapi.io/items';
   const { searchValue } = useContext(SearchContext)!;
+
   useEffect(() => {
     setIsLoading(true);
 
-    const categoryId = categoryItems.indexOf(activeCategoryItem);
     const foundSortType = sortTypesProperty.find(sortType => sortType.name === activeSortType) || undefined;
 
     const category = categoryId > 0 ? `category=${categoryId}` : '';
@@ -62,14 +62,12 @@ const Main: FC = () => {
       })
 
     window.scrollTo(0, 0);
-  }, [categoryItems, activeCategoryItem, sortTypesProperty, activeSortType, searchValue]);
+  }, [categoryItems, sortTypesProperty, activeSortType, searchValue, categoryId]);
 
   return (
     <main className={style.block}>
       <div className={style.body}>
         <CategoryOfPizza
-          categoryItems={categoryItems}
-
           sortTypes={sortTypes}
           activeSortType={activeSortType}
           setActiveSortType={setActiveSortType}
