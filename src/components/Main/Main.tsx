@@ -9,6 +9,8 @@ import { selectActiveSortType, selectSortTypesProperty } from '../../assets/redu
 import { setPizzas, setIsLoading } from '../../assets/redux/slices/pizzasSlice'
 import { useDispatch } from 'react-redux'
 import axios from 'axios'
+import qs from 'qs'
+import { useNavigate } from 'react-router-dom'
 
 const Main: FC = () => {
 
@@ -28,13 +30,14 @@ const Main: FC = () => {
   // -------------- Data Request --------------- //
   const END_POINT_URL = 'https://64ca3494b2980cec85c315c6.mockapi.io/items';
   const { searchValue } = useContext(SearchContext)!;
+  const navigate = useNavigate()
 
   useEffect(() => {
     dispatch(setIsLoading(true));
 
-    const foundSortType = sortTypesProperty.find(sortType => sortType.name === activeSortType) || undefined;
-
     const category = categoryId > 0 ? `category=${categoryId}` : '';
+
+    const foundSortType = sortTypesProperty.find(sortType => sortType.name === activeSortType) || undefined;
     const sortBy = foundSortType?.sortProperty && `&sortBy=${foundSortType.sortProperty}`;
     const order = foundSortType?.order && `&order=${foundSortType.order}`;
     // const search = searchValue && `&search=${searchValue}`;
@@ -48,6 +51,25 @@ const Main: FC = () => {
 
     window.scrollTo(0, 0);
   }, [sortTypesProperty, activeSortType, categoryId, searchValue, dispatch]);
+
+
+  // ---------------- URL Path ----------------- //
+  useEffect(() => {
+    const foundSortType = sortTypesProperty.find(sortType => sortType.name === activeSortType) || undefined;
+    const sortBy = foundSortType?.sortProperty;
+    const order = foundSortType?.order;
+    const search = searchValue;
+
+    const queryString = qs.stringify({
+      categoryId,
+      sortBy,
+      order,
+      search,
+    }); // => categoryId=0&sortBy=rating&order=asc&search=Пепперони
+
+    navigate(`?${queryString}`)
+  }, [sortTypesProperty, activeSortType, categoryId, searchValue, navigate]);
+
 
   return (
     <main className={style.block}>

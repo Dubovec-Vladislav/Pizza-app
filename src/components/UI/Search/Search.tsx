@@ -3,12 +3,12 @@ import style from './Search.module.scss'
 import { SearchContext } from '../../../App'
 import debounce from 'lodash.debounce'
 
-
-const Search: FC = () => {
+const Search: FC = (props) => {
   const [value, setValue] = useState('')
   const { setSearchValue } = useContext(SearchContext)!;
   const inputRef = useRef<HTMLInputElement>(null);
-  
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const updateSearchValue = useCallback(debounce((string) => {
     setSearchValue(string);
   }, 250), []);
