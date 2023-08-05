@@ -1,11 +1,11 @@
 import React, { FC } from 'react'
-import style from './CategoryOfPizza.module.scss'
+import style from './FilterMenu.module.scss'
 import SortMenu from '../../UI/SortMenu/SortMenu'
 import CategoryItem from './CategoryItem'
 import { useAppSelector } from '../../../assets/ts/hooks'
 import { selectActiveCategoryItem, selectCategoryItems } from '../../../assets/redux/slices/filterSlice'
 
-const CategoryOfPizza: FC = (props) => {
+const FilterMenu: FC = (props) => {
   const categoryItems = useAppSelector(selectCategoryItems);
   const activeCategoryItem = useAppSelector(selectActiveCategoryItem);
 
@@ -27,4 +27,4 @@ const CategoryOfPizza: FC = (props) => {
   );
 };
 
-export default CategoryOfPizza;
+export default FilterMenu;

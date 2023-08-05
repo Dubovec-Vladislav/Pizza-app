@@ -1,6 +1,6 @@
 import React, { FC, useContext, useEffect } from 'react'
 import style from './Main.module.scss'
-import CategoryOfPizza from './CategoryOfPizza/CategoryOfPizza'
+import FilterMenu from './FilterMenu/FilterMenu'
 import PizzaField from './PizzaField/PizzaField'
 import { SearchContext } from '../../App'
 import { useAppSelector } from '../../assets/ts/hooks'
@@ -52,7 +52,7 @@ const Main: FC = () => {
   return (
     <main className={style.block}>
       <div className={style.body}>
-        <CategoryOfPizza />
+        <FilterMenu />
         <PizzaField />
       </div>
     </main>
