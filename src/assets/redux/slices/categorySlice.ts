@@ -2,20 +2,20 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from '../store'
 
-export interface FilterState {
+export interface CategoryState {
   categoryItems: string[],
   activeCategory: string,
   activeCategoryID: number,
 };
 
-const initialState: FilterState = {
+const initialState: CategoryState = {
   categoryItems: ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'],
   activeCategory: 'Все',
   activeCategoryID: 0,
 };
 
-export const filterSlice = createSlice({
-  name: 'filter',
+export const categorySlice = createSlice({
+  name: 'category',
   initialState,
   reducers: {
     setActiveCategory: (state, action: PayloadAction<string>) => {
@@ -25,11 +25,11 @@ export const filterSlice = createSlice({
   },
 });
 
-export const { setActiveCategory } = filterSlice.actions;
+export const { setActiveCategory } = categorySlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectCategoryItems = (state: RootState) => state.filter.categoryItems;
-export const selectActiveCategory = (state: RootState) => state.filter.activeCategory;
-export const selectActiveCategoryID = (state: RootState) => state.filter.activeCategoryID;
+export const selectCategoryItems = (state: RootState) => state.category.categoryItems;
+export const selectActiveCategory = (state: RootState) => state.category.activeCategory;
+export const selectActiveCategoryID = (state: RootState) => state.category.activeCategoryID;
 
-export default filterSlice.reducer;
+export default categorySlice.reducer;

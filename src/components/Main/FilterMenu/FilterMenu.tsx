@@ -3,7 +3,7 @@ import style from './FilterMenu.module.scss'
 import SortMenu from '../../UI/SortMenu/SortMenu'
 import CategoryItem from './CategoryItem'
 import { useAppSelector } from '../../../assets/ts/hooks'
-import { selectActiveCategory, selectCategoryItems } from '../../../assets/redux/slices/filterSlice'
+import { selectActiveCategory, selectCategoryItems } from '../../../assets/redux/slices/categorySlice'
 
 const FilterMenu: FC = (props) => {
   const categoryItems = useAppSelector(selectCategoryItems);
