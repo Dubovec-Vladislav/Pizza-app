@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useEffect, useRef, useState } from 'react'
 import style from './SortMenu.module.scss'
 import { useAppDispatch, useAppSelector } from '../../../assets/ts/hooks'
 import { selectActiveSortType, selectSortTypes, setActiveSortType } from '../../../assets/redux/slices/sortSlice'
@@ -15,8 +15,25 @@ const SortMenu: FC = (props) => {
     toggleActiveSort(!activeSort);
   };
 
+  const sortRef = useRef(null)
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (sortRef.current && !e.composedPath().includes(sortRef.current)) {
+        toggleActiveSort(false);
+        console.log('click');
+      }
+    };
+
+    document.body.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.body.removeEventListener('click', handleClickOutside);
+    }
+  }, [])
+
   return (
-    <div className={style.sort}>
+    <div className={style.sort} ref={sortRef}>
       <div className={style.label} onClick={() => toggleActiveSort(!activeSort)}>
         <div className={activeSort ? `${style.arrow} ${style.activeArrow}` : style.arrow}>
           <img src="/img/UI/arrow-down.svg" alt="arrow-down" />

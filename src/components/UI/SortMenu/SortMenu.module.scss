@@ -61,6 +61,10 @@
   visibility: hidden;
   opacity: 0;
   transition: 0.4s ease;
+
+  @media (max-width: 893px) {
+    left: 0;
+  }
 }
 
 .activeMenu {

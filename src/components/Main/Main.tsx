@@ -67,7 +67,7 @@ const Main: FC = () => {
       search,
     }); // => categoryId=0&sortBy=rating&order=asc&search=Пепперони
 
-    navigate(`?${queryString}`)
+    // navigate(`?${queryString}`)
   }, [sortTypesProperty, activeSortType, categoryId, searchValue, navigate]);
 
 
