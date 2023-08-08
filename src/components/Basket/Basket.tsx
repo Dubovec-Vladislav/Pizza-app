@@ -11,7 +11,7 @@ import { selectBasketPizzas } from '../../assets/redux/slices/basketSlice'
 // --------------------------------------------- //
 
 const Basket: FC = (props) => {
-  const pizzas = useAppSelector(selectBasketPizzas)
+  const pizzas = useAppSelector(selectBasketPizzas);
   console.log(pizzas);
 
   return (
@@ -22,9 +22,20 @@ const Basket: FC = (props) => {
           <div className={style.clearBasket}><img src="/img/UI/trash-bin.svg" alt="trash-bin" />Очистить корзину</div>
         </div>
         <div className={style.content}>
-          <BasketItem imgName={'pizza-4'} name={'Сырный цыпленок'} description={'тонкое тесто, 26 см.'} price={770} />
+          {pizzas.map(pizza => (
+            <BasketItem imageUrl={pizza.imageUrl}
+              name={pizza.name}
+              type={pizza.type}
+              size={pizza.size}
+              price={pizza.price}
+              nOP={pizza.numberOfPizzas}
+            />
+          ))
+          }
+
+          {/* <BasketItem imgName={'pizza-4'} name={'Сырный цыпленок'} description={'тонкое тесто, 26 см.'} price={770} />
           <BasketItem imgName={'pizza-3'} name={'Креветки по-азиатски'} description={'толстое тесто, 40 см.'} price={290} />
-          <BasketItem imgName={'pizza-1'} name={'Сырный цыпленок'} description={'тонкое тесто, 30 см.'} price={350} />
+          <BasketItem imgName={'pizza-1'} name={'Сырный цыпленок'} description={'тонкое тесто, 30 см.'} price={350} /> */}
         </div>
         <div className={style.footer}>
           <div className={style.footerItem}>
@@ -52,22 +63,23 @@ const Basket: FC = (props) => {
 // --------------------------------------------- //
 
 interface IBasketItemProps {
-  imgName: string,
-  name: string,
-  description: string,
-  price: number,
+  imageUrl: string;
+  name: string;
+  type: string;
+  size: number;
+  price: number;
+  nOP: number;
 }
 
-const BasketItem: FC<IBasketItemProps> = ({ imgName, name, description, price }) => {
-  const PATH = '/img/Pizzas/'
-  const [numberOfPizzas, changeNumberOfPizzas] = useState(1);
+const BasketItem: FC<IBasketItemProps> = ({ imageUrl, name, type, size, price, nOP }) => {
+  const [numberOfPizzas, changeNumberOfPizzas] = useState(nOP);
 
   return (
     <div className={style.basketItem}>
-      <div className={style.img}><img src={`${PATH}${imgName}.jpg`} alt={imgName} /></div>
+      <div className={style.img}><img src={imageUrl} alt={name} /></div>
       <div className={style.text}>
         <div className={style.title}>{name}</div>
-        <div className={style.subtitle}>{description}</div>
+        <div className={style.subtitle}>{`${type}, ${size}`}</div>
       </div>
       <div className={style.numberOfPizzas}>
         <div className={style.minus} onClick={() => changeNumberOfPizzas(numberOfPizzas - 1)}></div>

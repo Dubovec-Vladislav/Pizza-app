@@ -32,13 +32,13 @@ const PizzaItem: FC<PizzaItemProps> = ({ id, imageUrl, name, types, sizes, price
       id: id,
       imageUrl: imageUrl,
       name: name,
-      types: activeDoughType,
-      sizes: activeSize,
+      type: activeDoughType,
+      size: activeSize,
       price: price,
       numberOfPizzas: 1,
     }
-    console.log(pizza);
-    // dispatch(addPizza(pizza))
+    // console.log(pizza);
+    dispatch(addPizza(pizza))
   }
 
   return (
