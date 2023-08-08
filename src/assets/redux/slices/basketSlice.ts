@@ -1,4 +1,3 @@
-import { pizzasSlice } from './pizzasSlice';
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from '../store'
@@ -15,13 +14,16 @@ interface Pizza {
 
 interface BasketState {
   pizzas: Pizza[],
-  pizzasLength: number,
+  totalNumberOfPizzas: number,
+  totalPriceOfPizzas: number,
 };
 
 const initialState: BasketState = {
   pizzas: [],
-  pizzasLength: 0,
+  totalNumberOfPizzas: 0,
+  totalPriceOfPizzas: 0,
 };
+
 
 export const basketSlice = createSlice({
   name: 'basket',
@@ -33,24 +35,26 @@ export const basketSlice = createSlice({
       );
       if (existingPizzaIndex !== -1) state.pizzas[existingPizzaIndex].numberOfPizzas += 1;
       else state.pizzas.push({ ...action.payload });
-
-      state.pizzasLength += 1;
+      state.totalNumberOfPizzas += 1;
+      state.totalPriceOfPizzas += action.payload.price;
     },
     clearPizzas: (state) => {
       state.pizzas = [];
     },
     changeNumberOfPizzas: (state, action: PayloadAction<{ id: number, price: number, action: string }>) => {
-      const existingPizzaIndex = state.pizzas.findIndex(
+      const pizzaIndex = state.pizzas.findIndex(
         pizza => pizza.id === action.payload.id && pizza.price === action.payload.price
       );
-      if (existingPizzaIndex !== -1 && action.payload.action === '+') {
-        state.pizzas[existingPizzaIndex].numberOfPizzas += 1
-        state.pizzasLength += 1;
+      if (action.payload.action === '+') {
+        state.pizzas[pizzaIndex].numberOfPizzas += 1;
+        state.totalNumberOfPizzas += 1;
+        state.totalPriceOfPizzas += action.payload.price;
       }
-      else {
-        state.pizzas[existingPizzaIndex].numberOfPizzas -= 1
-        state.pizzasLength -= 1;
-        if (state.pizzas[existingPizzaIndex].numberOfPizzas === 0) state.pizzas.splice(existingPizzaIndex, 1);
+      else if (action.payload.action === '-') {
+        state.pizzas[pizzaIndex].numberOfPizzas -= 1;
+        state.totalNumberOfPizzas -= 1;
+        state.totalPriceOfPizzas -= action.payload.price;
+        if (state.pizzas[pizzaIndex].numberOfPizzas === 0) state.pizzas.splice(pizzaIndex, 1);
       };
     },
   },
@@ -60,6 +64,7 @@ export const { addPizza, clearPizzas, changeNumberOfPizzas } = basketSlice.actio
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectBasketPizzas = (state: RootState) => state.basket.pizzas;
-export const selectBasketPizzasLength = (state: RootState) => state.basket.pizzasLength;
+export const selectBasketTotalNumberOfPizzas = (state: RootState) => state.basket.totalNumberOfPizzas;
+export const selectBasketTotalPriceOfPizzas = (state: RootState) => state.basket.totalPriceOfPizzas;
 
 export default basketSlice.reducer;

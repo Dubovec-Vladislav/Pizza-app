@@ -2,8 +2,9 @@ import React, { FC, useState } from "react"
 import style from './PizzaItem.module.scss'
 import TypesItem from "./PizzaItemComponents/TypesItem"
 import SizesItem from "./PizzaItemComponents/SizesItem"
-import { addPizza } from "../../../assets/redux/slices/basketSlice"
+import { addPizza, selectBasketPizzas } from "../../../assets/redux/slices/basketSlice"
 import { useDispatch } from "react-redux"
+import { useAppSelector } from "../../../assets/ts/hooks"
 
 interface PizzaItemProps {
   id: number,
@@ -16,18 +17,21 @@ interface PizzaItemProps {
 
 const PizzaItem: FC<PizzaItemProps> = ({ id, imageUrl, name, types, sizes, prices }) => {
   const doughTypeList = ['тонкое', 'традиционное'];
+  const pizzas = useAppSelector(selectBasketPizzas);
+  const dispatch = useDispatch();
 
-  const [numOfPizzas, setNumberOfPizzas] = useState(0);
   // Активным будет самый первый тип теста в массиве
   const [activeDoughType, setActiveDoughType] = useState(doughTypeList[types[0]]);
   const [activeSize, setActiveSize] = useState(sizes[0]);
   const [activePriceIndex, setActivePriceIndex] = useState(0);
-
   const price = activeDoughType === 'тонкое' ? prices[activePriceIndex] : prices[activePriceIndex] + 25;
-  const dispatch = useDispatch();
+
+  let numOfPizzas = 0;
+  const pizzaIndex = pizzas.findIndex(pizza => pizza.id === id && pizza.price === price);
+  if (pizzaIndex !== -1) numOfPizzas = pizzas[pizzaIndex].numberOfPizzas;
+
 
   const handleAddClick = () => {
-    setNumberOfPizzas(numOfPizzas + 1)
     const pizza = {
       id: id,
       imageUrl: imageUrl,
@@ -37,7 +41,6 @@ const PizzaItem: FC<PizzaItemProps> = ({ id, imageUrl, name, types, sizes, price
       price: price,
       numberOfPizzas: 1,
     }
-    // console.log(pizza);
     dispatch(addPizza(pizza))
   }
 

@@ -1,8 +1,8 @@
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react'
 import style from './Basket.module.scss'
 import { Link } from 'react-router-dom'
 import { useAppSelector } from '../../assets/ts/hooks'
-import { changeNumberOfPizzas, clearPizzas, selectBasketPizzas, selectBasketPizzasLength } from '../../assets/redux/slices/basketSlice'
+import { changeNumberOfPizzas, clearPizzas, selectBasketPizzas, selectBasketTotalNumberOfPizzas, selectBasketTotalPriceOfPizzas } from '../../assets/redux/slices/basketSlice'
 import EmptyBasket from './EmptyBasket'
 import { useDispatch } from 'react-redux'
 
@@ -14,7 +14,8 @@ import { useDispatch } from 'react-redux'
 const Basket: FC = (props) => {
   const dispatch = useDispatch();
   const pizzas = useAppSelector(selectBasketPizzas);
-  const pizzasLength = useAppSelector(selectBasketPizzasLength);
+  const totalNumberOfPizzas = useAppSelector(selectBasketTotalNumberOfPizzas);
+  const totalPriceOfPizzas = useAppSelector(selectBasketTotalPriceOfPizzas);
 
   return (
     <section className={style.block}>
@@ -43,8 +44,8 @@ const Basket: FC = (props) => {
             </div>
             <div className={style.footer}>
               <div className={style.footerItem}>
-                <div className={style.totalNumberOfPizzas}>Всего пицц: <span>{pizzasLength} шт.</span></div>
-                <div className={style.totalPriceOfPizzas}>Сумма заказа: <span>900 ₽</span></div>
+                <div className={style.totalNumberOfPizzas}>Всего пицц: <span>{totalNumberOfPizzas} шт.</span></div>
+                <div className={style.totalPriceOfPizzas}>Сумма заказа: <span>{totalPriceOfPizzas} ₽</span></div>
               </div>
               <div className={style.footerItem}>
                 <Link to={"/"} className={style.backBtn}>Вернуться назад</Link>
@@ -91,9 +92,9 @@ const BasketItem: FC<IBasketItemProps> = ({ id, imageUrl, name, type, size, pric
         <div className={style.subtitle}>{`${type} тесто, ${size} см.`}</div>
       </div>
       <div className={style.numberOfPizzas}>
-        <div className={style.minus} onClick={() => dispatch(changeNumberOfPizzas({id: id, price: price, action: '-'}))}></div>
+        <div className={style.minus} onClick={() => dispatch(changeNumberOfPizzas({ id: id, price: price, action: '-' }))}></div>
         <span>{numOfPizzas}</span>
-        <div className={style.plus} onClick={() => dispatch(changeNumberOfPizzas({id: id, price: price, action: '+'}))}></div>
+        <div className={style.plus} onClick={() => dispatch(changeNumberOfPizzas({ id: id, price: price, action: '+' }))}></div>
       </div>
       <div className={style.price}>{price} ₽</div>
       <div className={style.close}></div>

@@ -2,8 +2,13 @@ import React, { FC } from 'react'
 import style from './Header.module.scss'
 import { Link } from 'react-router-dom'
 import Search from '../UI/Search/Search'
+import { useAppSelector } from '../../assets/ts/hooks'
+import { selectBasketTotalNumberOfPizzas, selectBasketTotalPriceOfPizzas } from '../../assets/redux/slices/basketSlice'
 
 const Header: FC = () => {
+  const totalNumberOfPizzas = useAppSelector(selectBasketTotalNumberOfPizzas);
+  const totalPriceOfPizzas = useAppSelector(selectBasketTotalPriceOfPizzas);
+
   return (
     <header className={style.block}>
       <div className={style.body}>
@@ -19,9 +24,9 @@ const Header: FC = () => {
         </div>
 
         <div className={style.counter}>
-          <div className={style.cash}><Link to="#">520 ₽</Link></div>
+          <div className={style.cash}><Link to="#">{totalPriceOfPizzas} ₽</Link></div>
           <div className={style.basket}>
-            <Link to="/basket"><img src="/img/UI/cart.svg" alt="cart" /><span>3</span></Link>
+            <Link to="/basket"><img src="/img/UI/cart.svg" alt="cart" /><span>{totalNumberOfPizzas}</span></Link>
           </div>
         </div>
 

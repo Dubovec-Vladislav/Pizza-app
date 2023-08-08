@@ -7,7 +7,8 @@
     flex: 0 1 50%;
   }
 
-  @media (max-width: 426px) {
+  @media (max-width: 521px) {
+    flex: 0 1 100%;
     margin: 0px 0px 25px 0px;
   }
 }
@@ -70,6 +71,10 @@
   font-weight: 700;
   letter-spacing: 0.33px;
   white-space: nowrap;
+
+  // @media (max-width: 426px) {
+  //   font-size: 15px;
+  // }
 }
 
 .add {

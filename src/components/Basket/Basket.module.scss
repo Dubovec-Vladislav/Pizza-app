@@ -5,6 +5,10 @@
 
 .body {
   padding: 94px 18.49vw;
+
+  @media (max-width: 769px) {
+    padding: 94px 20px;
+  }
 }
 
 .header {
