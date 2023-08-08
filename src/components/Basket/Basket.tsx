@@ -3,7 +3,7 @@ import style from './Basket.module.scss'
 import { Link } from 'react-router-dom'
 import { useAppSelector } from '../../assets/ts/hooks'
 import { selectBasketPizzas } from '../../assets/redux/slices/basketSlice'
-// import EmptyBasket from './EmptyBasket'
+import EmptyBasket from './EmptyBasket'
 
 
 // --------------------------------------------- //
@@ -17,37 +17,40 @@ const Basket: FC = (props) => {
   return (
     <section className={style.block}>
       <div className={style.body}>
-        <div className={style.header}>
-          <div className={style.title}><img src="/img/UI/black-cart.svg" alt="black-cart" />Корзина</div>
-          <div className={style.clearBasket}><img src="/img/UI/trash-bin.svg" alt="trash-bin" />Очистить корзину</div>
-        </div>
-        <div className={style.content}>
-          {pizzas.map(pizza => (
-            <BasketItem imageUrl={pizza.imageUrl}
-              name={pizza.name}
-              type={pizza.type}
-              size={pizza.size}
-              price={pizza.price}
-              nOP={pizza.numberOfPizzas}
-            />
-          ))
-          }
-
-          {/* <BasketItem imgName={'pizza-4'} name={'Сырный цыпленок'} description={'тонкое тесто, 26 см.'} price={770} />
-          <BasketItem imgName={'pizza-3'} name={'Креветки по-азиатски'} description={'толстое тесто, 40 см.'} price={290} />
-          <BasketItem imgName={'pizza-1'} name={'Сырный цыпленок'} description={'тонкое тесто, 30 см.'} price={350} /> */}
-        </div>
-        <div className={style.footer}>
-          <div className={style.footerItem}>
-            <div className={style.totalNumberOfPizzas}>Всего пицц: <span>3 шт.</span></div>
-            <div className={style.totalPriceOfPizzas}>Сумма заказа: <span>900 ₽</span></div>
-          </div>
-          <div className={style.footerItem}>
-            <Link to={"/"} className={style.backBtn}>Вернуться назад</Link>
-            <div className={style.payBtn}>Оплатить сейчас</div>
-          </div>
-        </div>
-        {/* <EmptyBasket /> */}
+        {pizzas.length > 0
+          ?
+          <>
+            <div className={style.header}>
+              <div className={style.title}><img src="/img/UI/black-cart.svg" alt="black-cart" />Корзина</div>
+              <div className={style.clearBasket}><img src="/img/UI/trash-bin.svg" alt="trash-bin" />Очистить корзину</div>
+            </div>
+            <div className={style.content}>
+              {
+                pizzas.map(pizza => (
+                  <BasketItem imageUrl={pizza.imageUrl}
+                    name={pizza.name}
+                    type={pizza.type}
+                    size={pizza.size}
+                    price={pizza.price}
+                    nOP={pizza.numberOfPizzas}
+                  />
+                ))
+              }
+            </div>
+            <div className={style.footer}>
+              <div className={style.footerItem}>
+                <div className={style.totalNumberOfPizzas}>Всего пицц: <span>3 шт.</span></div>
+                <div className={style.totalPriceOfPizzas}>Сумма заказа: <span>900 ₽</span></div>
+              </div>
+              <div className={style.footerItem}>
+                <Link to={"/"} className={style.backBtn}>Вернуться назад</Link>
+                <div className={style.payBtn}>Оплатить сейчас</div>
+              </div>
+            </div>
+          </>
+          :
+          <EmptyBasket />
+        }
       </div>
     </section>
   );

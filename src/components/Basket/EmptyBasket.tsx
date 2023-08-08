@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import style from './EmptyBasket.module.scss'
+import { Link } from 'react-router-dom'
 
 const EmptyBasket: FC = (props) => {
   return (
@@ -8,7 +9,7 @@ const EmptyBasket: FC = (props) => {
       <div className={style.subTitle}>
         Вероятней всего, вы не заказывали ещё пиццу. Для того, чтобы заказать пиццу, перейди на главную страницу.
       </div>
-      <div className={style.img}><img src="/img/UI/empty-basket.svg" alt="empty-basket" /></div>
+      <Link to='/' className={style.img}><img src="/img/UI/empty-basket.svg" alt="empty-basket" /></Link>
     </>
   );
 };
