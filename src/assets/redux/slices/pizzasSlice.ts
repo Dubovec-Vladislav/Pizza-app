@@ -6,9 +6,9 @@ interface Pizza {
   id: number;
   imageUrl: string;
   name: string;
-  types: string[];
+  types: number[];
   sizes: number[];
-  price: number;
+  prices: number[];
 };
 
 interface PizzasState {

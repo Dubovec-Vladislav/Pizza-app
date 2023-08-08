@@ -21,7 +21,7 @@ const PizzaField: FC = (props) => {
         {
           isLoading
             ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
-            : pizzasData.pizzas
+            : pizzas
               .filter((pizza) => {
                 return pizza.name.toLowerCase().includes(searchValue.toLowerCase()); // True if includes, false if not
               }) // for static data

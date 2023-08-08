@@ -31,19 +31,17 @@ export const basketSlice = createSlice({
   
       if (existingPizzaIndex !== -1) {
         state.pizzas[existingPizzaIndex].numberOfPizzas += 1;
-        console.log(state.pizzas[existingPizzaIndex]);
-        debugger;
       } else {
         state.pizzas.push({ ...action.payload });
       }
     },
-    // setIsLoading: (state, action: PayloadAction<boolean>) => {
-    //   state.isLoading = action.payload;
-    // },
+    clearPizzas: (state) => {
+      state.pizzas = [];
+    },
   },
 });
 
-export const { addPizza } = basketSlice.actions;
+export const { addPizza, clearPizzas } = basketSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectBasketPizzas = (state: RootState) => state.basket.pizzas;
