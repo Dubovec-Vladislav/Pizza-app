@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react'
 import style from './Basket.module.scss'
 import { Link } from 'react-router-dom'
 import { useAppSelector } from '../../assets/ts/hooks'
-import { clearPizzas, selectBasketPizzas } from '../../assets/redux/slices/basketSlice'
+import { changeNumberOfPizzas, clearPizzas, selectBasketPizzas, selectBasketPizzasLength } from '../../assets/redux/slices/basketSlice'
 import EmptyBasket from './EmptyBasket'
 import { useDispatch } from 'react-redux'
 
@@ -14,6 +14,7 @@ import { useDispatch } from 'react-redux'
 const Basket: FC = (props) => {
   const dispatch = useDispatch();
   const pizzas = useAppSelector(selectBasketPizzas);
+  const pizzasLength = useAppSelector(selectBasketPizzasLength);
 
   return (
     <section className={style.block}>
@@ -29,19 +30,20 @@ const Basket: FC = (props) => {
               {
                 pizzas.map(pizza => (
                   <BasketItem key={pizza.id}
+                    id={pizza.id}
                     imageUrl={pizza.imageUrl}
                     name={pizza.name}
                     type={pizza.type}
                     size={pizza.size}
                     price={pizza.price}
-                    nOP={pizza.numberOfPizzas}
+                    numOfPizzas={pizza.numberOfPizzas}
                   />
                 ))
               }
             </div>
             <div className={style.footer}>
               <div className={style.footerItem}>
-                <div className={style.totalNumberOfPizzas}>Всего пицц: <span>{pizzas.length} шт.</span></div>
+                <div className={style.totalNumberOfPizzas}>Всего пицц: <span>{pizzasLength} шт.</span></div>
                 <div className={style.totalPriceOfPizzas}>Сумма заказа: <span>900 ₽</span></div>
               </div>
               <div className={style.footerItem}>
@@ -68,16 +70,18 @@ const Basket: FC = (props) => {
 // --------------------------------------------- //
 
 interface IBasketItemProps {
-  imageUrl: string;
-  name: string;
-  type: string;
-  size: number;
-  price: number;
-  nOP: number;
+  id: number,
+  imageUrl: string,
+  name: string,
+  type: string,
+  size: number,
+  price: number,
+  numOfPizzas: number,
 }
 
-const BasketItem: FC<IBasketItemProps> = ({ imageUrl, name, type, size, price, nOP }) => {
-  const [numberOfPizzas, changeNumberOfPizzas] = useState(nOP);
+const BasketItem: FC<IBasketItemProps> = ({ id, imageUrl, name, type, size, price, numOfPizzas }) => {
+  // const [numberOfPizzas, changeNumberOfPizzas] = useState(numOfPizzas);
+  const dispatch = useDispatch()
 
   return (
     <div className={style.basketItem}>
@@ -87,9 +91,9 @@ const BasketItem: FC<IBasketItemProps> = ({ imageUrl, name, type, size, price, n
         <div className={style.subtitle}>{`${type} тесто, ${size} см.`}</div>
       </div>
       <div className={style.numberOfPizzas}>
-        <div className={style.minus} onClick={() => changeNumberOfPizzas(numberOfPizzas - 1)}></div>
-        <span>{numberOfPizzas}</span>
-        <div className={style.plus} onClick={() => changeNumberOfPizzas(numberOfPizzas + 1)}></div>
+        <div className={style.minus} onClick={() => dispatch(changeNumberOfPizzas({id: id, price: price, action: '-'}))}></div>
+        <span>{numOfPizzas}</span>
+        <div className={style.plus} onClick={() => dispatch(changeNumberOfPizzas({id: id, price: price, action: '+'}))}></div>
       </div>
       <div className={style.price}>{price} ₽</div>
       <div className={style.close}></div>
