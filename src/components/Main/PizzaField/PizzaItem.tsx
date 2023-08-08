@@ -4,6 +4,7 @@ import TypesItem from "./PizzaItemComponents/TypesItem"
 import SizesItem from "./PizzaItemComponents/SizesItem"
 
 interface PizzaItemProps {
+  id: number,
   imageUrl: string,
   name: string,
   types: number[],
@@ -11,7 +12,7 @@ interface PizzaItemProps {
   prices: number[],
 }
 
-const PizzaItem: FC<PizzaItemProps> = ({ imageUrl, name, types, sizes, prices }) => {
+const PizzaItem: FC<PizzaItemProps> = ({ id, imageUrl, name, types, sizes, prices }) => {
   const doughTypeList = ['тонкое', 'традиционное'];
 
   const [numOfPizzas, setNumberOfPizzas] = useState(0);
@@ -19,6 +20,8 @@ const PizzaItem: FC<PizzaItemProps> = ({ imageUrl, name, types, sizes, prices })
   const [activeDoughType, setActiveDoughType] = useState(doughTypeList[types[0]]);
   const [activeSize, setActiveSize] = useState(sizes[0]);
   const [activePriceIndex, setActivePriceIndex] = useState(0);
+
+  const price = activeDoughType === 'тонкое' ? prices[activePriceIndex] : prices[activePriceIndex] + 25;
 
   return (
     <div className={style.pizzaItem}>
@@ -51,7 +54,7 @@ const PizzaItem: FC<PizzaItemProps> = ({ imageUrl, name, types, sizes, prices })
         </ul>
       </div>
       <div className={style.footer}>
-        <div className={style.price}>{prices[activePriceIndex]} ₽</div>
+        <div className={style.price}>{price} ₽</div>
         <div className={style.add} onClick={() => setNumberOfPizzas(numOfPizzas + 1)}>
           Добавить
           <span className={numOfPizzas ? `${style.counter}` : `${style.none}`}>{numOfPizzas}</span>

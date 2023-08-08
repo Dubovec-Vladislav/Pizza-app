@@ -28,6 +28,7 @@ const PizzaField: FC = (props) => {
               .map((pizza) => (
                 <PizzaItem
                   key={pizza.id}
+                  id={pizza.id}
                   imageUrl={pizza.imageUrl}
                   name={pizza.name}
                   types={pizza.types}

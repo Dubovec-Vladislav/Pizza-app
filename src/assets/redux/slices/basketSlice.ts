@@ -25,7 +25,7 @@ export const basketSlice = createSlice({
   initialState,
   reducers: {
     addPizza: (state, action: PayloadAction<Pizza>) => {
-      const existingPizza = state.pizzas.find(pizza => pizza.id === action.payload.id);
+      const existingPizza = state.pizzas.find(pizza => pizza.id === action.payload.id && pizza.price === action.payload.price);
       state.pizzas = [...state.pizzas, action.payload];
     },
     // setIsLoading: (state, action: PayloadAction<boolean>) => {
