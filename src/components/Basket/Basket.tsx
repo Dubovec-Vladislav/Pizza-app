@@ -87,8 +87,8 @@ const BasketItem: FC<IBasketItemProps> = ({ id, imageUrl, name, type, size, pric
     <div className={style.basketItem}>
       <div className={style.img}><img src={imageUrl} alt={name} /></div>
       <div className={style.text}>
-        <div className={style.title}>{name}</div>
-        <div className={style.subtitle}>{`${type} тесто, ${size} см.`}</div>
+        <div className={style.itemTitle}>{name}</div>
+        <div className={style.itemSubtitle}>{`${type} тесто, ${size} см.`}</div>
       </div>
       <div className={style.numberOfPizzas}>
         <div className={style.minus}
