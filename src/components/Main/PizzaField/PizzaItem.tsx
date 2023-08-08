@@ -8,16 +8,17 @@ interface PizzaItemProps {
   name: string,
   types: number[],
   sizes: number[],
-  price: number,
+  prices: number[],
 }
 
-const PizzaItem: FC<PizzaItemProps> = ({ imageUrl, name, types, sizes, price }) => {
+const PizzaItem: FC<PizzaItemProps> = ({ imageUrl, name, types, sizes, prices }) => {
   const doughTypeList = ['тонкое', 'традиционное'];
 
   const [numOfPizzas, setNumberOfPizzas] = useState(0);
-  const [activeDoughType, setActiveDoughType] = useState(doughTypeList[types[0]]);
   // Активным будет самый первый тип теста в массиве
+  const [activeDoughType, setActiveDoughType] = useState(doughTypeList[types[0]]);
   const [activeSize, setActiveSize] = useState(sizes[0]);
+  const [activePriceIndex, setActivePriceIndex] = useState(0);
 
   return (
     <div className={style.pizzaItem}>
@@ -30,7 +31,8 @@ const PizzaItem: FC<PizzaItemProps> = ({ imageUrl, name, types, sizes, price }) 
               <TypesItem key={indexOfDoughType}
                 id={indexOfDoughType}
                 activeDoughType={activeDoughType}
-                setActiveDoughType={setActiveDoughType} />
+                setActiveDoughType={setActiveDoughType}
+              />
             ))
           }
         </ul>
@@ -40,13 +42,16 @@ const PizzaItem: FC<PizzaItemProps> = ({ imageUrl, name, types, sizes, price }) 
               <SizesItem key={sizes.indexOf(size)}
                 size={size}
                 activeSize={activeSize}
-                setActiveSize={setActiveSize} />
+                setActiveSize={setActiveSize}
+                setActivePrice={setActivePriceIndex}
+                sizes={sizes}
+              />
             ))
           }
         </ul>
       </div>
       <div className={style.footer}>
-        <div className={style.price}>{price} ₽</div>
+        <div className={style.price}>{prices[activePriceIndex]} ₽</div>
         <div className={style.add} onClick={() => setNumberOfPizzas(numOfPizzas + 1)}>
           Добавить
           <span className={numOfPizzas ? `${style.counter}` : `${style.none}`}>{numOfPizzas}</span>

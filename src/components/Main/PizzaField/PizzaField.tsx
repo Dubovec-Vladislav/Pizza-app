@@ -1,7 +1,7 @@
 import React, { FC, useContext } from 'react'
 import style from './PizzaField.module.scss'
 import BlockTitle from '../../UI/BlockTitle/BlockTitle'
-// import pizzasData from '../../../assets/PizzasData/pizzas.json'
+import pizzasData from '../../../assets/PizzasData/pizzas.json'
 import PizzaItem from './PizzaItem'
 import Skeleton from '../../UI/Skeleton/Skeleton'
 import { SearchContext } from '../../../App'
@@ -21,7 +21,7 @@ const PizzaField: FC = (props) => {
         {
           isLoading
             ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
-            : pizzas
+            : pizzasData.pizzas
               .filter((pizza) => {
                 return pizza.name.toLowerCase().includes(searchValue.toLowerCase()); // True if includes, false if not
               }) // for static data
@@ -32,7 +32,7 @@ const PizzaField: FC = (props) => {
                   name={pizza.name}
                   types={pizza.types}
                   sizes={pizza.sizes}
-                  price={pizza.price} />
+                  prices={pizza.prices} />
               ))
         }
       </div>
