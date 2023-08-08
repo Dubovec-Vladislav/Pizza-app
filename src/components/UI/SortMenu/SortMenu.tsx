@@ -21,7 +21,6 @@ const SortMenu: FC = (props) => {
     const handleClickOutside = (e: MouseEvent) => {
       if (sortRef.current && !e.composedPath().includes(sortRef.current)) {
         toggleActiveSort(false);
-        console.log('click');
       }
     };
 

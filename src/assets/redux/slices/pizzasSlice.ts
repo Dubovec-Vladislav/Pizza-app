@@ -6,7 +6,7 @@ interface Pizza {
   id: number;
   imageUrl: string;
   name: string;
-  types: number[];
+  types: string[];
   sizes: number[];
   price: number;
 };

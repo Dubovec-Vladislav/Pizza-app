@@ -1,6 +1,8 @@
 import React, { FC, useState } from 'react'
 import style from './Basket.module.scss'
 import { Link } from 'react-router-dom'
+import { useAppSelector } from '../../assets/ts/hooks'
+import { selectBasketPizzas } from '../../assets/redux/slices/basketSlice'
 // import EmptyBasket from './EmptyBasket'
 
 
@@ -9,6 +11,9 @@ import { Link } from 'react-router-dom'
 // --------------------------------------------- //
 
 const Basket: FC = (props) => {
+  const pizzas = useAppSelector(selectBasketPizzas)
+  console.log(pizzas);
+
   return (
     <section className={style.block}>
       <div className={style.body}>

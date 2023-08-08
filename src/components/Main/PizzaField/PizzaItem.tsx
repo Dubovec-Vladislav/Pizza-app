@@ -2,6 +2,8 @@ import React, { FC, useState } from "react"
 import style from './PizzaItem.module.scss'
 import TypesItem from "./PizzaItemComponents/TypesItem"
 import SizesItem from "./PizzaItemComponents/SizesItem"
+import { addPizza } from "../../../assets/redux/slices/basketSlice"
+import { useDispatch } from "react-redux"
 
 interface PizzaItemProps {
   id: number,
@@ -22,6 +24,22 @@ const PizzaItem: FC<PizzaItemProps> = ({ id, imageUrl, name, types, sizes, price
   const [activePriceIndex, setActivePriceIndex] = useState(0);
 
   const price = activeDoughType === 'тонкое' ? prices[activePriceIndex] : prices[activePriceIndex] + 25;
+  const dispatch = useDispatch();
+
+  const handleAddClick = () => {
+    setNumberOfPizzas(numOfPizzas + 1)
+    const pizza = {
+      id: id,
+      imageUrl: imageUrl,
+      name: name,
+      types: activeDoughType,
+      sizes: activeSize,
+      price: price,
+      numberOfPizzas: 1,
+    }
+    console.log(pizza);
+    // dispatch(addPizza(pizza))
+  }
 
   return (
     <div className={style.pizzaItem}>
@@ -32,7 +50,7 @@ const PizzaItem: FC<PizzaItemProps> = ({ id, imageUrl, name, types, sizes, price
           {
             types.map((indexOfDoughType) => (
               <TypesItem key={indexOfDoughType}
-                id={indexOfDoughType}
+                doughType={doughTypeList[indexOfDoughType]}
                 activeDoughType={activeDoughType}
                 setActiveDoughType={setActiveDoughType}
               />
@@ -55,7 +73,7 @@ const PizzaItem: FC<PizzaItemProps> = ({ id, imageUrl, name, types, sizes, price
       </div>
       <div className={style.footer}>
         <div className={style.price}>{price} ₽</div>
-        <div className={style.add} onClick={() => setNumberOfPizzas(numOfPizzas + 1)}>
+        <div className={style.add} onClick={handleAddClick}>
           Добавить
           <span className={numOfPizzas ? `${style.counter}` : `${style.none}`}>{numOfPizzas}</span>
         </div>

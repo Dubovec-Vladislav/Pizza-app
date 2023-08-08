@@ -6,8 +6,8 @@ interface Pizza {
   id: number;
   imageUrl: string;
   name: string;
-  types: number[];
-  sizes: number[];
+  types: number;
+  sizes: number;
   price: number;
   numberOfPizzas: number;
 };
@@ -26,7 +26,13 @@ export const basketSlice = createSlice({
   reducers: {
     addPizza: (state, action: PayloadAction<Pizza>) => {
       const existingPizza = state.pizzas.find(pizza => pizza.id === action.payload.id && pizza.price === action.payload.price);
-      state.pizzas = [...state.pizzas, action.payload];
+      if (existingPizza) {
+        console.log(existingPizza);
+        debugger;
+      } else {
+        state.pizzas = [...state.pizzas, action.payload];
+        debugger;
+      }
     },
     // setIsLoading: (state, action: PayloadAction<boolean>) => {
     //   state.isLoading = action.payload;
@@ -34,10 +40,9 @@ export const basketSlice = createSlice({
   },
 });
 
-export const { } = basketSlice.actions;
+export const { addPizza } = basketSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectPizzas = (state: RootState) => state.pizzas.pizzas;
-export const selectIsLoading = (state: RootState) => state.pizzas.isLoading;
+export const selectBasketPizzas = (state: RootState) => state.pizzas.pizzas;
 
 export default basketSlice.reducer;
