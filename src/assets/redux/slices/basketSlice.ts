@@ -40,6 +40,8 @@ export const basketSlice = createSlice({
     },
     clearPizzas: (state) => {
       state.pizzas = [];
+      state.totalNumberOfPizzas = 0;
+      state.totalPriceOfPizzas = 0;
     },
     changeNumberOfPizzas: (state, action: PayloadAction<{ id: number, price: number, action: string }>) => {
       const pizzaIndex = state.pizzas.findIndex(
