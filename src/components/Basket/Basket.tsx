@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import style from './Basket.module.scss'
 import { Link } from 'react-router-dom'
 import { useAppSelector } from '../../assets/ts/hooks'
-import { changeNumberOfPizzas, clearPizzas, selectBasketPizzas, selectBasketTotalNumberOfPizzas, selectBasketTotalPriceOfPizzas } from '../../assets/redux/slices/basketSlice'
+import { changeNumberOfPizzas, clearPizzas, removePizza, selectBasketPizzas, selectBasketTotalNumberOfPizzas, selectBasketTotalPriceOfPizzas } from '../../assets/redux/slices/basketSlice'
 import EmptyBasket from './EmptyBasket'
 import { useDispatch } from 'react-redux'
 
@@ -81,7 +81,6 @@ interface IBasketItemProps {
 }
 
 const BasketItem: FC<IBasketItemProps> = ({ id, imageUrl, name, type, size, price, numOfPizzas }) => {
-  // const [numberOfPizzas, changeNumberOfPizzas] = useState(numOfPizzas);
   const dispatch = useDispatch()
 
   return (
@@ -92,12 +91,16 @@ const BasketItem: FC<IBasketItemProps> = ({ id, imageUrl, name, type, size, pric
         <div className={style.subtitle}>{`${type} тесто, ${size} см.`}</div>
       </div>
       <div className={style.numberOfPizzas}>
-        <div className={style.minus} onClick={() => dispatch(changeNumberOfPizzas({ id: id, price: price, action: '-' }))}></div>
+        <div className={style.minus}
+          onClick={() => dispatch(changeNumberOfPizzas({ id: id, price: price, action: '-' }))}
+        ></div>
         <span>{numOfPizzas}</span>
-        <div className={style.plus} onClick={() => dispatch(changeNumberOfPizzas({ id: id, price: price, action: '+' }))}></div>
+        <div className={style.plus}
+          onClick={() => dispatch(changeNumberOfPizzas({ id: id, price: price, action: '+' }))}
+        ></div>
       </div>
       <div className={style.price}>{price} ₽</div>
-      <div className={style.close}></div>
+      <div className={style.close} onClick={() => dispatch(removePizza({ id: id, price: price }))}></div>
     </div>
   );
 }

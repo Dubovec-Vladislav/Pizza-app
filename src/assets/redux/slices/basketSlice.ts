@@ -29,6 +29,8 @@ export const basketSlice = createSlice({
   name: 'basket',
   initialState,
   reducers: {
+
+    // Create
     addPizza: (state, action: PayloadAction<Pizza>) => {
       const existingPizzaIndex = state.pizzas.findIndex(
         pizza => pizza.id === action.payload.id && pizza.price === action.payload.price
@@ -38,11 +40,8 @@ export const basketSlice = createSlice({
       state.totalNumberOfPizzas += 1;
       state.totalPriceOfPizzas += action.payload.price;
     },
-    clearPizzas: (state) => {
-      state.pizzas = [];
-      state.totalNumberOfPizzas = 0;
-      state.totalPriceOfPizzas = 0;
-    },
+
+    // Update
     changeNumberOfPizzas: (state, action: PayloadAction<{ id: number, price: number, action: string }>) => {
       const pizzaIndex = state.pizzas.findIndex(
         pizza => pizza.id === action.payload.id && pizza.price === action.payload.price
@@ -59,10 +58,28 @@ export const basketSlice = createSlice({
         if (state.pizzas[pizzaIndex].numberOfPizzas === 0) state.pizzas.splice(pizzaIndex, 1);
       };
     },
+
+    // Delete
+    removePizza: (state, action: PayloadAction<{ id: number, price: number }>) => {
+      const pizzaIndex = state.pizzas.findIndex(
+        pizza => pizza.id === action.payload.id && pizza.price === action.payload.price
+      );
+      const numberOfPizzas = state.pizzas[pizzaIndex].numberOfPizzas;
+
+      state.totalNumberOfPizzas -= numberOfPizzas;
+      state.totalPriceOfPizzas -= numberOfPizzas * action.payload.price;
+      state.pizzas.splice(pizzaIndex, 1);
+    },
+    clearPizzas: (state) => {
+      state.pizzas = [];
+      state.totalNumberOfPizzas = 0;
+      state.totalPriceOfPizzas = 0;
+    },
+
   },
 });
 
-export const { addPizza, clearPizzas, changeNumberOfPizzas } = basketSlice.actions;
+export const { addPizza, changeNumberOfPizzas, removePizza, clearPizzas } = basketSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectBasketPizzas = (state: RootState) => state.basket.pizzas;
