@@ -114,7 +114,7 @@
 
   @media (max-width: 426px) {
     flex: 0 1 30%;
-    margin: 0px 0px 10px 0px;
+    margin: 0px 0px 15px 0px;
   }
 }
 
@@ -161,9 +161,13 @@
     display: inline-block;
     color: #000;
     margin: 0px 12px 0px 0px;
-    font-size: 22px;
+    font-size: calc(15px + 7 * (100vw / 1440));
     font-weight: 700;
     letter-spacing: 0.22px;
+
+    @media (max-width: 769px) {
+      font-size: calc(15px + 7 * (100vw / 1440));
+    }
   }
 
   @media (max-width: 426px) {
@@ -196,6 +200,11 @@
     &::after {
       background-color: #FFF;
     }
+  }
+
+  @media (max-width: 500px) {
+    width: 24px;
+    height: 24px;
   }
 }
 
@@ -240,10 +249,14 @@
 .price {
   color: #000;
   margin: 0px 73px 0px 0px;
-  font-size: 22px;
+  font-size: calc(15px + 7 * (100vw / 1440));
   font-weight: 700;
   letter-spacing: 0.22px;
   white-space: nowrap;
+
+  @media (max-width: 769px) {
+    font-size: calc(15px + 7 * (100vw / 1440));
+  }
 
   @media (max-width: 426px) {
     flex: 0 1 calc(1/3*100%);
@@ -292,13 +305,18 @@
       background-color: #FFF;
     }
   }
+
+  @media (max-width: 500px) {
+    width: 24px;
+    height: 24px;
+  }
 }
 
 .footer {}
 
 .footerItem {
   display: flex;
-  margin: 0px 0px 40px 0px;
+  margin: 0px 0px 30px 0px;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
@@ -307,30 +325,42 @@
     margin: 0px 0px 0px 0px;
   }
 
-  @media (max-width: 426px) {
-    display: flex;
+  @media (max-width: 500px) {
     justify-content: center;
   }
 }
 
 .totalNumberOfPizzas {
   color: #000;
-  font-size: 22px;
+  margin: 0px 5px 0px 0px;
+  font-size: calc(14px + 8 * (100vw / 1440));
   letter-spacing: 0.22px;
 
   span {
     font-weight: 700;
   }
+
+  @media (max-width: 769px) {
+    ont-size: calc(14px + 8 * (100vw / 1440));
+  }
+
+  @media (max-width: 352px) {
+    margin: 0px 5px 10px 0px;
+  }
 }
 
 .totalPriceOfPizzas {
   color: #000;
-  font-size: 22px;
+  font-size: calc(14px + 8 * (100vw / 1440));
   letter-spacing: 0.22px;
 
   span {
     color: #FE5F1E;
     font-weight: 700;
+  }
+
+  @media (max-width: 769px) {
+    ont-size: calc(14px + 8 * (100vw / 1440));
   }
 }
 
@@ -338,7 +368,8 @@
   position: relative;
   color: #CACACA;
   background-color: #FFF;
-  padding: 17px 28px 17px 48px;
+  margin: 0px 5px 0px 0px;
+  padding: 17px 28px 17px 38px;
   border: 1px solid #D3D3D3;
   border-radius: 30px;
   cursor: pointer;
@@ -365,13 +396,27 @@
   }
 
   &::before {
-    bottom: 41.9%;
+    bottom: 41.6%;
     transform: rotate(45deg);
   }
 
   &::after {
-    top: 41.9%;
+    top: 41.6%;
     transform: rotate(-45deg);
+  }
+
+  @media (max-width: 500px) {
+    flex: 0 1 50%;
+    text-align: center;
+    margin: 0px 0px 5px 0px;
+
+    &::before {
+      bottom: 41.7%;
+    }
+
+    &::after {
+      top: 41.7%;
+    }
   }
 }
 
@@ -383,4 +428,9 @@
   font-size: 16px;
   font-weight: 700;
   cursor: pointer;
+
+  @media (max-width: 500px) {
+    flex: 0 1 80%;
+    text-align: center;
+  }
 }

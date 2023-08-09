@@ -48,7 +48,7 @@ const Basket: FC = (props) => {
                 <div className={style.totalPriceOfPizzas}>Сумма заказа: <span>{totalPriceOfPizzas} ₽</span></div>
               </div>
               <div className={style.footerItem}>
-                <Link to={"/"} className={style.backBtn}>Вернуться назад</Link>
+                <Link to={"/"} className={style.backBtn}>Назад</Link>
                 <div className={style.payBtn}>Оплатить сейчас</div>
               </div>
             </div>
