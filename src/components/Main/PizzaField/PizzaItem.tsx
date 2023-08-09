@@ -24,8 +24,11 @@ const PizzaItem: FC<PizzaItemProps> = ({ id, imageUrl, name, types, sizes, price
   const [activeDoughType, setActiveDoughType] = useState(doughTypeList[types[0]]);
   const [activeSize, setActiveSize] = useState(sizes[0]);
   const [activePriceIndex, setActivePriceIndex] = useState(0);
+
+  // Определяем цену (если традиционное то +25 руб.)
   const price = activeDoughType === 'тонкое' ? prices[activePriceIndex] : prices[activePriceIndex] + 25;
 
+  // Определяем количество пицц с данным характеристиками 
   let numOfPizzas = 0;
   const pizzaIndex = pizzas.findIndex(pizza => pizza.id === id && pizza.price === price);
   if (pizzaIndex !== -1) numOfPizzas = pizzas[pizzaIndex].numberOfPizzas;
