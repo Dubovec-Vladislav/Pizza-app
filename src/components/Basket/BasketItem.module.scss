@@ -52,18 +52,18 @@
 .itemTitle {
   color: #000;
   margin: 0px 0px 4px 0px;
-  font-size: calc(14px + 8 * (100vw / 1440));
+  font-size: calc(12px + 10 * (100vw / 1440));
   font-weight: 700;
   letter-spacing: 0.22px;
 
   @media (max-width: 769px) {
-    font-size: calc(14px + 8 * ((100vw - 320px) / 1440));
+    font-size: calc(12px + 10 * ((100vw - 320px) / 1440));
   }
 }
 
 .itemSubtitle {
   color: #8D8D8D;
-  font-size: calc(14px + 4 * (100vw / 1440));
+  font-size: calc(12px + 4 * (100vw / 1440));
   letter-spacing: 0.18px;
 
   @media (max-width: 769px) {
@@ -73,9 +73,8 @@
 
 .numberOfPizzas {
   display: flex;
-  margin: 0px 73px 0px 0px;
+  margin: 0px 5.1vw 0px 0px;
   align-items: center;
-  justify-content: center;
 
   span {
     display: inline-block;
@@ -168,7 +167,7 @@
 
 .price {
   color: #000;
-  margin: 0px 73px 0px 0px;
+  margin: 0px 5.1vw 0px 0px;
   font-size: calc(15px + 7 * (100vw / 1440));
   font-weight: 700;
   letter-spacing: 0.22px;
@@ -231,4 +230,3 @@
     height: 24px;
   }
 }
-
