@@ -9,8 +9,8 @@ import { selectActiveSortType, selectSortTypesProperty } from '../../assets/redu
 import { setPizzas, setIsLoading } from '../../assets/redux/slices/pizzasSlice'
 import { useDispatch } from 'react-redux'
 import axios from 'axios'
-import qs from 'qs'
-import { useNavigate } from 'react-router-dom'
+// import qs from 'qs'
+// import { useNavigate } from 'react-router-dom'
 
 const Main: FC = () => {
 
@@ -30,45 +30,53 @@ const Main: FC = () => {
   // -------------- Data Request --------------- //
   const END_POINT_URL = 'https://64ca3494b2980cec85c315c6.mockapi.io/items';
   const { searchValue } = useContext(SearchContext)!;
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
   useEffect(() => {
-    dispatch(setIsLoading(true));
+    const fetchData = async () => {
+      try {
+        dispatch(setIsLoading(true));
 
-    const category = categoryId > 0 ? `category=${categoryId}` : '';
+        const category = categoryId > 0 ? `category=${categoryId}` : '';
+        const foundSortType = sortTypesProperty.find(sortType => sortType.name === activeSortType) || undefined;
+        const sortBy = foundSortType?.sortProperty && `&sortBy=${foundSortType.sortProperty}`;
+        const order = foundSortType?.order && `&order=${foundSortType.order}`;
+        // const search = searchValue && `&search=${searchValue}`;
 
-    const foundSortType = sortTypesProperty.find(sortType => sortType.name === activeSortType) || undefined;
-    const sortBy = foundSortType?.sortProperty && `&sortBy=${foundSortType.sortProperty}`;
-    const order = foundSortType?.order && `&order=${foundSortType.order}`;
-    // const search = searchValue && `&search=${searchValue}`;
+        const response = await axios.get(`${END_POINT_URL}?${category}${sortBy}${order}`);
+        debugger;
+        // const response = await axios.get(`${END_POINT_URL}?${category}${sortBy}${order}${search}`);
 
-    axios.get(`${END_POINT_URL}?${category}${sortBy}${order}`)
-      // axios.get(`${END_POINT_URL}?${category}${sortBy}${order}${search}`)
-      .then((res) => {
-        dispatch(setPizzas(res.data));
+        dispatch(setPizzas(response.data));
         dispatch(setIsLoading(false));
-      });
+        console.log('11111');
 
-    window.scrollTo(0, 0);
+      } catch (error) { console.error(error); }
+
+      console.log('22222');
+      window.scrollTo(0, 0);
+    };
+
+    fetchData();
   }, [sortTypesProperty, activeSortType, categoryId, searchValue, dispatch]);
 
 
   // ---------------- URL Path ----------------- //
-  useEffect(() => {
-    const foundSortType = sortTypesProperty.find(sortType => sortType.name === activeSortType) || undefined;
-    const sortBy = foundSortType?.sortProperty;
-    const order = foundSortType?.order;
-    const search = searchValue;
+  // useEffect(() => {
+  //   const foundSortType = sortTypesProperty.find(sortType => sortType.name === activeSortType) || undefined;
+  //   const sortBy = foundSortType?.sortProperty;
+  //   const order = foundSortType?.order;
+  //   const search = searchValue;
 
-    const queryString = qs.stringify({
-      categoryId,
-      sortBy,
-      order,
-      search,
-    }); // => categoryId=0&sortBy=rating&order=asc&search=Пепперони
+  //   const queryString = qs.stringify({
+  //     categoryId,
+  //     sortBy,
+  //     order,
+  //     search,
+  //   }); // => categoryId=0&sortBy=rating&order=asc&search=Пепперони
 
-    // navigate(`?${queryString}`)
-  }, [sortTypesProperty, activeSortType, categoryId, searchValue, navigate]);
+  //   navigate(`?${queryString}`)
+  // }, [sortTypesProperty, activeSortType, categoryId, searchValue, navigate]);
 
 
   return (
