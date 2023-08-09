@@ -1,0 +1,234 @@
+.basketItem {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0px 0px 30px 0px;
+  border-bottom: 1px solid #F4F4F4;
+  align-items: center;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  @media (max-width: 426px) {
+    justify-content: space-between;
+    margin: 0px 0px 15px 0px;
+    padding: 0px 0px 15px 0px;
+
+    &:last-child {
+      margin: 0px 0px 0px 0px;
+      padding: 0px 0px 0px 0px;
+    }
+  }
+}
+
+.img {
+  margin: 0px 15px 0px 0px;
+
+  img {
+    max-width: 80px;
+
+    @media (max-width: 426px) {
+      max-width: 70px;
+    }
+  }
+
+  @media (max-width: 426px) {
+    flex: 0 1 30%;
+    margin: 0px 0px 15px 0px;
+  }
+}
+
+.text {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  @media (max-width: 426px) {
+    flex: 0 1 70%;
+  }
+}
+
+.itemTitle {
+  color: #000;
+  margin: 0px 0px 4px 0px;
+  font-size: calc(14px + 8 * (100vw / 1440));
+  font-weight: 700;
+  letter-spacing: 0.22px;
+
+  @media (max-width: 769px) {
+    font-size: calc(14px + 8 * ((100vw - 320px) / 1440));
+  }
+}
+
+.itemSubtitle {
+  color: #8D8D8D;
+  font-size: calc(14px + 4 * (100vw / 1440));
+  letter-spacing: 0.18px;
+
+  @media (max-width: 769px) {
+    font-size: calc(12px + 4 * ((100vw - 320px) / 1440));
+  }
+}
+
+.numberOfPizzas {
+  display: flex;
+  margin: 0px 73px 0px 0px;
+  align-items: center;
+  justify-content: center;
+
+  span {
+    display: inline-block;
+    color: #000;
+    margin: 0px 12px 0px 0px;
+    font-size: calc(15px + 7 * (100vw / 1440));
+    font-weight: 700;
+    letter-spacing: 0.22px;
+
+    @media (max-width: 769px) {
+      font-size: calc(15px + 7 * (100vw / 1440));
+    }
+  }
+
+  @media (max-width: 426px) {
+    flex: 0 1 calc(1/3*100%);
+    margin: 0px 0px 0px 0px;
+  }
+}
+
+.minus,
+.plus {
+  position: relative;
+  display: flex;
+  color: #EB5A1E;
+  border: 2px solid #EB5A1E;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+
+  font-size: 22px;
+  font-weight: 700;
+  transition: 0.2s;
+
+  &:active {
+    background-color: #EB5A1E;
+
+    &::before,
+    &::after {
+      background-color: #FFF;
+    }
+  }
+
+  @media (max-width: 500px) {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.minus {
+  margin: 0px 12px 0px 0px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: #EB5A1E;
+    width: 10px;
+    height: 2px;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+  }
+}
+
+.plus {
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: #EB5A1E;
+    width: 10px;
+    height: 2px;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+  }
+
+  &::after {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+}
+
+.price {
+  color: #000;
+  margin: 0px 73px 0px 0px;
+  font-size: calc(15px + 7 * (100vw / 1440));
+  font-weight: 700;
+  letter-spacing: 0.22px;
+  white-space: nowrap;
+
+  @media (max-width: 769px) {
+    font-size: calc(15px + 7 * (100vw / 1440));
+  }
+
+  @media (max-width: 426px) {
+    flex: 0 1 calc(1/3*100%);
+    margin: 0px 0px 0px 0px;
+    text-align: center;
+  }
+}
+
+.close {
+  position: relative;
+  border: 2px solid #D0D0D0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  transition: 0.3s ease;
+  cursor: pointer;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 2px;
+    background-color: #D0D0D0;
+    transform: translate(-50%, -50%);
+    transition: 0.3s ease;
+    border-radius: 5px;
+
+  }
+
+  &::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  &::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+
+  &:hover {
+    background-color: #D0D0D0;
+
+    &::before,
+    &::after {
+      background-color: #FFF;
+    }
+  }
+
+  @media (max-width: 500px) {
+    width: 24px;
+    height: 24px;
+  }
+}
+

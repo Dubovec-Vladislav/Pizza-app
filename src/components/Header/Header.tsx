@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import style from './Header.module.scss'
-import { Link } from 'react-router-dom'
+import { Link, Route, Routes } from 'react-router-dom'
 import Search from '../UI/Search/Search'
 import { useAppSelector } from '../../assets/ts/hooks'
 import { selectBasketTotalNumberOfPizzas, selectBasketTotalPriceOfPizzas } from '../../assets/redux/slices/basketSlice'
@@ -20,7 +20,10 @@ const Header: FC = () => {
         </div>
 
         <div className={style.searchOnBigDisplay}>
-          <Search />
+          <Routes>
+            <Route path='/' element={<Search />} />
+            <Route path='/basket' element={<></>} />
+          </Routes>
         </div>
 
         <div className={style.counter}>
@@ -31,7 +34,10 @@ const Header: FC = () => {
         </div>
 
         <div className={style.searchOnSmallDisplay}>
-          <Search />
+          <Routes>
+            <Route path='/' element={<Search />} />
+            <Route path='/basket' element={<></>} />
+          </Routes>
         </div>
       </div>
     </header>

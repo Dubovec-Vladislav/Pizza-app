@@ -1,20 +1,28 @@
 .title {
   color: #000;
   margin: 0px 0px 10px 0px;
-  font-size: 32px;
+  font-size: calc(22px + 10 * (100vw / 1440));
   font-weight: 700;
   line-height: 120%;
   letter-spacing: 0.32px;
   text-align: center;
+
+  @media (max-width: 769px) {
+    font-size: calc(22px + 20 * ((100vw - 320px) / 1440));
+  }
 }
 
 .subTitle {
   color: #777;
   margin: 0px 0px 47px 0px;
-  font-size: 18px;
+  font-size: calc(14px + 4 * (100vw / 1440));
   line-height: 145.4%;
   letter-spacing: 0.18px;
   text-align: center;
+  
+  @media (max-width: 769px) {
+    font-size: calc(14px + 4 * ((100vw - 320px) / 1440));
+  }
 }
 
 .img {
