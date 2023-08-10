@@ -4,12 +4,13 @@
   display: flex;
   margin: 0px -28px;
   flex-wrap: wrap;
-
-  @media screen {
-    
-  }
 }
 
 .title {
   margin: 0px 0px 35px 0px;
+}
+
+.error {
+  padding: 0px 28px;
+  font-size: 16px;
 }

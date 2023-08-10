@@ -6,11 +6,11 @@ import { SearchContext } from '../../App'
 import { useAppSelector } from '../../assets/ts/hooks'
 import { selectActiveCategoryID, selectCategoryItems, setActiveCategory } from '../../assets/redux/slices/categorySlice'
 import { selectActiveSortType, selectSortTypesProperty, setActiveSortType } from '../../assets/redux/slices/sortSlice'
-import { setPizzas, setIsLoading } from '../../assets/redux/slices/pizzasSlice'
+import { fetchPizzas } from '../../assets/redux/slices/pizzasSlice'
 import { useDispatch } from 'react-redux'
-import axios from 'axios'
 import qs from 'qs'
 import { useNavigate } from 'react-router-dom'
+import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit'
 
 const Main: FC = () => {
 
@@ -23,7 +23,8 @@ const Main: FC = () => {
   const activeSortType = useAppSelector(selectActiveSortType);
 
   // --------------- General --------------- //
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<ThunkDispatch<any, any, AnyAction>>();
+  // const dispatch = useDispatch();
   const navigate = useNavigate()
   const { searchValue } = useContext(SearchContext)!;
   const isSearch = useRef(false);
@@ -41,39 +42,28 @@ const Main: FC = () => {
   useEffect(() => {
     if (window.location.search) {
       const params = qs.parse(window.location.search.substring(1));
-      
+
       // Category
       dispatch(setActiveCategory(categoryItems[Number(params.categoryId)]));
       // Filters
       const sortType = sortTypesProperty.find(sortType => sortType.sortProperty === params.sortBy && sortType.order === params.order);
       dispatch(setActiveSortType(sortType!.name));
-      
-      isSearch.current = true;
+
+      isSearch.current = true; // Отмечаем что идет обновление Redux из URL
     }
   }, [categoryItems, sortTypesProperty, dispatch]);
 
 
   // -------------- Data Request --------------- //
-  const END_POINT_URL = 'https://64ca3494b2980cec85c315c6.mockapi.io/items';
 
   useEffect(() => {
-    const fetchPizzas = async () => {
-      try {
-        dispatch(setIsLoading(true));
-        const response = await axios.get(`${END_POINT_URL}?category=${category}&sortBy=${sortBy}&order=${order}`);
-        // const response = await axios.get(`${END_POINT_URL}?category=${category}&sortBy=${sortBy}&order=${order}&search=${search}`);
-        dispatch(setPizzas(response.data));
-      } catch (error) {
-        console.error(error);
-      } finally {
-        dispatch(setIsLoading(false));
-      };
-
+    const getPizzas = async () => {
+      dispatch(fetchPizzas({ category, sortBy, order }));
       window.scrollTo(0, 0);
     };
 
-    if (!isSearch.current) fetchPizzas(); // Если обновление данных в Redux из URL не идет, то делаем запрос пицц
-    isSearch.current = false;
+    if (!isSearch.current) getPizzas(); // Если обновление данных в Redux из URL закончилось, то делаем запрос пицц
+    isSearch.current = false; // Отметили что обновление Redux из URL закончилось
   }, [category, sortBy, order, dispatch]);
 
 
