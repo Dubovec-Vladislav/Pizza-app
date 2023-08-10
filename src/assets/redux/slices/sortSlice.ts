@@ -19,8 +19,8 @@ const initialState: SortState = {
   sortTypesProperty: [
     { name: 'возрастанию популярности', sortProperty: 'rating', order: 'asc' },
     { name: 'убыванию популярности', sortProperty: 'rating', order: 'desc' },
-    { name: 'дешевые', sortProperty: 'price', order: 'asc' },
-    { name: 'дорогие', sortProperty: 'price', order: 'desc' },
+    { name: 'дешевые', sortProperty: 'prices', order: 'asc' },
+    { name: 'дорогие', sortProperty: 'prices', order: 'desc' },
     { name: 'алфавиту', sortProperty: 'title', order: 'desc' }
   ],
   activeSortType: 'возрастанию популярности',
