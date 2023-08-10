@@ -3,6 +3,7 @@ import categorySlice from './slices/categorySlice'
 import sortSlice from './slices/sortSlice'
 import pizzasSlice from './slices/pizzasSlice'
 import basketSlice from './slices/basketSlice'
+import searchSlice from './slices/searchSlice'
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     sort: sortSlice,
     pizzas: pizzasSlice,
     basket: basketSlice,
+    search: searchSlice,
   },
 })
 

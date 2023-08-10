@@ -1,15 +1,15 @@
-import React, { FC, useContext } from 'react'
+import React, { FC } from 'react'
 import style from './PizzaField.module.scss'
 import BlockTitle from '../../UI/BlockTitle/BlockTitle'
 // import pizzasData from '../../../assets/PizzasData/pizzas.json'
 import PizzaItem from './PizzaItem'
 import Skeleton from '../../UI/Skeleton/Skeleton'
-import { SearchContext } from '../../../App'
 import { useAppSelector } from '../../../assets/ts/hooks'
 import { selectPizzas, selectStatus } from '../../../assets/redux/slices/pizzasSlice'
+import { selectSearchValue } from '../../../assets/redux/slices/searchSlice'
 
 const PizzaField: FC = (props) => {
-  const { searchValue } = useContext(SearchContext)!;
+  const searchValue = useAppSelector(selectSearchValue);
 
   const pizzas = useAppSelector(selectPizzas);
   const status = useAppSelector(selectStatus);

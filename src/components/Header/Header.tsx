@@ -15,7 +15,7 @@ const Header: FC = () => {
         <Link to='/' className={style.logo}><img src="/img/Header/logo.svg" alt="logo" /></Link>
 
         <div className={style.text}>
-          <div className={style.title}>REACT PIZZA</div>
+          <div className={style.title}>PIZZA SITE</div>
           <div className={style.subTitle}>самая вкусная пицца во вселенной</div>
         </div>
 
