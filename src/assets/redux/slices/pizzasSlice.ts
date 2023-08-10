@@ -11,6 +11,7 @@ interface FetchPizzasParams {
 
 export const fetchPizzas = createAsyncThunk(
   'pizzas/fetchPizzas',
+  // thunkAPI для дополнительного функционала (сделать доп dispatch, получить какой-то state и так далее)
   async ({ category, sortBy, order }: FetchPizzasParams) => {
     const END_POINT_URL = 'https://64ca3494b2980cec85c315c6.mockapi.io/items';
     const response = await axios.get(`${END_POINT_URL}?category=${category}&sortBy=${sortBy}&order=${order}`);
@@ -34,7 +35,7 @@ interface PizzasState {
 
 const initialState: PizzasState = {
   pizzas: [],
-  status: 'loading', // loading, success, error
+  status: 'loading' || 'success' || 'error',
 };
 
 export const pizzasSlice = createSlice({
