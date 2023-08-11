@@ -1,14 +1,13 @@
 import React, { FC } from 'react'
 import style from './Basket.module.scss'
 import { Link } from 'react-router-dom'
-import { useAppSelector } from '../../assets/ts/hooks'
+import { useAppDispatch, useAppSelector } from '../../assets/ts/hooks'
 import { clearPizzas, selectBasketPizzas, selectBasketTotalNumberOfPizzas, selectBasketTotalPriceOfPizzas } from '../../assets/redux/slices/basketSlice'
 import EmptyBasket from './EmptyBasket/EmptyBasket'
-import { useDispatch } from 'react-redux'
 import BasketItem from './BasketItem'
 
 const Basket: FC = (props) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const pizzas = useAppSelector(selectBasketPizzas);
   const totalNumberOfPizzas = useAppSelector(selectBasketTotalNumberOfPizzas);
   const totalPriceOfPizzas = useAppSelector(selectBasketTotalPriceOfPizzas);

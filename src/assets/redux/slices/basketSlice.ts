@@ -3,7 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from '../store'
 
 interface Pizza {
-  id: number;
+  id: string;
   imageUrl: string;
   name: string;
   type: string;
@@ -42,7 +42,7 @@ export const basketSlice = createSlice({
     },
 
     // Update
-    changeNumberOfPizzas: (state, action: PayloadAction<{ id: number, price: number, action: string }>) => {
+    changeNumberOfPizzas: (state, action: PayloadAction<{ id: string, price: number, action: string }>) => {
       const pizzaIndex = state.pizzas.findIndex(
         pizza => pizza.id === action.payload.id && pizza.price === action.payload.price
       );
@@ -60,7 +60,7 @@ export const basketSlice = createSlice({
     },
 
     // Delete
-    removePizza: (state, action: PayloadAction<{ id: number, price: number }>) => {
+    removePizza: (state, action: PayloadAction<{ id: string, price: number }>) => {
       const pizzaIndex = state.pizzas.findIndex(
         pizza => pizza.id === action.payload.id && pizza.price === action.payload.price
       );

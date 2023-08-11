@@ -1,10 +1,10 @@
 import React, { FC } from 'react'
 import style from './BasketItem.module.scss'
-import { useDispatch } from 'react-redux';
 import { changeNumberOfPizzas, removePizza } from '../../assets/redux/slices/basketSlice'
+import { useAppDispatch } from '../../assets/ts/hooks'
 
 interface IBasketItemProps {
-  id: number,
+  id: string,
   imageUrl: string,
   name: string,
   type: string,
@@ -14,7 +14,7 @@ interface IBasketItemProps {
 }
 
 const BasketItem: FC<IBasketItemProps> = ({ id, imageUrl, name, type, size, price, numOfPizzas }) => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   return (
     <div className={style.basketItem}>

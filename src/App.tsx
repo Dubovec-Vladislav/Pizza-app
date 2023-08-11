@@ -5,6 +5,7 @@ import Main from './components/Main/Main'
 import { Route, Routes } from 'react-router-dom'
 import Basket from './components/Basket/Basket'
 import NotFoundPage from './components/UI/NotFoundPage/NotFoundPage'
+import FullPizza from './components/FullPizza/FullPizza'
 
 // export const SearchContext = createContext<{
 //   searchValue: string;
@@ -20,6 +21,7 @@ const App: FC = () => {
       <Routes>
         <Route path='/' element={<Main />} />
         <Route path='/basket' element={<Basket />} />
+        <Route path='/pizza/:id' element={<FullPizza />} />
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
     </div>

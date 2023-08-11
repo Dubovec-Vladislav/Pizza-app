@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useMemo } from 'react'
 import style from './PizzaField.module.scss'
 import BlockTitle from '../../UI/BlockTitle/BlockTitle'
 // import pizzasData from '../../../assets/PizzasData/pizzas.json'

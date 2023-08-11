@@ -3,11 +3,11 @@ import style from './PizzaItem.module.scss'
 import TypesItem from "./PizzaItemComponents/TypesItem"
 import SizesItem from "./PizzaItemComponents/SizesItem"
 import { addPizza, selectBasketPizzas } from "../../../assets/redux/slices/basketSlice"
-import { useDispatch } from "react-redux"
-import { useAppSelector } from "../../../assets/ts/hooks"
+import { useAppDispatch, useAppSelector } from "../../../assets/ts/hooks"
+import { Link } from "react-router-dom"
 
 interface PizzaItemProps {
-  id: number,
+  id: string,
   imageUrl: string,
   name: string,
   types: number[],
@@ -18,7 +18,7 @@ interface PizzaItemProps {
 const PizzaItem: FC<PizzaItemProps> = ({ id, imageUrl, name, types, sizes, prices }) => {
   const doughTypeList = ['тонкое', 'традиционное'];
   const pizzas = useAppSelector(selectBasketPizzas);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   // Активным будет самый первый тип теста в массиве
   const [activeDoughType, setActiveDoughType] = useState(doughTypeList[types[0]]);
@@ -46,10 +46,10 @@ const PizzaItem: FC<PizzaItemProps> = ({ id, imageUrl, name, types, sizes, price
     }
     dispatch(addPizza(pizza))
   }
-
   return (
     <div className={style.pizzaItem}>
       <div className={style.img}><img src={imageUrl} alt={name} /></div>
+      {/* <Link to={`/pizza/${id}`}><div className={style.img}><img src={imageUrl} alt={name} /></div></Link> */}
       <div className={style.name}>{name}</div>
       <div className={style.settings}>
         <ul className={style.dough}>

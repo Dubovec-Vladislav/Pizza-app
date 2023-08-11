@@ -2,13 +2,11 @@
 import React, { FC, useEffect, useRef } from 'react'
 import style from './Main.module.scss'
 import qs from 'qs'
-import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit'
 // Components
 import FilterMenu from './FilterMenu/FilterMenu'
 import PizzaField from './PizzaField/PizzaField'
 // Hooks
-import { useAppSelector } from '../../assets/ts/hooks'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch, useAppSelector } from '../../assets/ts/hooks'
 import { useNavigate } from 'react-router-dom'
 // Selectors and reducers
 import { selectActiveCategory, selectCategoryIdByName, selectCategoryItems, setActiveCategory } from '../../assets/redux/slices/categorySlice'
@@ -29,14 +27,14 @@ const Main: FC = () => {
   const activeSortType = useAppSelector(selectActiveSortType);
 
   // ------------------ General ------------------ //
-  const dispatch = useDispatch<ThunkDispatch<any, any, AnyAction>>();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate()
   const isSearch = useRef(false);
   const isSMounted = useRef(false);
 
   // ------------------- Params ------------------ //
   const category = categoryId > 0 ? categoryId : '';
-  const propertyOfActiveSortType = sortTypesProperty.find(sortType => sortType.name === activeSortType); // Find by id
+  const propertyOfActiveSortType = sortTypesProperty.find(sortType => sortType.name === activeSortType); // Find by name
   const sortBy = propertyOfActiveSortType?.sortProperty;
   const order = propertyOfActiveSortType?.order;
   const search = useAppSelector(selectSearchValue);
