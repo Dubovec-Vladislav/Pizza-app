@@ -4,7 +4,7 @@ import TypesItem from "./PizzaItemComponents/TypesItem"
 import SizesItem from "./PizzaItemComponents/SizesItem"
 import { addPizza, selectBasketPizzas } from "../../../assets/redux/slices/basketSlice"
 import { useAppDispatch, useAppSelector } from "../../../assets/ts/hooks"
-import { Link } from "react-router-dom"
+// import { Link } from "react-router-dom"
 
 interface PizzaItemProps {
   id: string,

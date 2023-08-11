@@ -7,12 +7,11 @@ import { useParams } from 'react-router-dom';
 
 const FullPizza: FC = () => {
   const dispatch = useAppDispatch();
-  let params = useParams();
-  const id = params.id;
+  const params = useParams();
 
   useEffect(() => {
-    dispatch(fetchPizza(id!));
-  }, [id, dispatch])
+    dispatch(fetchPizza(params.id!));
+  }, [params.id, dispatch])
 
   const pizza = useAppSelector(selectPizza);
   console.log(pizza);

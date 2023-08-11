@@ -9,11 +9,12 @@ interface FetchPizzasParams {
   order?: string;
 }
 
+const END_POINT_URL = 'https://64ca3494b2980cec85c315c6.mockapi.io/items';
+
 export const fetchPizzas = createAsyncThunk(
   'pizzas/fetchPizzas',
   // thunkAPI для дополнительного функционала (сделать доп dispatch, получить какой-то state и так далее)
   async ({ category, sortBy, order }: FetchPizzasParams) => {
-    const END_POINT_URL = 'https://64ca3494b2980cec85c315c6.mockapi.io/items';
     const response = await axios.get(`${END_POINT_URL}?category=${category}&sortBy=${sortBy}&order=${order}`);
     return response.data
   }
@@ -22,7 +23,6 @@ export const fetchPizzas = createAsyncThunk(
 export const fetchPizza = createAsyncThunk(
   'pizzas/fetchPizza',
   async (id: string) => {
-    const END_POINT_URL = 'https://64ca3494b2980cec85c315c6.mockapi.io/items';
     const response = await axios.get(`${END_POINT_URL}/${id}`);
     return response.data
   }
