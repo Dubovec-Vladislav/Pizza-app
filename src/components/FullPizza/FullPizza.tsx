@@ -15,7 +15,7 @@ const FullPizza: FC = () => {
   }, [params.id, dispatch])
 
   const pizza = useAppSelector(selectPizza);
-  // console.log(pizza);
+  console.log(pizza);
 
   if (!pizza) {
     return <div>Загрузка</div>
@@ -24,21 +24,7 @@ const FullPizza: FC = () => {
   return (
     <section className={style.block}>
       <div className={style.body}>
-        {/* {pizza.name}
-        <div className={style.img}><img src={pizza.imageUrl} alt="" /></div>
-        <div>Types</div>
-        <ul>
-          {
-            pizza.types?.map((type, index) => <li key={index}>{type}</li>)
-          }
-        </ul>
-        <div>Sizes</div>
-        <ul>
-          {
-            pizza.sizes?.map((size, index) => <li key={index}>{size}</li>)
-          }
-        </ul> */}
-        {pizza ?
+        {pizza.id ?
           <PizzaItem
             key={pizza.id}
             id={pizza.id || ''}
@@ -48,7 +34,7 @@ const FullPizza: FC = () => {
             sizes={pizza.sizes || []}
             prices={pizza.prices || []}
           />
-          : <>no</>
+          : <div>Упс... видимо такой пиццы нет</div>
         }
       </div>
     </section>
