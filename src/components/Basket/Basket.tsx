@@ -24,8 +24,8 @@ const Basket: FC = (props) => {
             </div>
             <div className={style.content}>
               {
-                pizzas.map(pizza => (
-                  <BasketItem key={pizza.id}
+                pizzas.map((pizza, index) => (
+                  <BasketItem key={index}
                     id={pizza.id}
                     imageUrl={pizza.imageUrl}
                     name={pizza.name}

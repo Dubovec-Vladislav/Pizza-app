@@ -36,7 +36,7 @@ export const basketSlice = createSlice({
         pizza => pizza.id === action.payload.id && pizza.price === action.payload.price
       );
       if (existingPizzaIndex !== -1) state.pizzas[existingPizzaIndex].numberOfPizzas += 1;
-      else state.pizzas.push({ ...action.payload });
+      else state.pizzas = ([ ...state.pizzas, action.payload ]);
       state.totalNumberOfPizzas += 1;
       state.totalPriceOfPizzas += action.payload.price;
     },
