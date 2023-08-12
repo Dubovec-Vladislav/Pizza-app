@@ -143,6 +143,22 @@
   }
 }
 
+.disableMinus {
+  border: 2px solid #D0D0D0;
+
+  &::before {
+    background-color: #D0D0D0;
+  }
+
+  &:active {
+    background-color: #FFF;
+
+    &::before {
+      background-color: #D0D0D0;
+    }
+  }
+}
+
 .plus {
 
   &::before,
@@ -184,7 +200,7 @@
   }
 }
 
-.close {
+.delete {
   position: relative;
   border: 2px solid #D0D0D0;
   width: 32px;

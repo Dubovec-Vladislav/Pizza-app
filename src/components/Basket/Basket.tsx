@@ -32,7 +32,7 @@ const Basket: FC = (props) => {
                     type={pizza.type}
                     size={pizza.size}
                     price={pizza.price}
-                    numOfPizzas={pizza.numberOfPizzas}
+                    numberOfPizzas={pizza.numberOfPizzas}
                   />
                 ))
               }

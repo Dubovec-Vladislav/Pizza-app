@@ -10,10 +10,10 @@ interface IBasketItemProps {
   type: string,
   size: number,
   price: number,
-  numOfPizzas: number,
+  numberOfPizzas: number,
 }
 
-const BasketItem: FC<IBasketItemProps> = ({ id, imageUrl, name, type, size, price, numOfPizzas }) => {
+const BasketItem: FC<IBasketItemProps> = ({ id, imageUrl, name, type, size, price, numberOfPizzas }) => {
   const dispatch = useAppDispatch()
 
   return (
@@ -24,17 +24,21 @@ const BasketItem: FC<IBasketItemProps> = ({ id, imageUrl, name, type, size, pric
         <div className={style.itemSubtitle}>{`${type} тесто, ${size} см.`}</div>
       </div>
       <div className={style.numberOfPizzas}>
-        <div className={style.minus}
-          onClick={() => dispatch(changeNumberOfPizzas({ id: id, price: price, action: '-' }))}
-        ></div>
-        <span>{numOfPizzas}</span>
+        {
+          numberOfPizzas > 1
+            ? <div className={style.minus}
+              onClick={() => dispatch(changeNumberOfPizzas({ id: id, price: price, action: '-' }))}
+            ></div>
+            : <div className={`${style.minus} ${style.disableMinus}`}></div>
+        }
+        <span>{numberOfPizzas}</span>
         <div className={style.plus}
           onClick={() => dispatch(changeNumberOfPizzas({ id: id, price: price, action: '+' }))}
         ></div>
       </div>
       <div className={style.price}>{price} ₽</div>
-      <div className={style.close} onClick={() => dispatch(removePizza({ id: id, price: price }))}></div>
-    </div>
+      <div className={style.delete} onClick={() => dispatch(removePizza({ id: id, price: price }))}></div>
+    </div >
   );
 };
 
