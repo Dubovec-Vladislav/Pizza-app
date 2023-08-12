@@ -56,7 +56,7 @@ const Main: FC = () => {
       dispatch(setSearchValue(String(params.search)));
       // Отмечаем что идет обновление Redux из URL
       isSearch.current = true;
-    }
+    };
   }, [categoryItems, sortTypesProperty, dispatch]);
 
 
@@ -85,8 +85,8 @@ const Main: FC = () => {
       if (categoryId === 0 && sortBy === sortTypesProperty[0].sortProperty && order === sortTypesProperty[0].order && search === '') {
         navigate(''); // Если все параметры стоят в стандартном положение, то чистим  URL
       }
-      else navigate(`?${queryString}`)
-    }
+      else navigate(`?${queryString}`);
+    };
     isSMounted.current = true;
   }, [categoryId, sortBy, order, search, sortTypesProperty, navigate]);
 

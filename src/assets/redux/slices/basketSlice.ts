@@ -1,29 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from '../store'
-
-interface Pizza {
-  id: string;
-  imageUrl: string;
-  name: string;
-  type: string;
-  size: number;
-  price: number;
-  numberOfPizzas: number;
-};
+import { getBasketFromLocalStorage } from '../../utils/getBasketFromLocalStorage'
+import { Pizza } from '../../ts/interfacePizza'
 
 interface BasketState {
   pizzas: Pizza[],
-  totalNumberOfPizzas: number,
-  totalPriceOfPizzas: number,
+  totalPrice: number,
+  totalNumber: number,
 };
+
+const { pizzas, totalPrice, totalNumber } = getBasketFromLocalStorage();
 
 const initialState: BasketState = {
-  pizzas: [],
-  totalNumberOfPizzas: 0,
-  totalPriceOfPizzas: 0,
+  pizzas,
+  totalPrice,
+  totalNumber,
 };
-
 
 export const basketSlice = createSlice({
   name: 'basket',
@@ -36,9 +29,9 @@ export const basketSlice = createSlice({
         pizza => pizza.id === action.payload.id && pizza.price === action.payload.price
       );
       if (existingPizzaIndex !== -1) state.pizzas[existingPizzaIndex].numberOfPizzas += 1;
-      else state.pizzas = ([ ...state.pizzas, action.payload ]);
-      state.totalNumberOfPizzas += 1;
-      state.totalPriceOfPizzas += action.payload.price;
+      else state.pizzas = ([...state.pizzas, action.payload]);
+      state.totalNumber += 1;
+      state.totalPrice += action.payload.price;
     },
 
     // Update
@@ -48,13 +41,13 @@ export const basketSlice = createSlice({
       );
       if (action.payload.action === '+') {
         state.pizzas[pizzaIndex].numberOfPizzas += 1;
-        state.totalNumberOfPizzas += 1;
-        state.totalPriceOfPizzas += action.payload.price;
+        state.totalNumber += 1;
+        state.totalPrice += action.payload.price;
       }
       else if (action.payload.action === '-') {
         state.pizzas[pizzaIndex].numberOfPizzas -= 1;
-        state.totalNumberOfPizzas -= 1;
-        state.totalPriceOfPizzas -= action.payload.price;
+        state.totalNumber -= 1;
+        state.totalPrice -= action.payload.price;
         if (state.pizzas[pizzaIndex].numberOfPizzas === 0) state.pizzas.splice(pizzaIndex, 1);
       };
     },
@@ -66,14 +59,14 @@ export const basketSlice = createSlice({
       );
       const numberOfPizzas = state.pizzas[pizzaIndex].numberOfPizzas;
 
-      state.totalNumberOfPizzas -= numberOfPizzas;
-      state.totalPriceOfPizzas -= numberOfPizzas * action.payload.price;
+      state.totalNumber -= numberOfPizzas;
+      state.totalPrice -= numberOfPizzas * action.payload.price;
       state.pizzas.splice(pizzaIndex, 1);
     },
     clearPizzas: (state) => {
       state.pizzas = [];
-      state.totalNumberOfPizzas = 0;
-      state.totalPriceOfPizzas = 0;
+      state.totalNumber = 0;
+      state.totalPrice = 0;
     },
 
   },
@@ -83,7 +76,7 @@ export const { addPizza, changeNumberOfPizzas, removePizza, clearPizzas } = bask
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectBasketPizzas = (state: RootState) => state.basket.pizzas;
-export const selectBasketTotalNumberOfPizzas = (state: RootState) => state.basket.totalNumberOfPizzas;
-export const selectBasketTotalPriceOfPizzas = (state: RootState) => state.basket.totalPriceOfPizzas;
+export const selectBasketTotalNumber = (state: RootState) => state.basket.totalNumber;
+export const selectBasketTotalPrice = (state: RootState) => state.basket.totalPrice;
 
 export default basketSlice.reducer;

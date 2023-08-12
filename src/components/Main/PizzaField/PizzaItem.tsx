@@ -17,7 +17,7 @@ interface PizzaItemProps {
 
 const PizzaItem: FC<PizzaItemProps> = ({ id, imageUrl, name, types, sizes, prices }) => {
   const doughTypeList = ['тонкое', 'традиционное'];
-  const pizzas = useAppSelector(selectBasketPizzas);
+  const basketPizzas = useAppSelector(selectBasketPizzas);
   const dispatch = useAppDispatch();
 
   // Активным будет самый первый тип теста в массиве
@@ -30,9 +30,8 @@ const PizzaItem: FC<PizzaItemProps> = ({ id, imageUrl, name, types, sizes, price
 
   // Определяем количество пицц с данным характеристиками 
   let numOfPizzas = 0;
-  const pizzaIndex = pizzas.findIndex(pizza => pizza.id === id && pizza.price === price);
-  if (pizzaIndex !== -1) numOfPizzas = pizzas[pizzaIndex].numberOfPizzas;
-
+  const pizzaIndex = basketPizzas.findIndex(pizza => pizza.id === id && pizza.price === price);
+  if (pizzaIndex !== -1) numOfPizzas = basketPizzas[pizzaIndex].numberOfPizzas;
 
   const handleAddClick = () => {
     const pizza = {
@@ -46,6 +45,7 @@ const PizzaItem: FC<PizzaItemProps> = ({ id, imageUrl, name, types, sizes, price
     }
     dispatch(addPizza(pizza))
   }
+
   return (
     <div className={style.pizzaItem}>
       <div className={style.img}><img src={imageUrl} alt={name} /></div>

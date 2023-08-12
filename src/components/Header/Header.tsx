@@ -3,11 +3,21 @@ import style from './Header.module.scss'
 import { Link, Route, Routes } from 'react-router-dom'
 import Search from '../UI/Search/Search'
 import { useAppSelector } from '../../assets/ts/hooks'
-import { selectBasketTotalNumberOfPizzas, selectBasketTotalPriceOfPizzas } from '../../assets/redux/slices/basketSlice'
+import { selectBasketPizzas, selectBasketTotalNumber, selectBasketTotalPrice } from '../../assets/redux/slices/basketSlice'
 
 const Header: FC = (props) => {
-  const totalNumberOfPizzas = useAppSelector(selectBasketTotalNumberOfPizzas);
-  const totalPriceOfPizzas = useAppSelector(selectBasketTotalPriceOfPizzas);
+  const totalNumberOfPizzas = useAppSelector(selectBasketTotalNumber);
+  const totalPriceOfPizzas = useAppSelector(selectBasketTotalPrice);
+  const basketPizzas = useAppSelector(selectBasketPizzas);
+
+  const isMounted = React.useRef(false); // Проверяем первый ли это рендер компонента
+  React.useEffect(() => {
+    if (isMounted.current) {
+      const json = JSON.stringify(basketPizzas);
+      window.localStorage.setItem('basket', json);
+    }
+    isMounted.current = true;
+  }, [basketPizzas]);
 
   return (
     <header className={style.block}>

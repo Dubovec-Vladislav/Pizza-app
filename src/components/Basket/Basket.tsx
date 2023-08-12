@@ -2,20 +2,20 @@ import React, { FC } from 'react'
 import style from './Basket.module.scss'
 import { Link } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../assets/ts/hooks'
-import { clearPizzas, selectBasketPizzas, selectBasketTotalNumberOfPizzas, selectBasketTotalPriceOfPizzas } from '../../assets/redux/slices/basketSlice'
+import { clearPizzas, selectBasketPizzas, selectBasketTotalNumber, selectBasketTotalPrice } from '../../assets/redux/slices/basketSlice'
 import EmptyBasket from './EmptyBasket/EmptyBasket'
 import BasketItem from './BasketItem'
 
 const Basket: FC = (props) => {
   const dispatch = useAppDispatch();
-  const pizzas = useAppSelector(selectBasketPizzas);
-  const totalNumberOfPizzas = useAppSelector(selectBasketTotalNumberOfPizzas);
-  const totalPriceOfPizzas = useAppSelector(selectBasketTotalPriceOfPizzas);
+  const basketPizzas = useAppSelector(selectBasketPizzas);
+  const totalNumberOfPizzas = useAppSelector(selectBasketTotalNumber);
+  const totalPriceOfPizzas = useAppSelector(selectBasketTotalPrice);
 
   return (
     <section className={style.block}>
       <div className={style.body}>
-        {pizzas.length > 0
+        {basketPizzas.length > 0
           ?
           <>
             <div className={style.header}>
@@ -24,7 +24,7 @@ const Basket: FC = (props) => {
             </div>
             <div className={style.content}>
               {
-                pizzas.map((pizza, index) => (
+                basketPizzas.map((pizza, index) => (
                   <BasketItem key={index}
                     id={pizza.id}
                     imageUrl={pizza.imageUrl}
