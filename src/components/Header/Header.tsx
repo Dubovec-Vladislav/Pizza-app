@@ -5,7 +5,7 @@ import Search from '../UI/Search/Search'
 import { useAppSelector } from '../../assets/ts/hooks'
 import { selectBasketTotalNumberOfPizzas, selectBasketTotalPriceOfPizzas } from '../../assets/redux/slices/basketSlice'
 
-const Header: FC = () => {
+const Header: FC = (props) => {
   const totalNumberOfPizzas = useAppSelector(selectBasketTotalNumberOfPizzas);
   const totalPriceOfPizzas = useAppSelector(selectBasketTotalPriceOfPizzas);
 

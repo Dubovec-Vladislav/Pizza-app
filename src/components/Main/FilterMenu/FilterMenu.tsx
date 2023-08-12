@@ -5,7 +5,7 @@ import CategoryItem from './CategoryItem'
 import { useAppSelector } from '../../../assets/ts/hooks'
 import { selectActiveCategory, selectCategoryItems } from '../../../assets/redux/slices/categorySlice'
 
-const FilterMenu: FC = (props) => {
+const FilterMenu: FC = React.memo((props) => {
   const categoryItems = useAppSelector(selectCategoryItems);
   const activeCategory = useAppSelector(selectActiveCategory);
 
@@ -25,6 +25,6 @@ const FilterMenu: FC = (props) => {
       </div>
     </section>
   );
-};
+});
 
 export default FilterMenu;
