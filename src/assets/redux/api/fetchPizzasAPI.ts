@@ -15,9 +15,12 @@ export const pizzasApi = createApi({
     getPizzas: builder.query<PizzaFromApi[], PizzaQueryParams>({
       query: ({ category, sortBy, order }) => `/items?category=${category}&sortBy=${sortBy}&order=${order}`,
     }),
+    getPizza: builder.query<PizzaFromApi, string>({
+      query: (id) => `/items/${id}`,
+    }),
   }),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetPizzasQuery } = pizzasApi;
+export const { useGetPizzasQuery, useGetPizzaQuery } = pizzasApi;

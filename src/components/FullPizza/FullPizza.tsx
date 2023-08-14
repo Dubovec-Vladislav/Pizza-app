@@ -3,7 +3,7 @@ import style from './FullPizza.module.scss'
 import { useParams } from 'react-router-dom'
 import PizzaItem from '../Main/PizzaField/PizzaItem'
 import Skeleton from '../UI/Skeleton/Skeleton'
-import { useGetPizzaQuery } from '../../assets/redux/api/fetchOnePizzaAPI'
+import { useGetPizzaQuery } from '../../assets/redux/api/fetchPizzasAPI'
 
 
 const FullPizza: FC = () => {

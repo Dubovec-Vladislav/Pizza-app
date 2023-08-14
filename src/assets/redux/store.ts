@@ -5,7 +5,6 @@ import pizzasSlice from './slices/pizzasSlice'
 import basketSlice from './slices/basketSlice'
 import searchSlice from './slices/searchSlice'
 import { pizzasApi } from './api/fetchPizzasAPI'
-import { pizzaApi } from './api/fetchOnePizzaAPI'
 
 export const store = configureStore({
   reducer: {
@@ -15,10 +14,9 @@ export const store = configureStore({
     basket: basketSlice,
     search: searchSlice,
     [pizzasApi.reducerPath]: pizzasApi.reducer,
-    [pizzaApi.reducerPath]: pizzaApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(pizzasApi.middleware, pizzaApi.middleware), // All pizzas and one pizzas
+    getDefaultMiddleware().concat(pizzasApi.middleware),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
