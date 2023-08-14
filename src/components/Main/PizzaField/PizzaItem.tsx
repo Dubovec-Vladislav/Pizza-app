@@ -4,7 +4,7 @@ import TypesItem from "./PizzaItemComponents/TypesItem"
 import SizesItem from "./PizzaItemComponents/SizesItem"
 import { addPizza, selectBasketPizzas } from "../../../assets/redux/slices/basketSlice"
 import { useAppDispatch, useAppSelector } from "../../../assets/ts/hooks"
-// import { Link } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 interface PizzaItemProps {
   id: string,
@@ -49,7 +49,7 @@ const PizzaItem: FC<PizzaItemProps> = ({ id, imageUrl, name, types, sizes, price
   return (
     <div className={style.pizzaItem}>
       <div className={style.img}><img src={imageUrl} alt={name} /></div>
-      {/* <Link to={`/pizza/${id}`}><div className={style.img}><img src={imageUrl} alt={name} /></div></Link> */}
+      <Link to={`/pizza/${id}`}><div className={style.img}><img src={imageUrl} alt={name} /></div></Link>
       <div className={style.name}>{name}</div>
       <div className={style.settings}>
         <ul className={style.dough}>

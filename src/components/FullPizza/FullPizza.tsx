@@ -1,37 +1,29 @@
-import React, { FC, useEffect } from 'react'
+import React, { FC } from 'react'
 import style from './FullPizza.module.scss'
-import { selectPizza, selectStatus } from '../../assets/redux/slices/pizzasSlice'
-import { useAppDispatch, useAppSelector } from '../../assets/ts/hooks'
 import { useParams } from 'react-router-dom'
 import PizzaItem from '../Main/PizzaField/PizzaItem'
 import Skeleton from '../UI/Skeleton/Skeleton'
+import { useGetPizzaQuery } from '../../assets/redux/api/fetchOnePizzaAPI'
 
 
 const FullPizza: FC = () => {
-  const dispatch = useAppDispatch();
   const params = useParams<{ id: string }>();
-
-  // useEffect(() => {
-  //   dispatch(fetchPizza(params.id!));
-  // }, [params.id, dispatch])
-
-  const pizza = useAppSelector(selectPizza);
-  const status = useAppSelector(selectStatus);
+  const { data, isLoading } = useGetPizzaQuery(params.id!)
 
   return (
     <section className={style.block}>
       <div className={style.body}>
-        {status === 'loading'
+        {isLoading
           ? [...new Array(1)].map((_, index) => <Skeleton key={index} />)
-          : status === 'success'
+          : data
             ? <PizzaItem
-              key={pizza.id}
-              id={pizza.id || ''}
-              imageUrl={pizza.imageUrl || ''}
-              name={pizza.name || ''}
-              types={pizza.types || []}
-              sizes={pizza.sizes || []}
-              prices={pizza.prices || []}
+              key={data.id}
+              id={data.id}
+              imageUrl={data.imageUrl}
+              name={data.name}
+              types={data.types}
+              sizes={data.sizes}
+              prices={data.prices}
             />
             : <div>Упс... видимо такой пиццы нет</div>
         }

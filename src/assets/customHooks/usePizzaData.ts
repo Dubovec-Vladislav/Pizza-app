@@ -1,12 +1,10 @@
 import { useEffect } from "react"
-import { PizzaFromApi } from "../ts/interfacePizza"
 import { useDispatch } from "react-redux"
 import { setPizzas, updatingStatus } from "../redux/slices/pizzasSlice"
 import { useGetPizzasQuery } from "../redux/api/fetchPizzasAPI";
 
 export const usePizzaData = (category: number | string, sortBy: string, order: string) => {
   const dispatch = useDispatch();
-
   const { data, error, isLoading } = useGetPizzasQuery({ category, sortBy, order });
 
   useEffect(() => {
