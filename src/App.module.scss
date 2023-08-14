@@ -104,9 +104,13 @@ input[type='number'] {
 .wrapper {
   position: relative;
   background-color: #FFDF8C;
-  padding: 4dvh 3.5vw;
   min-height: 100dvh;
+  padding: calc(15px + 21 * (100vw / 1440));
   overflow: hidden;
+  
+  @media (max-width: 769px) {
+    padding: calc(15px + 21 * ((100vw - 320px) / 1440));
+  }
 }
 
 // --------------------------------------------- //
