@@ -1,6 +1,4 @@
-.body {
-  min-height: 70dvh;
-}
+.body {}
 
 .title {
   color: #000;
@@ -23,7 +21,7 @@
   line-height: 145.4%;
   letter-spacing: 0.18px;
   text-align: center;
-  
+
   @media (max-width: 769px) {
     font-size: calc(14px + 4 * ((100vw - 320px) / 1440));
   }
