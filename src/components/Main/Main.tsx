@@ -57,8 +57,8 @@ const Main: FC = () => {
   }, [categoryItems, sortTypesProperty, dispatch]);
 
 
-  // --------------- Data Request ---------------- //
-  usePizzaData(category, sortBy, order); // Custom hook
+  // // --------------- Data Request ---------------- //
+  // usePizzaData(category, sortBy, order); // Custom hook
 
 
   // ----------------- URL Path ------------------ //
@@ -84,7 +84,7 @@ const Main: FC = () => {
     <main className={style.block}>
       <div className={style.body}>
         <FilterMenu />
-        <PizzaField />
+        <PizzaField category={category} sortBy={sortBy} order={order}/>
       </div>
     </main>
   );

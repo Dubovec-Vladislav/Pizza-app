@@ -16,4 +16,6 @@ export const usePizzaData = (category: number | string, sortBy: string, order: s
 
     window.scrollTo(0, 0);
   }, [data, error, isLoading, dispatch]);
+
+  return { data, error, isLoading };
 };
