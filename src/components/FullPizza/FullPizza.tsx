@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react'
 import style from './FullPizza.module.scss'
-import { fetchPizza, selectPizza, selectStatus } from '../../assets/redux/slices/pizzasSlice'
+import { selectPizza, selectStatus } from '../../assets/redux/slices/pizzasSlice'
 import { useAppDispatch, useAppSelector } from '../../assets/ts/hooks'
 import { useParams } from 'react-router-dom'
 import PizzaItem from '../Main/PizzaField/PizzaItem'
@@ -11,9 +11,9 @@ const FullPizza: FC = () => {
   const dispatch = useAppDispatch();
   const params = useParams<{ id: string }>();
 
-  useEffect(() => {
-    dispatch(fetchPizza(params.id!));
-  }, [params.id, dispatch])
+  // useEffect(() => {
+  //   dispatch(fetchPizza(params.id!));
+  // }, [params.id, dispatch])
 
   const pizza = useAppSelector(selectPizza);
   const status = useAppSelector(selectStatus);

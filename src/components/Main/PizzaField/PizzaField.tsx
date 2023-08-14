@@ -13,6 +13,7 @@ const PizzaField: FC = React.memo((props) => {
 
   const pizzas = useAppSelector(selectPizzas);
   const status = useAppSelector(selectStatus);
+  console.log(status);
 
   return (
     <section className={style.block}>

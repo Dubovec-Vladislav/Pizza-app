@@ -13,7 +13,7 @@ import { selectActiveCategory, selectCategoryIdByName, selectCategoryItems, setA
 import { selectActiveSortType, selectSortTypesProperty, setActiveSortType } from '../../assets/redux/slices/sortSlice'
 import { selectSearchValue, setSearchValue } from '../../assets/redux/slices/searchSlice'
 // API
-import { fetchPizzas } from '../../assets/redux/slices/pizzasSlice'
+import { usePizzaData } from '../../assets/customHooks/usePizzaData'
 
 const Main: FC = () => {
 
@@ -29,14 +29,13 @@ const Main: FC = () => {
   // ------------------ General ------------------ //
   const dispatch = useAppDispatch();
   const navigate = useNavigate()
-  const isSearch = useRef(false);
   const isSMounted = useRef(false);
 
   // ------------------- Params ------------------ //
   const category = categoryId > 0 ? categoryId : '';
   const propertyOfActiveSortType = sortTypesProperty.find(sortType => sortType.name === activeSortType); // Find by name
-  const sortBy = propertyOfActiveSortType?.sortProperty;
-  const order = propertyOfActiveSortType?.order;
+  const sortBy = propertyOfActiveSortType!.sortProperty;
+  const order = propertyOfActiveSortType!.order;
   const search = useAppSelector(selectSearchValue);
 
 
@@ -54,22 +53,12 @@ const Main: FC = () => {
       dispatch(setActiveSortType(propertyOfActiveSortType!.name));
       // Search
       dispatch(setSearchValue(String(params.search)));
-      // Отмечаем что идет обновление Redux из URL
-      isSearch.current = true;
     };
   }, [categoryItems, sortTypesProperty, dispatch]);
 
 
   // --------------- Data Request ---------------- //
-  useEffect(() => {
-    const getPizzas = () => {
-      dispatch(fetchPizzas({ category, sortBy, order }));
-      window.scrollTo(0, 0);
-    };
-
-    if (!isSearch.current) getPizzas(); // Не делаем запрос пицц при первом рендере, так как идет обновление данных
-    isSearch.current = false; // Отметили что обновление данных в Redux из URL закончилось
-  }, [category, sortBy, order, search, dispatch]);
+  usePizzaData(category, sortBy, order); // Custom hook
 
 
   // ----------------- URL Path ------------------ //
