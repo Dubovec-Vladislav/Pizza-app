@@ -11,9 +11,17 @@ interface PizzaQueryParams {
 export const pizzasApi = createApi({
   reducerPath: 'pizzasApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://64ca3494b2980cec85c315c6.mockapi.io' }),
+  tagTypes: ['Pizzas'],
   endpoints: (builder) => ({
     getPizzas: builder.query<PizzaFromApi[], PizzaQueryParams>({
       query: ({ category, sortBy, order }) => `/items?category=${category}&sortBy=${sortBy}&order=${order}`,
+      providesTags: (result) => // Something
+        result
+          ? [
+            ...result.map(({ id }) => ({ type: 'Pizzas' as const, id })),
+            { type: 'Pizzas', id: 'LIST' },
+          ]
+          : [{ type: 'Pizzas', id: 'LIST' }],
     }),
     getPizza: builder.query<PizzaFromApi, string>({
       query: (id) => `/items/${id}`,
@@ -24,6 +32,7 @@ export const pizzasApi = createApi({
         method: 'POST',
         body,
       }),
+      invalidatesTags: [{ type: 'Pizzas', id: 'LIST' }],
     }),
   }),
 })
