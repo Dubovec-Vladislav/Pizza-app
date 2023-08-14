@@ -4,6 +4,7 @@ import TypesItem from "./PizzaItemComponents/TypesItem"
 import SizesItem from "./PizzaItemComponents/SizesItem"
 import { addPizza, selectBasketPizzas } from "../../../assets/redux/slices/basketSlice"
 import { useAppDispatch, useAppSelector } from "../../../assets/ts/hooks"
+// import { useAddPizzaMutation } from "../../../assets/redux/api/fetchPizzasAPI"
 // import { Link } from "react-router-dom"
 
 interface PizzaItemProps {
@@ -16,6 +17,8 @@ interface PizzaItemProps {
 }
 
 const PizzaItem: FC<PizzaItemProps> = ({ id, imageUrl, name, types, sizes, prices }) => {
+  // const [add] = useAddPizzaMutation();
+
   const doughTypeList = ['тонкое', 'традиционное'];
   const basketPizzas = useAppSelector(selectBasketPizzas);
   const dispatch = useAppDispatch();

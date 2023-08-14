@@ -18,9 +18,16 @@ export const pizzasApi = createApi({
     getPizza: builder.query<PizzaFromApi, string>({
       query: (id) => `/items/${id}`,
     }),
+    addPizza: builder.mutation({
+      query: (body) => ({
+        url: 'items',
+        method: 'POST',
+        body,
+      }),
+    }),
   }),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetPizzasQuery, useGetPizzaQuery } = pizzasApi;
+export const { useGetPizzasQuery, useGetPizzaQuery, useAddPizzaMutation } = pizzasApi;
