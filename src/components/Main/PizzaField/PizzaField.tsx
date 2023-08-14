@@ -16,9 +16,7 @@ interface PizzaFieldProps {
 
 const PizzaField: FC<PizzaFieldProps> = React.memo(({ category, sortBy, order }) => {
   const searchValue = useAppSelector(selectSearchValue);
-
   const { data, isLoading } = usePizzaData(category, sortBy, order); // Custom hook
-  console.log(data, isLoading);
 
   return (
     <section className={style.block}>

@@ -13,7 +13,7 @@ import { selectActiveCategory, selectCategoryIdByName, selectCategoryItems, setA
 import { selectActiveSortType, selectSortTypesProperty, setActiveSortType } from '../../assets/redux/slices/sortSlice'
 import { selectSearchValue, setSearchValue } from '../../assets/redux/slices/searchSlice'
 // API
-import { usePizzaData } from '../../assets/customHooks/usePizzaData'
+// import { usePizzaData } from '../../assets/customHooks/usePizzaData'
 
 const Main: FC = () => {
 
@@ -29,7 +29,7 @@ const Main: FC = () => {
   // ------------------ General ------------------ //
   const dispatch = useAppDispatch();
   const navigate = useNavigate()
-  const isSMounted = useRef(false);
+  const isMounted = useRef(false);
 
   // ------------------- Params ------------------ //
   const category = categoryId > 0 ? categoryId : '';
@@ -63,7 +63,7 @@ const Main: FC = () => {
 
   // ----------------- URL Path ------------------ //
   useEffect(() => {
-    if (isSMounted.current) {
+    if (isMounted.current) {
       const queryString = qs.stringify({
         categoryId,
         sortBy,
@@ -76,7 +76,7 @@ const Main: FC = () => {
       }
       else navigate(`?${queryString}`);
     };
-    isSMounted.current = true;
+    isMounted.current = true;
   }, [categoryId, sortBy, order, search, sortTypesProperty, navigate]);
 
 
@@ -84,7 +84,7 @@ const Main: FC = () => {
     <main className={style.block}>
       <div className={style.body}>
         <FilterMenu />
-        <PizzaField category={category} sortBy={sortBy} order={order}/>
+        <PizzaField category={category} sortBy={sortBy} order={order} />
       </div>
     </main>
   );

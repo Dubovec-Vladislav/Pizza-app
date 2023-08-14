@@ -18,8 +18,8 @@ export const store = configureStore({
     [pizzaApi.reducerPath]: pizzaApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(pizzasApi.middleware, pizzaApi.middleware),
-})
+    getDefaultMiddleware().concat(pizzasApi.middleware, pizzaApi.middleware), // All pizzas and one pizzas
+});
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>
