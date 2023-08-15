@@ -1,11 +1,8 @@
-.block {
-  background-color: #FFF;
-  border-radius: 10px 10px 0px 0px;
-}
+.block {}
 
 .body {
   display: flex;
-  padding: 3.47vw 4.65vw;
+  padding: 3.5vw 0vw;
   align-items: center;
   justify-content: center;
 
@@ -14,7 +11,7 @@
   }
 
   @media (max-width: 376px) {
-    padding: 20px 20px 15px 20px;
+    padding: 20px 0px 15px 0px;
   }
 }
 
@@ -96,7 +93,7 @@
     transition: 0.2s ease;
 
     @media (max-width: 500px) {
-      padding: 10px 12px 10px 7px;
+      padding: 10px 15px 10px 7px;
     }
   }
 
@@ -136,7 +133,7 @@
 
   @media (max-width: 426px) {
     display: block;
-    margin: 10px 0px 0px 0px;
+    margin: 15px 0px 0px 0px;
     width: 100%;
   }
 }

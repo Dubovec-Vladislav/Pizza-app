@@ -101,16 +101,27 @@ input[type='number'] {
 //               # General styles                //
 // --------------------------------------------- //
 
-.wrapper {
-  position: relative;
+.body {
   background-color: #FFDF8C;
-  min-height: 100dvh;
   padding: calc(15px + 21 * (100vw / 1440));
-  overflow: hidden;
-  
+
   @media (max-width: 769px) {
     padding: calc(15px + 21 * ((100vw - 320px) / 1440));
   }
+}
+
+.wrapper {
+  position: relative;
+  background-color: #FFF;
+  min-height: 100dvh;
+  padding: 0px calc(20px + 45 * (100vw / 1440));
+
+  @media (max-width: 769px) {
+    padding: 0px calc(20px + 45 * ((100vw - 320px) / 1440));
+  }
+
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 // --------------------------------------------- //

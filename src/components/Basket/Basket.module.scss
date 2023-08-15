@@ -1,14 +1,13 @@
 .block {
   background-color: #FFF;
   min-height: 80dvh;
-  border-radius: 0px 0px 10px 10px;
 }
 
 .body {
-  padding: 6.53vw 18.49vw;
+  padding: 6.5vw 16vw;
 
   @media (max-width: 769px) {
-    padding: 25px 20px;
+    padding: 25px 0px;
   }
 }
 
@@ -42,6 +41,10 @@
   @media (max-width: 426px) {
     font-size: 22px;
   }
+
+  @media (max-width: 321px) {
+    font-size: 18px;
+  }
 }
 
 .clearBasket {
@@ -63,6 +66,10 @@
     img {
       animation: basket 1.5s ease;
     }
+  }
+
+  @media (max-width: 426px) {
+    font-size: 14px;
   }
 
   @keyframes basket {
