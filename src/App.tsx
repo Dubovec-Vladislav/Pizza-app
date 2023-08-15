@@ -13,9 +13,9 @@ import Main from './components/Main/Main'
 //   setSearchValue: (searchValue: string) => void;
 // } | undefined>(undefined);
 
-const Basket = React.lazy(() => import('./components/Basket/Basket'));
-const FullPizza = React.lazy(() => import('./components/FullPizza/FullPizza'));
-const NotFoundPage = React.lazy(() => import('./components/UI/NotFoundPage/NotFoundPage'));
+const Basket = React.lazy(() => import(/* webpackChunkName: "Basket" */ './components/Basket/Basket'));
+const FullPizza = React.lazy(() => import(/* webpackChunkName: "FullPizza" */  './components/FullPizza/FullPizza'));
+const NotFoundPage = React.lazy(() => import(/* webpackChunkName: "NotFoundPage" */  './components/UI/NotFoundPage/NotFoundPage'));
 
 const App: FC = () => {
   // const [searchValue, setSearchValue] = useState('');
