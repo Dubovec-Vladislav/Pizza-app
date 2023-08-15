@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useRef, useState } from 'react'
 import style from './SortMenu.module.scss'
-import { useAppDispatch, useAppSelector } from '../../../assets/ts/hooks'
-import { selectActiveSortType, selectSortTypes, setActiveSortType } from '../../../assets/redux/slices/sortSlice'
+import { useAppDispatch, useAppSelector } from '@hooks'
+import { selectActiveSortType, selectSortTypes, setActiveSortType } from '@sortSlice'
 
 const SortMenu: FC = (props) => {
   const [activeSort, toggleActiveSort] = useState<boolean>(false);

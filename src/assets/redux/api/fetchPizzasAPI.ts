@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { PizzaFromApi } from '../../ts/interfacePizza'
+import { PizzaFromApi } from '@interfacePizza'
 
 interface PizzaQueryParams {
   category: number | string,

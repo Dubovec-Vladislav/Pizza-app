@@ -1,9 +1,9 @@
 import React, { FC } from 'react'
 import style from './FullPizza.module.scss'
 import { useParams } from 'react-router-dom'
-import PizzaItem from '../Main/PizzaField/PizzaItem'
-import Skeleton from '../UI/Skeleton/Skeleton'
-import { useGetPizzaQuery } from '../../assets/redux/api/fetchPizzasAPI'
+import { useGetPizzaQuery } from '@fetchPizzasAPI'
+import Skeleton from '@components/UI/Skeleton/Skeleton'
+import PizzaItem from '@components/Main/PizzaField/PizzaItem'
 
 
 const FullPizza: FC = () => {

@@ -1,8 +1,8 @@
 import React, { ChangeEvent, FC, useCallback, useEffect, useRef, useState } from 'react'
 import style from './Search.module.scss'
 import debounce from 'lodash.debounce'
-import { selectSearchValue, setSearchValue } from '../../../assets/redux/slices/searchSlice'
-import { useAppDispatch, useAppSelector } from '../../../assets/ts/hooks'
+import { selectSearchValue, setSearchValue } from '@searchSlice'
+import { useAppDispatch, useAppSelector } from '@hooks'
 
 const Search: FC = (props) => {
   const dispatch = useAppDispatch();

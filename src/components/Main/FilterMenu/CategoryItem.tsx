@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import style from './CategoryItem.module.scss'
-import { useAppDispatch } from '../../../assets/ts/hooks'
-import { setActiveCategory } from '../../../assets/redux/slices/categorySlice'
+import { useAppDispatch } from '@hooks'
+import { setActiveCategory } from '@categorySlice'
 
 interface ICategoryItemProps {
   text: string,

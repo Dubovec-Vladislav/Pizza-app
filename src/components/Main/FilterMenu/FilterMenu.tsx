@@ -1,9 +1,9 @@
 import React, { FC } from 'react'
 import style from './FilterMenu.module.scss'
-import SortMenu from '../../UI/SortMenu/SortMenu'
+import SortMenu from '@components/UI/SortMenu/SortMenu'
 import CategoryItem from './CategoryItem'
-import { useAppSelector } from '../../../assets/ts/hooks'
-import { selectActiveCategory, selectCategoryItems } from '../../../assets/redux/slices/categorySlice'
+import { useAppSelector } from '@hooks'
+import { selectActiveCategory, selectCategoryItems } from '@categorySlice'
 
 const FilterMenu: FC = React.memo((props) => {
   const categoryItems = useAppSelector(selectCategoryItems);

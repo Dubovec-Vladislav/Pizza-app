@@ -6,14 +6,14 @@ import qs from 'qs'
 import FilterMenu from './FilterMenu/FilterMenu'
 import PizzaField from './PizzaField/PizzaField'
 // Hooks
-import { useAppDispatch, useAppSelector } from '../../assets/ts/hooks'
+import { useAppDispatch, useAppSelector } from '@hooks'
 import { useNavigate } from 'react-router-dom'
 // Selectors and reducers
-import { selectActiveCategory, selectCategoryIdByName, selectCategoryItems, setActiveCategory } from '../../assets/redux/slices/categorySlice'
-import { selectActiveSortType, selectSortTypesProperty, setActiveSortType } from '../../assets/redux/slices/sortSlice'
-import { selectSearchValue, setSearchValue } from '../../assets/redux/slices/searchSlice'
+import { selectActiveCategory, selectCategoryIdByName, selectCategoryItems, setActiveCategory } from '@categorySlice'
+import { selectActiveSortType, selectSortTypesProperty, setActiveSortType } from '@sortSlice'
+import { selectSearchValue, setSearchValue } from '@searchSlice'
 // API
-// import { usePizzaData } from '../../assets/customHooks/usePizzaData'
+// import { usePizzaData } from '@customHooks/usePizzaData'
 
 const Main: FC = () => {
 

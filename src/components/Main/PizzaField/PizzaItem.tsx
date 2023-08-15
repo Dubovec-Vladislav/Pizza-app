@@ -2,9 +2,9 @@ import React, { FC, useState } from "react"
 import style from './PizzaItem.module.scss'
 import TypesItem from "./PizzaItemComponents/TypesItem"
 import SizesItem from "./PizzaItemComponents/SizesItem"
-import { addPizza, selectBasketPizzas } from "../../../assets/redux/slices/basketSlice"
-import { useAppDispatch, useAppSelector } from "../../../assets/ts/hooks"
-// import { useAddPizzaMutation } from "../../../assets/redux/api/fetchPizzasAPI"
+import { addPizza, selectBasketPizzas } from "@basketSlice"
+import { useAppDispatch, useAppSelector } from "@hooks"
+// import { useAddPizzaMutation } from "@fetchPizzasAPI"
 // import { Link } from "react-router-dom"
 
 interface PizzaItemProps {

@@ -1,12 +1,13 @@
 import React, { FC } from 'react'
 import style from './PizzaField.module.scss'
-import BlockTitle from '../../UI/BlockTitle/BlockTitle'
-// import pizzasData from '../../../assets/PizzasData/pizzas.json'
+// import pizzasData from '@pizzasData'
+import BlockTitle from '@components/UI/BlockTitle/BlockTitle'
+import Skeleton from '@components/UI/Skeleton/Skeleton'
 import PizzaItem from './PizzaItem'
-import Skeleton from '../../UI/Skeleton/Skeleton'
-import { useAppSelector } from '../../../assets/ts/hooks'
-import { selectSearchValue } from '../../../assets/redux/slices/searchSlice'
-import { usePizzaData } from '../../../assets/customHooks/usePizzaData'
+import { useAppSelector } from '@hooks'
+import { selectSearchValue } from '@searchSlice'
+import { usePizzaData } from '@customHooks/usePizzaData'
+
 
 interface PizzaFieldProps {
   category: string | number,

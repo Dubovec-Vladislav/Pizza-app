@@ -1,9 +1,9 @@
 import React, { FC } from 'react'
 import style from './Header.module.scss'
 import { Link, Route, Routes } from 'react-router-dom'
-import Search from '../UI/Search/Search'
-import { useAppSelector } from '../../assets/ts/hooks'
-import { selectBasketPizzas, selectBasketTotalNumber, selectBasketTotalPrice } from '../../assets/redux/slices/basketSlice'
+import Search from '@components/UI/Search/Search'
+import { useAppSelector } from '@hooks'
+import { selectBasketPizzas, selectBasketTotalNumber, selectBasketTotalPrice } from '@basketSlice'
 
 const Header: FC = (props) => {
   const totalNumberOfPizzas = useAppSelector(selectBasketTotalNumber);

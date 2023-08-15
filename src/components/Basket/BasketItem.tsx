@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import style from './BasketItem.module.scss'
-import { changeNumberOfPizzas, removePizza } from '../../assets/redux/slices/basketSlice'
-import { useAppDispatch } from '../../assets/ts/hooks'
+import { changeNumberOfPizzas, removePizza } from '@basketSlice'
+import { useAppDispatch } from '@hooks'
 
 interface IBasketItemProps {
   id: string,

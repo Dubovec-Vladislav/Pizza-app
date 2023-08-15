@@ -2,20 +2,12 @@ import React, { FC, Suspense } from 'react'
 import style from './App.module.scss'
 import { Route, Routes } from 'react-router-dom'
 // Components
-import Header from './components/Header/Header'
-import Main from './components/Main/Main'
-// import Basket from './components/Basket/Basket'
-// import FullPizza from './components/FullPizza/FullPizza'
-// import NotFoundPage from './components/UI/NotFoundPage/NotFoundPage'
+import Header from '@components/Header/Header'
+import Main from '@components/Main/Main'
 
-// export const SearchContext = createContext<{
-//   searchValue: string;
-//   setSearchValue: (searchValue: string) => void;
-// } | undefined>(undefined);
-
-const Basket = React.lazy(() => import(/* webpackChunkName: "Basket" */ './components/Basket/Basket'));
-const FullPizza = React.lazy(() => import(/* webpackChunkName: "FullPizza" */  './components/FullPizza/FullPizza'));
-const NotFoundPage = React.lazy(() => import(/* webpackChunkName: "NotFoundPage" */  './components/UI/NotFoundPage/NotFoundPage'));
+const Basket = React.lazy(() => import(/* webpackChunkName: "Basket" */ '@components/Basket/Basket'));
+const FullPizza = React.lazy(() => import(/* webpackChunkName: "FullPizza" */  '@components/FullPizza/FullPizza'));
+const NotFoundPage = React.lazy(() => import(/* webpackChunkName: "NotFoundPage" */  '@components/UI/NotFoundPage/NotFoundPage'));
 
 const App: FC = () => {
   // const [searchValue, setSearchValue] = useState<string>('');
@@ -35,9 +27,15 @@ const App: FC = () => {
         </Suspense>
       </div>
     </div>
-    // <SearchContext.Provider value={{ searchValue, setSearchValue }}>
-    // </SearchContext.Provider>
   );
 }
+
+// export const SearchContext = createContext<{
+//   searchValue: string;
+//   setSearchValue: (searchValue: string) => void;
+// } | undefined>(undefined);
+
+// <SearchContext.Provider value={{ searchValue, setSearchValue }}>
+// </SearchContext.Provider>
 
 export default App;

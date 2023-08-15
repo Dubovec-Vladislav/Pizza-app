@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import type { RootState } from '../store'
-import { getBasketFromLocalStorage } from '../../utils/getBasketFromLocalStorage'
-import { Pizza } from '../../ts/interfacePizza'
+import { RootState } from '@store'
+import { getBasketFromLocalStorage } from '@utils/getBasketFromLocalStorage'
+import { Pizza } from '@interfacePizza'
+
 
 interface BasketState {
   pizzas: Pizza[],

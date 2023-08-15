@@ -18,7 +18,55 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "baseUrl": "./",
+    "paths": {
+      // General
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@hooks": [
+        "src/assets/ts/hooks"
+      ],
+      "@customHooks/*": [
+        "src/assets/customHooks/*"
+      ],
+      "@utils/*": [
+        "src/assets/utils/*"
+      ],
+      // Interface Pizza
+      "@interfacePizza": [
+        "src/assets/ts/interfacePizza"
+      ],
+      // Store
+      "@store": [
+        "src/assets/redux/store"
+      ],
+      // Slices
+      "@basketSlice": [
+        "src/assets/redux/slices/basketSlice"
+      ],
+      "@pizzasSlice": [
+        "src/assets/redux/slices/pizzasSlice"
+      ],
+      "@categorySlice": [
+        "src/assets/redux/slices/categorySlice"
+      ],
+      "@searchSlice": [
+        "src/assets/redux/slices/searchSlice"
+      ],
+      "@sortSlice": [
+        "src/assets/redux/slices/sortSlice"
+      ],
+      // API
+      "@fetchPizzasAPI": [
+        "src/assets/redux/api/fetchPizzasAPI"
+      ],
+      // Pizzas Data
+      "@pizzasData": [
+        "src/assets/PizzasData/pizzas.json"
+      ],
+    }
   },
   "include": [
     "src"

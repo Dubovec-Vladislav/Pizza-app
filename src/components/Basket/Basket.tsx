@@ -1,8 +1,8 @@
 import React, { FC } from 'react'
 import style from './Basket.module.scss'
 import { Link } from 'react-router-dom'
-import { useAppDispatch, useAppSelector } from '../../assets/ts/hooks'
-import { clearPizzas, selectBasketPizzas, selectBasketTotalNumber, selectBasketTotalPrice } from '../../assets/redux/slices/basketSlice'
+import { useAppDispatch, useAppSelector } from '@hooks'
+import { clearPizzas, selectBasketPizzas, selectBasketTotalNumber, selectBasketTotalPrice } from '@basketSlice'
 import EmptyBasket from './EmptyBasket/EmptyBasket'
 import BasketItem from './BasketItem'
 
