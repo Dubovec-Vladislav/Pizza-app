@@ -18,7 +18,7 @@ const FullPizza = React.lazy(() => import(/* webpackChunkName: "FullPizza" */  '
 const NotFoundPage = React.lazy(() => import(/* webpackChunkName: "NotFoundPage" */  './components/UI/NotFoundPage/NotFoundPage'));
 
 const App: FC = () => {
-  // const [searchValue, setSearchValue] = useState('');
+  // const [searchValue, setSearchValue] = useState<string>('');
   return (
     <div className={style.body}>
       <div className={style.wrapper}>
