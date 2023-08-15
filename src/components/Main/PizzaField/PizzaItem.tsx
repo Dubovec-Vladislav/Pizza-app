@@ -24,9 +24,9 @@ const PizzaItem: FC<PizzaItemProps> = ({ id, imageUrl, name, types, sizes, price
   const dispatch = useAppDispatch();
 
   // Активным будет самый первый тип теста в массиве
-  const [activeDoughType, setActiveDoughType] = useState(doughTypeList[types[0]]);
-  const [activeSize, setActiveSize] = useState(sizes[0]);
-  const [activePrice, setActivePrice] = useState(0);
+  const [activeDoughType, setActiveDoughType] = useState<string>(doughTypeList[types[0]]);
+  const [activeSize, setActiveSize] = useState<number>(sizes[0]);
+  const [activePrice, setActivePrice] = useState<number>(0);
 
   // Определяем цену (если традиционное то +25 руб.)
   const price = activeDoughType === 'тонкое' ? prices[activePrice] : prices[activePrice] + 25;

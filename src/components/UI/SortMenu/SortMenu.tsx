@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../../assets/ts/hooks'
 import { selectActiveSortType, selectSortTypes, setActiveSortType } from '../../../assets/redux/slices/sortSlice'
 
 const SortMenu: FC = (props) => {
-  const [activeSort, toggleActiveSort] = useState(false);
+  const [activeSort, toggleActiveSort] = useState<boolean>(false);
 
   const dispatch = useAppDispatch();
   const sortTypes = useAppSelector(selectSortTypes);

@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../../assets/ts/hooks'
 const Search: FC = (props) => {
   const dispatch = useAppDispatch();
   const search = useAppSelector(selectSearchValue);
-  const [value, setValue] = useState(search);
+  const [value, setValue] = useState<string>(search);
   useEffect(() => setValue(search), [search]);
   const inputRef = useRef<HTMLInputElement>(null);
 
