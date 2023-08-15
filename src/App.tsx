@@ -5,8 +5,8 @@ import { Route, Routes } from 'react-router-dom'
 import Header from './components/Header/Header'
 import Main from './components/Main/Main'
 // import Basket from './components/Basket/Basket'
-import FullPizza from './components/FullPizza/FullPizza'
-import NotFoundPage from './components/UI/NotFoundPage/NotFoundPage'
+// import FullPizza from './components/FullPizza/FullPizza'
+// import NotFoundPage from './components/UI/NotFoundPage/NotFoundPage'
 
 // export const SearchContext = createContext<{
 //   searchValue: string;
@@ -14,6 +14,8 @@ import NotFoundPage from './components/UI/NotFoundPage/NotFoundPage'
 // } | undefined>(undefined);
 
 const Basket = React.lazy(() => import('./components/Basket/Basket'));
+const FullPizza = React.lazy(() => import('./components/FullPizza/FullPizza'));
+const NotFoundPage = React.lazy(() => import('./components/UI/NotFoundPage/NotFoundPage'));
 
 const App: FC = () => {
   // const [searchValue, setSearchValue] = useState('');
@@ -21,10 +23,12 @@ const App: FC = () => {
     <div className={style.body}>
       <div className={style.wrapper}>
         <Header />
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<div className={style.loading}>Подождите, идет загрузка...</div>}>
           <Routes>
             <Route path='/' element={<Main />} />
-            <Route path='/basket' element={<Basket />} />
+            <Route path='/basket' element={
+              <Basket />
+            } />
             <Route path='/pizza/:id' element={<FullPizza />} />
             <Route path='*' element={<NotFoundPage />} />
           </Routes>
