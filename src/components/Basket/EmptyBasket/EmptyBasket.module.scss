@@ -1,4 +1,6 @@
-.body {}
+.body {
+  text-align: center;
+}
 
 .title {
   color: #000;
@@ -30,8 +32,67 @@
 .img {
   display: block;
   text-align: center;
+  margin: 0px 0px 55px 0px;
 
   img {
     max-width: 100%;
+  }
+}
+
+.backBtn {
+  position: relative;
+  color: #CACACA;
+  background-color: #FFF;
+  margin: 0px 5px 0px 0px;
+  padding: 17px 28px 17px 48px;
+  border: 1px solid #D3D3D3;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 16px;
+
+  &:hover {
+
+    &::before,
+    &::after {
+      left: 11%;
+    }
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    left: 14%;
+    width: 10px;
+    height: 2px;
+    background-color: #CACACA;
+    border-radius: 10px;
+    transition: 0.4s ease;
+  }
+
+  &::before {
+    bottom: 42.1%;
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    top: 42.1%;
+    transform: rotate(-45deg);
+  }
+
+  @media (max-width: 500px) {
+    flex: 0 1 50%;
+    margin: 0px 0px 5px 0px;
+    padding: 14px 18px 14px 38px;
+    font-size: 14px;
+    text-align: center;
+
+    &::before {
+      bottom: 41%;
+    }
+
+    &::after {
+      top: 41%;
+    }
   }
 }

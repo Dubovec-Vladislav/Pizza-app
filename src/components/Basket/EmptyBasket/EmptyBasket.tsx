@@ -10,6 +10,7 @@ const EmptyBasket: FC = (props) => {
         Вероятней всего, вы не заказывали ещё пиццу. Для того, чтобы заказать пиццу, перейди на главную страницу.
       </div>
       <Link to='/' className={style.img}><img src="/img/UI/empty-basket.svg" alt="empty-basket" /></Link>
+      <Link to={"/"} className={style.backBtn}>Вернуться Назад</Link>
     </div>
   );
 };
