@@ -32,7 +32,7 @@
         "src/assets/customHooks/*"
       ],
       "@utils/*": [
-        "src/assets/utils/*"
+        "src/utils/*"
       ],
       // Interface Pizza
       "@interfacePizza": [
@@ -40,27 +40,27 @@
       ],
       // Store
       "@store": [
-        "src/assets/redux/store"
+        "src/redux/store"
       ],
       // Slices
       "@basketSlice": [
-        "src/assets/redux/slices/basketSlice"
+        "src/redux/slices/basketSlice"
       ],
       "@pizzasSlice": [
-        "src/assets/redux/slices/pizzasSlice"
+        "src/redux/slices/pizzasSlice"
       ],
       "@categorySlice": [
-        "src/assets/redux/slices/categorySlice"
+        "src/redux/slices/categorySlice"
       ],
       "@searchSlice": [
-        "src/assets/redux/slices/searchSlice"
+        "src/redux/slices/searchSlice"
       ],
       "@sortSlice": [
-        "src/assets/redux/slices/sortSlice"
+        "src/redux/slices/sortSlice"
       ],
       // API
       "@fetchPizzasAPI": [
-        "src/assets/redux/api/fetchPizzasAPI"
+        "src/api/fetchPizzasAPI"
       ],
       // Pizzas Data
       "@pizzasData": [

@@ -15,12 +15,12 @@ interface SortState {
 };
 
 const initialState: SortState = {
-  sortTypes: ['возрастанию популярности', 'убыванию популярности', 'дешевые', 'дорогие', 'алфавиту'],
+  sortTypes: ['возрастанию популярности', 'убыванию популярности', 'по цене (min)', 'по цене (max)', 'алфавиту'],
   sortTypesProperty: [
     { name: 'возрастанию популярности', sortProperty: 'rating', order: 'asc' },
     { name: 'убыванию популярности', sortProperty: 'rating', order: 'desc' },
-    { name: 'дешевые', sortProperty: 'prices', order: 'asc' },
-    { name: 'дорогие', sortProperty: 'prices', order: 'desc' },
+    { name: 'по цене (min)', sortProperty: 'prices', order: 'asc' },
+    { name: 'по цене (max)', sortProperty: 'prices', order: 'desc' },
     { name: 'алфавиту', sortProperty: 'title', order: 'desc' }
   ],
   activeSortType: 'возрастанию популярности',

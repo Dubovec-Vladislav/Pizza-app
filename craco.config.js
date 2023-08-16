@@ -7,23 +7,23 @@ module.exports = {
       "@components": path.resolve(__dirname, "./src/components"),
       "@hooks": path.resolve(__dirname, "./src/assets/ts/hooks"),
       "@customHooks": path.resolve(__dirname, "./src/assets/customHooks"),
-      "@utils": path.resolve(__dirname, "./src/assets/utils"),
+      "@utils": path.resolve(__dirname, "./src/utils"),
 
       // Interface Pizza
       "@interfacePizza": path.resolve(__dirname, "./src/assets/ts/interfacePizza"),
 
       // Store
-      "@store": path.resolve(__dirname, "./src/assets/redux/store"),
+      "@store": path.resolve(__dirname, "./src/redux/store"),
 
       // Slices
-      "@basketSlice": path.resolve(__dirname, "./src/assets/redux/slices/basketSlice"),
-      "@categorySlice": path.resolve(__dirname, "./src/assets/redux/slices/categorySlice"),
-      "@pizzasSlice": path.resolve(__dirname, "./src/assets/redux/slices/pizzasSlice"),
-      "@searchSlice": path.resolve(__dirname, "./src/assets/redux/slices/searchSlice"),
-      "@sortSlice": path.resolve(__dirname, "./src/assets/redux/slices/sortSlice"),
+      "@basketSlice": path.resolve(__dirname, "./src/redux/slices/basketSlice"),
+      "@categorySlice": path.resolve(__dirname, "./src/redux/slices/categorySlice"),
+      "@pizzasSlice": path.resolve(__dirname, "./src/redux/slices/pizzasSlice"),
+      "@searchSlice": path.resolve(__dirname, "./src/redux/slices/searchSlice"),
+      "@sortSlice": path.resolve(__dirname, "./src/redux/slices/sortSlice"),
 
       // API
-      "@fetchPizzasAPI": path.resolve(__dirname, "./src/assets/redux/api/fetchPizzasAPI"),
+      "@fetchPizzasAPI": path.resolve(__dirname, "./src/api/fetchPizzasAPI"),
 
       // Pizzas Data
       "@pizzasData": path.resolve(__dirname, "./src/assets/PizzasData/pizzas.json"),
