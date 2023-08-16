@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { setPizzas, updatingStatus } from "@pizzasSlice"
-import { useGetPizzasQuery } from "@fetchPizzasAPI";
+import { useGetPizzasQuery } from "@fetchPizzasAPI"
 
 export const usePizzaData = (category: number | string, sortBy: string, order: string) => {
   const dispatch = useDispatch();

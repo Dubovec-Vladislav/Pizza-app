@@ -4,7 +4,7 @@ import sortSlice from './slices/sortSlice'
 import pizzasSlice from './slices/pizzasSlice'
 import basketSlice from './slices/basketSlice'
 import searchSlice from './slices/searchSlice'
-import { pizzasApi } from '../api/fetchPizzasAPI'
+import { pizzasApi } from '@fetchPizzasAPI'
 
 export const store = configureStore({
   reducer: {
