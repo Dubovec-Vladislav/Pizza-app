@@ -5,12 +5,12 @@ module.exports = {
     alias: {
       // General
       "@components": path.resolve(__dirname, "./src/components"),
-      "@hooks": path.resolve(__dirname, "./src/assets/ts/hooks"),
-      "@customHooks": path.resolve(__dirname, "./src/assets/customHooks"),
+      "@hooks": path.resolve(__dirname, "./src/hooks/hooks"),
+      "@customHooks": path.resolve(__dirname, "./src/hooks/customHooks"),
       "@utils": path.resolve(__dirname, "./src/utils"),
 
       // Interface Pizza
-      "@interfacePizza": path.resolve(__dirname, "./src/assets/ts/interfacePizza"),
+      "@interfacePizza": path.resolve(__dirname, "./src/interfaces/interfacePizza"),
 
       // Store
       "@store": path.resolve(__dirname, "./src/redux/store"),

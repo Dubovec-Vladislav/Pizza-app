@@ -19,52 +19,52 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "paths": {
       // General
       "@components/*": [
-        "src/components/*"
+        "components/*"
       ],
       "@hooks": [
-        "src/assets/ts/hooks"
+        "hooks/hooks"
       ],
       "@customHooks/*": [
-        "src/assets/customHooks/*"
+        "hooks/customHooks/*"
       ],
       "@utils/*": [
-        "src/utils/*"
+        "utils/*"
       ],
       // Interface Pizza
       "@interfacePizza": [
-        "src/assets/ts/interfacePizza"
+        "interfaces/interfacePizza"
       ],
       // Store
       "@store": [
-        "src/redux/store"
+        "redux/store"
       ],
       // Slices
       "@basketSlice": [
-        "src/redux/slices/basketSlice"
+        "redux/slices/basketSlice"
       ],
       "@pizzasSlice": [
-        "src/redux/slices/pizzasSlice"
+        "redux/slices/pizzasSlice"
       ],
       "@categorySlice": [
-        "src/redux/slices/categorySlice"
+        "redux/slices/categorySlice"
       ],
       "@searchSlice": [
-        "src/redux/slices/searchSlice"
+        "redux/slices/searchSlice"
       ],
       "@sortSlice": [
-        "src/redux/slices/sortSlice"
+        "redux/slices/sortSlice"
       ],
       // API
       "@fetchPizzasAPI": [
-        "src/api/fetchPizzasAPI"
+        "api/fetchPizzasAPI"
       ],
       // Pizzas Data
       "@pizzasData": [
-        "src/assets/PizzasData/pizzas.json"
+        "assets/PizzasData/pizzas.json"
       ],
     }
   },

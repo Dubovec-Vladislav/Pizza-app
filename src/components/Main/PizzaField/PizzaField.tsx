@@ -6,7 +6,7 @@ import Skeleton from '@components/UI/Skeleton/Skeleton'
 import PizzaItem from './PizzaItem'
 import { useAppSelector } from '@hooks'
 import { selectSearchValue } from '@searchSlice'
-import { usePizzaData } from '@customHooks/usePizzaData'
+import { usePizzaData } from 'hooks/customHooks/usePizzaData'
 
 
 interface PizzaFieldProps {
