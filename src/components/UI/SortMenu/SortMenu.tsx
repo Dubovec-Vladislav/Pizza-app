@@ -15,7 +15,7 @@ const SortMenu: FC = (props) => {
     toggleActiveSort(!activeSort);
   };
 
-  const sortRef = useRef(null)
+  const sortRef = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -26,7 +26,7 @@ const SortMenu: FC = (props) => {
 
     document.body.addEventListener('click', handleClickOutside);
     return () => document.body.removeEventListener('click', handleClickOutside);
-  }, [])
+  }, []);
 
   return (
     <div className={style.sort} ref={sortRef}>
