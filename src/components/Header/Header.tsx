@@ -12,11 +12,10 @@ const Header: FC = (props) => {
 
   const isMounted = React.useRef(false); // Проверяем первый ли это рендер компонента
   React.useEffect(() => {
-    if (isMounted.current) {
-      const json = JSON.stringify(basketPizzas);
-      window.localStorage.setItem('basket', json);
-    }
-    isMounted.current = true;
+    // if (isMounted.current) {}
+    const json = JSON.stringify(basketPizzas);
+    window.localStorage.setItem('basket', json);
+    // isMounted.current = true;
   }, [basketPizzas]);
 
   return (
