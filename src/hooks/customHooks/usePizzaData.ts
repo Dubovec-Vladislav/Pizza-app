@@ -5,17 +5,17 @@ import { useGetPizzasQuery } from "@fetchPizzasAPI"
 
 export const usePizzaData = (category: number | string, sortBy: string, order: string) => {
   const dispatch = useDispatch();
-  const { data, error, isLoading } = useGetPizzasQuery({ category, sortBy, order });
+  const { data, error, isFetching } = useGetPizzasQuery({ category, sortBy, order });
 
   useEffect(() => {
     if (data) {
       dispatch(setPizzas(data));
       dispatch(updatingStatus('success'));
-    } else if (isLoading) dispatch(updatingStatus('loading'));
+    } else if (isFetching) dispatch(updatingStatus('loading'));
     else dispatch(updatingStatus('error'));
 
     window.scrollTo(0, 0);
-  }, [data, error, isLoading, dispatch]);
+  }, [data, error, isFetching, dispatch]);
 
-  return { data, error, isLoading };
+  return { data, error, isFetching };
 };

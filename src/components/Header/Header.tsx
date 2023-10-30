@@ -10,7 +10,7 @@ const Header: FC = (props) => {
   const totalPriceOfPizzas = useAppSelector(selectBasketTotalPrice);
   const basketPizzas = useAppSelector(selectBasketPizzas);
 
-  const isMounted = React.useRef(false); // Проверяем первый ли это рендер компонента
+  // const isMounted = React.useRef(false); // Проверяем первый ли это рендер компонента
   React.useEffect(() => {
     // if (isMounted.current) {}
     const json = JSON.stringify(basketPizzas);

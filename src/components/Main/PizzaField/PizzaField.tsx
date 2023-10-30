@@ -17,14 +17,14 @@ interface PizzaFieldProps {
 
 const PizzaField: FC<PizzaFieldProps> = React.memo(({ category, sortBy, order }) => {
   const searchValue = useAppSelector(selectSearchValue);
-  const { data, isLoading } = usePizzaData(category, sortBy, order); // Custom hook
+  const { data, isFetching } = usePizzaData(category, sortBy, order); // Custom hook
 
   return (
     <section className={style.block}>
       <div className={style.title}><BlockTitle text={'Все пиццы'} /></div>
       <div className={style.body}>
         {
-          isLoading
+          isFetching
             ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
             : data ?
               data.filter((pizza) => {
